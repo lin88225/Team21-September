@@ -9,7 +9,7 @@ cursor = conn.cursor()
 
 with open(csv_file, 'r') as file:
     reader = csv.reader(file)
-    header = next(reader
+    header = next(reader)
     columns = ', '.join(header)
     placeholders = ', '.join(['?' for _ in header])
     create_table_query = f'CREATE TABLE IF NOT EXISTS data ({columns});'
