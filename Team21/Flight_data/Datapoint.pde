@@ -2,8 +2,8 @@
 //A String array of loaded data and a specific line 
 
 public class Datapoint {
-  public String  FlightDate, mktCarrier, origin, oCity, oState, dest, dCity, dState;
-  public int  FlightNumber, oWorldAreaCode, dWorldAreaCode, scheduledDeparture, departure, scheduledArrival, arrival;
+  public String  FlightDate, IACA_Code_Marketing_Airline, Origin, OriginCityName, OriginStateName, Dest, DestinationCityName, DestinationStateName;
+  public int  FlightNumber, OriginWac, DestWac, CRSDepTime, departure, CRSExcpetedArrivalTime, ArrivalTime;
   public float distance;
   public boolean cancelled, diverted;
 
@@ -52,25 +52,25 @@ public class Datapoint {
     eP[8] = eP [8] + eP[9];
     
     this.FlightDate =           eP[0];
-    this.mktCarrier =           eP[1];
+    this.IACA_Code_Marketing_Airline =           eP[1];
     this.FlightNumber =         eI[0];
 
 
-    this.origin =               eP[3];
-    this.oCity =                eP[4];
-    this.oState =               eP[5];
-    this.oWorldAreaCode =       eI[1];
+    this.Origin =               eP[3];
+    this.OriginCityName =                eP[4];
+    this.OriginStateName =               eP[5];
+    this.OriginWac =       eI[1];
 
-    this.dest =                 eP[7];
-    this.dCity =                eP[8];
-    this.dState =               eP[9];
-    this.dWorldAreaCode =       eI[2];
+    this.Dest =                 eP[7];
+    this.DestinationCityName =                eP[8];
+    this.DestinationStateName =               eP[9];
+    this.DestWac =       eI[2];
 
-    this.scheduledDeparture =   eI[3];
+    this.CRSDepTime =   eI[3];
     this.departure =            eI[4];
 
-    this.scheduledArrival =     eI[5];
-    this.arrival =              eI[6];
+    this.CRSExcpetedArrivalTime =     eI[5];
+    this.ArrivalTime =              eI[6];
 
     this.distance =             distance;
 
@@ -114,4 +114,5 @@ Scrap Code:
      eI[0], eI[1], eI[2], eI[3], eI[4], eI[5], eI[6],
      distance,
      cancelled, diverted);
+     
 */
