@@ -7,10 +7,10 @@ void quickSortByIntArrivalTime(ArrayList<Datapoint> flights, int low, int high) 
 }
 
 int partitionByIntArrivalTime(ArrayList<Datapoint> flights, int low, int high) {
-  int pivot = flights.get(high).intArrivalTime;
+  int pivot = flights.get(high).ArrivalTime;
   int i = low - 1;
   for (int j = low; j < high; j++) {
-    if (flights.get(j).intArrivalTime < pivot) {
+    if (flights.get(j).ArrivalTime < pivot) {
       i++;
       Datapoint temp = flights.get(i);
       flights.set(i, flights.get(j));
