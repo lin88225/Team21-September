@@ -1,34 +1,38 @@
 PFont arial;
-void settings()
-{
+boolean printed;
+
+void settings() {
   size(SCREENX, SCREENY);
 }
-void setup()
-{
-  arial = loadFont("Arial-BoldMT-14.vlw");
+
+void setup() {
+  printed = false;
+  arial = createFont("Arial-BoldMT", 14);
   textFont(arial);
   textAlign(CENTER, CENTER);
-  fill(color(0));
+  fill(0);
   
+  String[] flightInfo = readData();
 }
-void draw()
-{
+
+void draw() {
   background(255);
   String [] flightInfo = readData();
 }
-String[] readData()
-{
-  String [] flightData = loadStrings("flights100k.csv");
-  if (!printed)
-  {
-    for (int i =0; i<flightData.length; i++)
-    {
-      System.out.println(flightData[i]);
+
+String[] readData() {
+  String[] flightData = loadStrings("flights100k.csv");
+  if (!printed) {
+    for (int i = 0; i < flightData.length; i++) {
+      println(flightData[i]);
     }
     printed = true;
   }
 
-// Parameters: Arraylist of datapoints, the variable you you like to sort for as a String
+  return flightData;
+}
+
+// Parameters: ArrayList of datapoints you want to sort, String name of variable
 void sortFlightsNumerically(ArrayList<Datapoint> flights, String variable) {
   switch (variable) {
     case "intArrivalTime":
@@ -41,6 +45,4 @@ void sortFlightsNumerically(ArrayList<Datapoint> flights, String variable) {
       println("Invalid variable name");
       break;
   }
-}
-  return flightData;
 }
