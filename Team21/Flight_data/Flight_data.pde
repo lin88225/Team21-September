@@ -1,4 +1,3 @@
-boolean printed;
 int showCounter;
 PFont arial;
 int i;
@@ -8,13 +7,13 @@ void settings()
 }
 void setup()
 {
-  printed = false;
   showCounter = 0;
   arial = loadFont("Arial-BoldMT-14.vlw");
   textFont(arial);
   textAlign(CENTER, CENTER);
   fill(color(0));
   i=0;
+  
 }
 void draw()
 {
@@ -31,13 +30,5 @@ void draw()
 String[] readData()
 {
   String [] flightData = loadStrings("flights100k.csv");
-  if (!printed)
-  {
-    for (int i =0; i<flightData.length; i++)
-    {
-      System.out.println(flightData[i]);
-    }
-    printed = true;
-  }
   return flightData;
 }
