@@ -1,34 +1,41 @@
-int showCounter;
 PFont arial;
-int i;
-void settings()
-{
+boolean printed;
+
+void settings() {
   size(SCREENX, SCREENY);
 }
-void setup()
-{
-  showCounter = 0;
-  arial = loadFont("Arial-BoldMT-14.vlw");
+
+void setup() {
+  printed = false;
+  arial = createFont("Arial-BoldMT", 14);
   textFont(arial);
   textAlign(CENTER, CENTER);
-  fill(color(0));
-  i=0;
+  fill(0);
   
+  String[] flightInfo = readData();
 }
-void draw()
-{
+
+void draw() {
   background(255);
   String [] flightInfo = readData();
-  text(flightInfo[i], SCREENX/2, SCREENY/2);
-  showCounter++;
-  if (showCounter>=20)
-  {
-    showCounter =0;
-    i++;
-  }
 }
-String[] readData()
-{
-  String [] flightData = loadStrings("flights100k.csv");
+
+String[] readData() {
+  String[] flightData = loadStrings("flights100k.csv");
   return flightData;
+}
+
+// Parameters: ArrayList of datapoints you want to sort, String name of variable
+void sortFlightsNumerically(ArrayList<Datapoint> flights, String variable) {
+  switch (variable) {
+    case "intArrivalTime":
+      quickSortByIntArrivalTime(flights, 0, flights.size() - 1);
+      break;
+    case "CRSDepTime":
+      quickSortByCRSDepTime(flights, 0, flights.size() - 1);
+      break;
+    default:
+      println("Invalid variable name");
+      break;
+  }
 }
