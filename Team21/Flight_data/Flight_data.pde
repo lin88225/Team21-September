@@ -12,12 +12,16 @@ void setup() {
   textAlign(CENTER, CENTER);
   fill(0);
   
-  String[] flightInfo = readData();
+  //String[] flightInfo = readData();
+  AirlinerProfile American = new AirlinerProfile ("LogoAA.jpg","PlaneAA.jpg","AA.txt");
+  
+  
 }
 
 void draw() {
   background(255);
-  String [] flightInfo = readData();
+  //String [] flightInfo = readData();
+  
 }
 
 String[] readData() {
