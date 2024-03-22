@@ -1,13 +1,11 @@
 PFont arial;
-boolean printed;
 
 void settings() {
   size(SCREENX, SCREENY);
 }
 
 void setup() {
-  printed = false;
-  arial = createFont("Arial-BoldMT", 14);
+  arial = loadFont("Arial-BoldMT-14.vlw");
   textFont(arial);
   textAlign(CENTER, CENTER);
 
@@ -20,7 +18,6 @@ void setup() {
 
 void draw() {
   background(255);
-  String [] flightInfo = readData();
 
 }
 
