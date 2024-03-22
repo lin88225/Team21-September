@@ -15,6 +15,9 @@ public class AirlinerProfile {
   AirlinerProfile(String logoFName, String planeFName, String mainFName) {
     logo = loadImage(logoFName);
     planePicture = loadImage(planeFName);
+    
+    logo.resize(100,100);
+    planePicture.resize(100,100);
     String[] desc = loadStrings(mainFName);
     name = desc[0];
     description = desc[1];
@@ -32,6 +35,7 @@ public class AirlinerProfile {
    This creates a mini-draggable profile-page for the profile
    */
   public void display () {
+    rect (1,1,1,1);
     image(logo, 50, 50);
     image(planePicture, 100, 100);
     text(description, 30, 30);
