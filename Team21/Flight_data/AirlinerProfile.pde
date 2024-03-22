@@ -17,8 +17,11 @@ public class AirlinerProfile {
     planePicture = loadImage(planeFName);
     String[] desc = loadStrings(mainFName);
     name = desc[0];
-    description = desc[0];
-    foodMenu = desc[0];
+    description = desc[1];
+    foodMenu = desc[2];
+    lastCrashDate = Integer.parseInt(desc[3]);
+    totalNumberOfCrashes = Integer.parseInt(desc[4]);
+    emissionPerDistanceUnit = Float.parseFloat(desc[5]);
     //Convert the rest
   
   }
