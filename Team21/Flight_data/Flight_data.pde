@@ -13,14 +13,12 @@ void setup() {
   fill(0);
   
   //String[] flightInfo = readData();
-  AirlinerProfile American = new AirlinerProfile ("LogoAA.jpg","PlaneAA.jpg","AA.txt");
+  AirlinerProfile American = new AirlinerProfile ("LogoAA.png","PlaneAA.png","AA.txt");
   
-  
+  American.display();
 }
 
 void draw() {
-  background(255);
-  //String [] flightInfo = readData();
   
 }
 
