@@ -1,12 +1,17 @@
+private static int numberOfButtons = 0;
+
+
 class Button{
   float xpos; float ypos;
   float height; float width;
   color colorOfButton;
   String text;
   PFont arial;
-  
+  int buttonID;
   
   Button(float xpos, float ypos, float height, float width, String text){
+    buttonID = numberOfButtons;
+    numberOfButtons += 1;
     this.xpos = xpos;
     this.ypos = ypos;
     this.height = height;
@@ -48,6 +53,10 @@ class Button{
     textFont(arial);
     int textSize = (int) height / 3;
     textSize(textSize);
-    text(text, xpos + ((width / 2) - text.length() * height/12), ypos + (height * 3/5));
+    text(text, xpos + width/2, ypos + height/2);
+  }
+  
+  public int getID(){
+    return buttonID;
   }
 }

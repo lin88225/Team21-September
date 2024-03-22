@@ -10,7 +10,9 @@ void setup() {
   arial = createFont("Arial-BoldMT", 14);
   textFont(arial);
   textAlign(CENTER, CENTER);
+
   rectMode(CENTER);
+
   fill(0);
   
   String[] flightInfo = readData();
@@ -18,6 +20,8 @@ void setup() {
 
 void draw() {
   background(255);
+  String [] flightInfo = readData();
+
 }
 
 String[] readData() {
