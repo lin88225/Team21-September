@@ -36,6 +36,7 @@ class Dropdown
   void draw()
   {
     titleWidget.draw();
+    makeWidgets();
     hoverTitle = titleWidget.getEvent(pmouseX, pmouseY);
     if (mousePressed)
     {
