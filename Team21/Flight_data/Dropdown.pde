@@ -73,7 +73,8 @@ class Dropdown
       {
         for(int j = 0; j<=i; j++)
         {
-          menuWidgets[j].y -= height*j;
+          menuWidgets[j].y -= menuWidgets[j].y-SCREENY+height*j+height;
+          menuWidgets[j].x = SCREENX/2;
         }
       }
     }
