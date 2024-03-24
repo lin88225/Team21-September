@@ -35,8 +35,8 @@ class Dropdown
   }
   void draw()
   {
-    titleWidget.draw();
     makeWidgets();
+    titleWidget.draw();
     hoverTitle = titleWidget.getEvent(pmouseX, pmouseY);
     if (mousePressed)
     {
@@ -69,6 +69,13 @@ class Dropdown
     for (int i = 0; i < dropdownDisplay.length; i++)
     {
       menuWidgets[i] = new Widget(x, y+height+i*height, width, height, dropdownDisplay[i], menuColour, clickColour, dropdownFont, 1);
+      if(menuWidgets[i].y + menuWidgets[i].height/2 > SCREENY)
+      {
+        for(int j = 0; j<=i; j++)
+        {
+          menuWidgets[j].y -= height*j;
+        }
+      }
     }
   }
   void selectMenu()
