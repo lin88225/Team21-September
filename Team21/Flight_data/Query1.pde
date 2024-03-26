@@ -1,12 +1,12 @@
 class Query1 {
 
   ArrayList<Datapoint> theData;
-  //Datapoint data;
-  int amount=21;
-  int start=1;
+  int start;
+  int amount;
 
-  Query1() {
-   // data= new Datapoint( readData(), 1);
+  Query1(int start, int amount) {
+    this.start=start;
+    this.amount=amount;
     theData = initializeDataList("flights100k.csv", start, amount);
   }
 
