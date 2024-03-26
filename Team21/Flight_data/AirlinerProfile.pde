@@ -58,12 +58,12 @@ public class AirlinerProfile {
    }
    */
 
-  public void display () {
+  public void draw () {
 
     this.mouseDragged();
     stroke (255);
     fill (255);
-    rect (posX, posY, PROFILE_SIZE, PROFILE_SIZE);
+    rect (posX, posY, PROFILE_SIZE, PROFILE_SIZE,20);
     image(logo, posX, posY);
     image(planePicture, posX+resizeTo, posY);
     fill (0);

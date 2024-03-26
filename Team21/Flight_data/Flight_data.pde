@@ -20,7 +20,7 @@ void setup() {
 
 void draw() {
   background(0);
-  American.display();
+  American.draw();
 }
 
 String[] readData() {
