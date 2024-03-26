@@ -47,3 +47,9 @@ void sortFlightsNumerically(ArrayList<Datapoint> flights, String variable) {
     break;
   }
 }
+void mouseWheel(MouseEvent event) {
+  for(int i =0; i< dropdownArray.length ; i++)
+  {
+    dropdownArray[i].scroll((int)event.getCount());
+  }
+}
