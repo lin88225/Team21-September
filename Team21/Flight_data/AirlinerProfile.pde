@@ -7,37 +7,104 @@
  */
 public class AirlinerProfile {
   public PImage logo, planePicture;
-  public float emissionPerDistanceUnit;
-  public int lastCrashDate, totalNumberOfCrashes;
+  public float emissionPerDistanceUnit, ratio = 0.2;
+  public int lastCrashDate, totalNumberOfCrashes, disX, disY, posX = SCREENX/2, posY = SCREENY/2;
   public String name, description, foodMenu, lastUpdated;
-
-
-  AirlinerProfile(String logoFName, String planeFName, String mainFName) {
-    logo = loadImage(logoFName);
-    planePicture = loadImage(planeFName);
-    
-    logo.resize(100,100);
-    planePicture.resize(100,100);
-    String[] desc = loadStrings(mainFName);
-    name = desc[0];
-    description = desc[1];
-    foodMenu = desc[2];
-    lastCrashDate = Integer.parseInt(desc[3]);
-    totalNumberOfCrashes = Integer.parseInt(desc[4]);
-    emissionPerDistanceUnit = Float.parseFloat(desc[5]);
-    lastUpdated = desc[6];
-    //Convert the rest
+  public String logoFName, planeFName, mainFName;
+  int resizeTo = (int)(ratio*PROFILE_SIZE);
+  AirlinerProfile() {
   }
+
+  public AirlinerProfile(String logoFName, String planeFName, String mainFName) {
+    this.logoFName = logoFName;
+    this.planeFName = planeFName;
+    this.mainFName = mainFName;
+
+    logo = loadImage(this.logoFName);
+    planePicture = loadImage(this.planeFName);
+
+    logo.resize(resizeTo, resizeTo);
+    planePicture.resize(2*resizeTo, resizeTo);
+    String[] desc = loadStrings(this.mainFName);
+    name = desc[0];
+    
+    foodMenu = desc[1];
+    lastCrashDate = Integer.parseInt(desc[2]);
+    totalNumberOfCrashes = Integer.parseInt(desc[3]);
+    emissionPerDistanceUnit = Float.parseFloat(desc[4]);
+    lastUpdated = desc[5];
+    description = desc[6] + "\n" + desc[7] ;
+  }
+
 
   /*
   L.Mc
    
-   This creates a mini-draggable profile-page for the profile
+   This creates a draggable profile-page for the profile
    */
+  float spaceIncrement = PROFILE_SIZE/25;
+  PFont sans = createFont("Comic Sans MS", spaceIncrement);
+  /*
+  public void updateProfileValues() {
+   
+   logo = loadImage(logoFName);
+   planePicture = loadImage(planeFName);
+   spaceIncrement = PROFILE_SIZE/25;
+   sans = createFont("Comic Sans MS", spaceIncrement);
+   logo.resize(resizeTo, resizeTo);
+   planePicture.resize(2*resizeTo, resizeTo);
+   resizeTo = (int)(ratio*PROFILE_SIZE);
+   
+   }
+   */
+
   public void display () {
-    rect (1,1,1,1);
-    image(logo, 50, 50);
-    image(planePicture, 100, 100);
-    text(description, 30, 30);
+
+    this.mouseDragged();
+    stroke (255);
+    fill (255);
+    rect (posX, posY, PROFILE_SIZE, PROFILE_SIZE);
+    image(logo, posX, posY);
+    image(planePicture, posX+resizeTo, posY);
+    fill (0);
+    textAlign(LEFT, TOP);
+    textFont(sans);
+    float textYPos = posY + resizeTo;
+    text("Name:" + name, posX, textYPos + spaceIncrement);
+
+    text("Date of last plane crash:" + lastCrashDate, posX, textYPos + spaceIncrement*3);
+    text("Number of planes crashed:" + totalNumberOfCrashes, posX, textYPos + spaceIncrement*4);
+    
+    text("Emmissions per distance unit:" + emissionPerDistanceUnit, posX, textYPos + spaceIncrement*5);
+    text("In-Flight menu:" + foodMenu, posX, textYPos + spaceIncrement*7);
+    
+    
+    text(description, posX, textYPos + spaceIncrement*10);
+    textAlign(RIGHT, BOTTOM);
+    text("Last updated:" + lastUpdated, posX + PROFILE_SIZE, posY + PROFILE_SIZE);
+    
+    stroke (0);
+  }
+
+  boolean beingDragged = false;
+  void mouseDragged() {
+    boolean withinX = (mouseX >= posX && mouseX <= posX + PROFILE_SIZE);
+    boolean withinY = (mouseY >= posY && mouseY <= posY + PROFILE_SIZE);
+    boolean within = withinX && withinY;
+    //If the mouse is within the bounds of the box
+
+    if (within && mousePressed) {
+      beingDragged = true;
+    } else if (!mousePressed) {
+      beingDragged = false;
+    }
+
+    if (beingDragged) {
+      this.posX = this.disX + mouseX;
+      this.posY = this.disY + mouseY;
+    } else {
+      this.disX = this.posX - mouseX;
+      this.disY = this.posY - mouseY;
+    }
   }
 }

@@ -4,7 +4,7 @@ boolean printed;
 void settings() {
   size(SCREENX, SCREENY);
 }
-
+AirlinerProfile American;
 void setup() {
   printed = false;
   arial = createFont("Arial-BoldMT", 14);
@@ -13,13 +13,14 @@ void setup() {
   fill(0);
   
   //String[] flightInfo = readData();
-  AirlinerProfile American = new AirlinerProfile ("LogoAA.png","PlaneAA.png","AA.txt");
   
-  American.display();
+  
+  American = new AirlinerProfile ("LogoAA.png","PlaneAA.png","AA.txt");
 }
 
 void draw() {
-  
+  background(0);
+  American.display();
 }
 
 String[] readData() {

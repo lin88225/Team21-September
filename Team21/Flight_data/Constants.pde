@@ -8,4 +8,4 @@ final int SCREENY = 600;
 final int EVENT_NULL = 0;
 final int FRAMES_PER_CLICK =15;
 
-final int profileSize = 300;
+int PROFILE_SIZE = 300;
