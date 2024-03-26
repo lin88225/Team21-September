@@ -47,9 +47,9 @@ class Dropdown
         clickTitle += titleWidget.getEvent(pmouseX, pmouseY);
         if (clickTitle%2==0)
         {
-          for (int i =0; i<menuWidgets.length; i++)
+          for (int i =0; i<numOfDropsToDisplay; i++)
           {
-            clickMenu[i] += menuWidgets[i].getEvent(pmouseX, pmouseY);
+            clickMenu[i+scrollIndex] += menuWidgets[i].getEvent(pmouseX, pmouseY);
           }
         }
         clickDelay++;
