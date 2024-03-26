@@ -26,29 +26,29 @@ class Query {
       if (!airport.contains(value)) //checks if it does not contain the airport yet
         airport.add(value);
     }
-    return airport.toArray(new String[airport.size()]);//converts to Array and returns it
+    return sort(airport.toArray(new String[airport.size()]));//converts to Array and returns it in alphabetical order
   }
 
   String[] getArrayStates() {
     // Creates an ArrayList with unique states values
     ArrayList<String> state = new ArrayList<>();
     for (int i = 0; i < theData.size(); i++) {
-      String value = theData.get(i).OriginStateName;
+      String value = theData.get(i).OriginStateName.replaceAll("\"", "");//replaceAll() is used to remove "" from the String 
       if (!state.contains(value)) //checks if it does not contain the state yet
         state.add(value);
     }
-    return state.toArray(new String[state.size()]);//converts to Array and returns it
+    return sort(state.toArray(new String[state.size()]));//converts to Array and returns it in alphabetical order
   }
 
   String[] getArrayCities() {
     // Creates an ArrayList with unique city values
     ArrayList<String> city = new ArrayList<>();
     for (int i = 0; i < theData.size(); i++) {
-      String value = theData.get(i).OriginCityName;
+      String value = theData.get(i).OriginCityName.replaceAll("\"", "");//replaceAll() is used to remove "" from the String 
       if (!city.contains(value)) //checks if it does not contain the city yet
         city.add(value);
     }
-    return city.toArray(new String[city.size()]);//converts to Array and returns it
+    return sort(city.toArray(new String[city.size()]));//converts to Array and returns it in alphabetical order
   }
 
   String[] getArrayAirlines() {
@@ -59,7 +59,7 @@ class Query {
       if (!airline.contains(value)) //checks if it does not contain the airline yet
         airline.add(value);
     }
-    return airline.toArray(new String[airline.size()]);//converts to Array and returns it
+    return sort(airline.toArray(new String[airline.size()]));//converts to Array and returns it in alphabetical order
   }
 
   int [] getNumberFlightsPerAirport() {

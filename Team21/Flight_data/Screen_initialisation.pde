@@ -1,48 +1,52 @@
 // a function to create the dropdown array
 void createDropdownArray()
 {
-  Query q1= new Query(1, 21);
+  Query q= new Query(1, 100);
   dropdownArray = new Dropdown[9];
-  String [] testData = q1.getArrayAirports();
+  String [] airports = q.getArrayAirports();
+  String [] states = q.getArrayStates();
+  String [] cities = q.getArrayCities();
+  //String [] airlines = q.getArrayAirlines();//ArrayIndexOutOfBoundsException: Index -4 out of bounds for length 1 
+
   for (int i = 0; i < dropdownArray.length; i++)
   {
     switch(i)
     {
     case 8:
       dropdownArray[i] = new Dropdown(SCREENX/2-DROPDOWN_WIDTH, SCREENY/2-4*DROPDOWN_HEIGHT, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
-        "Number of flights per state", testData, MIMI_PINK, COLUMBIA_BLUE, DENIM, arial, true);
+        "Number of flights per state", states, MIMI_PINK, COLUMBIA_BLUE, DENIM, arial, true);
       break;
     case 7:
       dropdownArray[i] = new Dropdown(SCREENX/2+DROPDOWN_WIDTH, SCREENY/2-4*DROPDOWN_HEIGHT, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
-        "Number of flights per city", testData, MIMI_PINK, COLUMBIA_BLUE, DENIM, arial, true);
+        "Number of flights per city", cities, MIMI_PINK, COLUMBIA_BLUE, DENIM, arial, true);
       break;
     case 6:
       dropdownArray[i] = new Dropdown(SCREENX/2-DROPDOWN_WIDTH, SCREENY/2-2*DROPDOWN_HEIGHT, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
-        "Number of flights per airport", testData, MIMI_PINK, COLUMBIA_BLUE, DENIM, arial, true);
+        "Number of flights per airport", airports, MIMI_PINK, COLUMBIA_BLUE, DENIM, arial, true);
       break;
     case 5:
       dropdownArray[i] = new Dropdown(SCREENX/2+DROPDOWN_WIDTH, SCREENY/2-2*DROPDOWN_HEIGHT, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
-        "Average delay per airline", testData, MIMI_PINK, COLUMBIA_BLUE, DENIM, arial, true);
+        "Average delay per airline", airports, MIMI_PINK, COLUMBIA_BLUE, DENIM, arial, true);
       break;
     case 4:
       dropdownArray[i] = new Dropdown(SCREENX/2-DROPDOWN_WIDTH, SCREENY/2, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
-        "Number of cancellations\nand diversions per state", testData, MIMI_PINK, COLUMBIA_BLUE, DENIM, arial, false);
+        "Number of cancellations\nand diversions per state", states, MIMI_PINK, COLUMBIA_BLUE, DENIM, arial, false);
       break;
     case 3:
       dropdownArray[i] = new Dropdown(SCREENX/2+DROPDOWN_WIDTH, SCREENY/2, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
-        "Number of cancellations\nand diversions per city", testData, MIMI_PINK, COLUMBIA_BLUE, DENIM, arial, false);
+        "Number of cancellations\nand diversions per city", cities, MIMI_PINK, COLUMBIA_BLUE, DENIM, arial, false);
       break;
     case 2:
       dropdownArray[i] = new Dropdown(SCREENX/2-DROPDOWN_WIDTH, SCREENY/2+2*DROPDOWN_HEIGHT, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
-        "Number of cancellations\nand diversions per airline", testData, MIMI_PINK, COLUMBIA_BLUE, DENIM, arial, false);
+        "Number of cancellations\nand diversions per airline", airports, MIMI_PINK, COLUMBIA_BLUE, DENIM, arial, false);
       break;
     case 1:
       dropdownArray[i] = new Dropdown(SCREENX/2+DROPDOWN_WIDTH, SCREENY/2+2*DROPDOWN_HEIGHT, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
-        "Average flight\ndistance per airline", testData, MIMI_PINK, COLUMBIA_BLUE, DENIM, arial, true);
+        "Average flight\ndistance per airline", airports, MIMI_PINK, COLUMBIA_BLUE, DENIM, arial, true);
       break;
     case 0:
       dropdownArray[i] = new Dropdown(SCREENX/2-DROPDOWN_WIDTH, SCREENY/2+4*DROPDOWN_HEIGHT, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
-        "Carbon emissions per airline", testData, MIMI_PINK, COLUMBIA_BLUE, DENIM, arial, true);
+        "Carbon emissions per airline", airports, MIMI_PINK, COLUMBIA_BLUE, DENIM, arial, true);
       break;
     default:
       System.out.println("error ");
@@ -53,9 +57,13 @@ void createDropdownArray()
 // function to create Screens
 void createScreens()
 {
-  Query q1= new Query(1, 21);
+  Query q= new Query(1, 100);
   Button [] tempButtonArray = new Button [10];
-  int[] tempData = q1.getNumberFlightsPerAirport();
+  int[] tempData = q.getNumberFlightsPerAirport();
+  int[] numFlightsAirport=q.getNumberFlightsPerAirport();
+  int[] numFlightsState=q.getNumberFlightsPerState();
+  int[] numFlightsCity=q.getNumberFlightsPerCity();
+  
   screenArray = new Screen [6];
   for (int i = 0; i< screenArray.length; i++)
   {
@@ -78,7 +86,7 @@ void createScreens()
       {
         if (dropdownArray[8].clickMenu[j] % 2==0)
         {
-          pieChartValues1.add(tempData[j]);
+          pieChartValues1.add(numFlightsState[j]);
           pieChartDescriptions1.add(dropdownArray[8].dropdownDisplay[j]);
         }
       }
@@ -86,7 +94,7 @@ void createScreens()
       {
         if (dropdownArray[7].clickMenu[j] % 2==0)
         {
-          pieChartValues2.add(tempData[j]);
+          pieChartValues2.add(numFlightsCity[j]);
           pieChartDescriptions2.add(dropdownArray[7].dropdownDisplay[j]);
         }
       }
@@ -94,7 +102,7 @@ void createScreens()
       {
         if (dropdownArray[6].clickMenu[j] % 2==0)
         {
-          pieChartValues3.add(tempData[j]);
+          pieChartValues3.add(numFlightsAirport[j]);
           pieChartDescriptions3.add(dropdownArray[6].dropdownDisplay[j]);
         }
       }
