@@ -194,10 +194,16 @@ void createScreens()
       String [] barChartLabels1 = barChartDescriptions1.toArray(new String[0]);
       String [] barChartLabels2 = barChartDescriptions2.toArray(new String[0]);
       String [] barChartLabels3 = barChartDescriptions3.toArray(new String[0]);
-      if(barChartLabels1.length !=0){
-      screenArray[i].addBarChart(barChartInts1, barChartLabels1, title1, "Number of flights on time, cancelled, and diverted", barChartLabels1[i]);}if(barChartLabels2.length !=0){
-      screenArray[i].addBarChart(barChartInts2, barChartLabels2, title2, "Number of flights on time, cancelled, and diverted", barChartLabels2[i]);}if(barChartLabels3.length !=0){
-      screenArray[i].addBarChart(barChartInts3, barChartLabels3, title3, "Number of flights on time, cancelled, and diverted", barChartLabels3[i]);}
+      if (barChartLabels1.length !=0)
+      {
+        screenArray[i].addBarChart(barChartInts1, barChartLabels1, title1, "Number of flights on time, cancelled, and diverted", barChartLabels1[i]);
+      }
+      if (barChartLabels2.length !=0) {
+        screenArray[i].addBarChart(barChartInts2, barChartLabels2, title2, "Number of flights on time, cancelled, and diverted", barChartLabels2[i]);
+      }
+      if (barChartLabels3.length !=0) {
+        screenArray[i].addBarChart(barChartInts3, barChartLabels3, title3, "Number of flights on time, cancelled, and diverted", barChartLabels3[i]);
+      }
     } else if (i ==4)
     {
       screenArray[i] = new Screen(tempButtonArray);
