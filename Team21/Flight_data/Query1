@@ -1,20 +1,20 @@
 class Query1 {
 
   ArrayList<Datapoint> theData;
-  //Datapoint data;
+  Datapoint data;
   int amount=21;
   int start=1;
 
   Query1() {
-   // data= new Datapoint( readData(), 1);
-    theData = initializeDataList("flights100k.csv", start, amount);
+    data= new Datapoint( readData(), 1);
+    theData = data.initializeDataList("flights100k.csv", start, amount);
   }
 
   String[] getArrayAirports() {
     // Creates an ArrayList with unique airport values
     ArrayList<String> airport = new ArrayList<>();
     for (int i = 0; i < theData.size(); i++) {
-      String value = theData.get(i).Origin;
+      String value = theData.get(i).origin;
       if (!airport.contains(value)) //checks if it does not contain the airport yet
         airport.add(value);
     }
@@ -27,11 +27,11 @@ class Query1 {
     for (int index = 0; index < flightCounts.length; index++) {
       int airportCounts=0;
       for (int i = 0; i < theData.size(); i++) {
-        String origin = theData.get(i).Origin;
+        String origin = theData.get(i).origin;
         if (airports[index].equals(origin))
           airportCounts++;
-      }
-      flightCounts[index]=airportCounts;
+        }
+        flightCounts[index]=airportCounts;
     }
     return flightCounts;//returns the flightCounts array containing the counts of flights for each airport
   }
