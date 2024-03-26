@@ -104,4 +104,11 @@ class Dropdown
       }
     }
   }
+  String getSelectedCity()
+  {
+    String result = "apex";
+    return result; 
+  
+  
+  }
 }

@@ -1,4 +1,4 @@
-PFont arial;
+/*PFont arial;
 
 void settings() {
   size(SCREENX, SCREENY);
@@ -19,7 +19,7 @@ void setup() {
 void draw() {
   background(255);
 
-}
+} */
 
 String[] readData() {
   String[] flightData = loadStrings("flights100k.csv");
