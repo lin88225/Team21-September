@@ -2,7 +2,7 @@ PFont arial;
 
 Screen [] screenArray;
 Dropdown [] dropdownArray;
-Query1 q1;
+//Query1 q1;
 String [] airports;
 int [] numberFlights;
 
@@ -14,22 +14,22 @@ void setup() {
   arial = loadFont("Arial-BoldMT-14.vlw");
   textFont(arial);
   textAlign(CENTER, CENTER);
-  
+
   rectMode(CENTER);
-  
+
   fill(0);
-  
+
   String[] flightInfo = readData();
   createDropdownArray();
   createScreens();
-  q1= new Query1(1, 21);
-  airports=q1.getArrayAirports();
-  numberFlights=q1.getNumberFlightsPerAirport();
+  //q1= new Query1(1, 21);
+  //airports=q1.getArrayAirports();
+  //numberFlights=q1.getNumberFlightsPerAirport();
 }
 
 void draw() {
   background(255);
-  
+  screenArray[0].draw();
 }
 
 String[] readData() {

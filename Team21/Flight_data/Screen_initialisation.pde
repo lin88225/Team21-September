@@ -1,15 +1,18 @@
 // a function to create the dropdown array
+
 void createDropdownArray()
 {
+  Query1 q1= new Query1(1, 21);
   dropdownArray = new Dropdown[9];
-  String [] testData = {"NY", "CA", "MO", "IL", "NC", "GA", "TX", "KY"};
+  // String [] testData = {"NY", "CA", "MO", "IL", "NC", "GA", "TX", "KY"};
+  String [] testData = q1.getArrayAirports();
   for (int i = 0; i < dropdownArray.length; i++)
   {
     switch(i)
     {
     case 8:
       dropdownArray[i] = new Dropdown(SCREENX/2-DROPDOWN_WIDTH, SCREENY/2-4*DROPDOWN_HEIGHT, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
-        "Number of flights per state", testData, MIMI_PINK, COLUMBIA_BLUE, DENIM, arial, true);
+        "Number of flights per state", testData, MIMI_PINK, COLUMBIA_BLUE, DENIM, arial, true);//replace testData with airports
       break;
     case 7:
       dropdownArray[i] = new Dropdown(SCREENX/2+DROPDOWN_WIDTH, SCREENY/2-4*DROPDOWN_HEIGHT, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
@@ -52,8 +55,10 @@ void createDropdownArray()
 // function to create Screens
 void createScreens()
 {
+  Query1 q1= new Query1(1, 21);
   Button [] tempButtonArray = new Button [10];
-  int[] tempData = {1, 2, 3, 5, 7, 9, 34, 19};
+  //int[] tempData = {1, 2, 3, 5, 7, 9, 34, 19};
+  int[] tempData = q1.getNumberFlightsPerAirport();
   screenArray = new Screen [6];
   for (int i = 0; i< screenArray.length; i++)
   {
