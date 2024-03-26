@@ -18,11 +18,12 @@ class BarChart {
     this.descriptionOfY=descriptionOfY;
     font=loadFont("ArialNova-Light-16.vlw");
     font2=loadFont("ArialNova-Bold-20.vlw");
-    textAlign(LEFT);
+    //textAlign(LEFT);
   }
 
   void draw() {
     //for loop draws the bar chart along with name and value for each column
+    textAlign(LEFT);
     int xRect=SCREENX/4;
     int yRect;
     int hRect=20;
