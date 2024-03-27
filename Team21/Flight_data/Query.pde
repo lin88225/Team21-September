@@ -15,7 +15,7 @@ class Query {
   Query(int start, int amount) {
     this.start=start;
     this.amount=amount;
-    theData = initializeDataList("flights100k.csv", start, amount);
+    theData = initializeDataList(flightInfo, start, amount);
   }
 
   String[] getArrayAirports() {
