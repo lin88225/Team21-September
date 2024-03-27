@@ -6,7 +6,8 @@ class Screen{
   ArrayList<BarChart> barCharts = new ArrayList<>();
   ArrayList<Dropdown> dropdowns = new ArrayList<>();
   ArrayList<Button> buttons = new ArrayList<>();
-  color backgroundColor = WHITE;
+  color backgroundColor = MIMI_PINK;
+
   int screenID;
   Button nextScreen;
   Button previuosScreen;

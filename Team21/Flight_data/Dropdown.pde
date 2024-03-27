@@ -12,6 +12,8 @@ class Dropdown
   int clickTitle = 1;
   int clickMenu[];
   int clickDelay = 0;
+  int scrollIndex = 0; // This index tells the programme how far down the user has scrolled
+  int numOfDropsToDisplay = 5;
   boolean multipleSelection;
   Dropdown(int x, int y, int width, int height, String dropdownTitle, String [] dropdownDisplay, color titleColour, color menuColour, color clickColour, PFont dropdownFont, boolean multipleSelection)
   {
@@ -35,6 +37,7 @@ class Dropdown
   }
   void draw()
   {
+    makeWidgets();
     titleWidget.draw();
     hoverTitle = titleWidget.getEvent(pmouseX, pmouseY);
     if (mousePressed)
@@ -44,9 +47,9 @@ class Dropdown
         clickTitle += titleWidget.getEvent(pmouseX, pmouseY);
         if (clickTitle%2==0)
         {
-          for (int i =0; i<menuWidgets.length; i++)
+          for (int i =0; i<numOfDropsToDisplay; i++)
           {
-            clickMenu[i] += menuWidgets[i].getEvent(pmouseX, pmouseY);
+            clickMenu[i+scrollIndex] += menuWidgets[i].getEvent(pmouseX, pmouseY);
           }
         }
         clickDelay++;
@@ -67,18 +70,31 @@ class Dropdown
     titleWidget = new Widget(x, y, width, height, dropdownTitle, titleColour, clickColour, dropdownFont, 1);
     for (int i = 0; i < dropdownDisplay.length; i++)
     {
-      menuWidgets[i] = new Widget(x, y+height+i*height, width, height, dropdownDisplay[i], menuColour, clickColour, dropdownFont, 1);
+      menuWidgets[i] = new Widget(x, y+3*height/4+i*height/2, width, height/2, dropdownDisplay[i], menuColour, clickColour, dropdownFont, 1);
+      if (menuWidgets[i].y + menuWidgets[i].height/2 > SCREENY && i<= numOfDropsToDisplay)
+      {
+        for (int j = 0; j<=i; j++)
+        {
+          menuWidgets[j].y -= menuWidgets[j].y-SCREENY+menuWidgets[j].height*j+menuWidgets[j].height;
+          menuWidgets[j].x = SCREENX/2;
+        }
+      }
     }
   }
   void selectMenu()
   {
     if (clickTitle % 2 == 0)
     {
-      for (int i = 0; i < menuWidgets.length; i++)
+      for (int i = 0; i < numOfDropsToDisplay; i++)
       {
         selectOption();
-        menuWidgets[i].draw();
-        hoverMenu = menuWidgets[i].getEvent(pmouseX, pmouseY);
+        if(scrollIndex!=0)
+        {
+          menuWidgets[i+scrollIndex].y -= (scrollIndex)*height/2;
+        }
+        menuWidgets[i+scrollIndex].draw();
+        hoverMenu = menuWidgets[i+scrollIndex].getEvent(pmouseX, pmouseY);
+        
       }
     }
   }
@@ -89,19 +105,28 @@ class Dropdown
       if (clickMenu[i]%2==0)
       {
         menuWidgets[i].mainColour = menuWidgets[i].clickedColour;
-        for(int j = 0; j<menuWidgets.length; j++)
+        for (int j = 0; j<menuWidgets.length; j++)
         {
-          if(!multipleSelection && j != i && clickMenu[j]%2==0)
+          if (!multipleSelection && j != i && clickMenu[j]%2==0)
           {
             menuWidgets[j].mainColour = menuWidgets[j].widgetColour;
             clickMenu[j] += menuWidgets[i].getEvent(pmouseX, pmouseY);
           }
         }
-      } 
-      else if (clickMenu[i]%2!=0)
+      } else if (clickMenu[i]%2!=0)
       {
         menuWidgets[i].mainColour = menuWidgets[i].widgetColour;
       }
+    }
+  }
+  void scroll(int i) {
+    scrollIndex += i;
+    if (scrollIndex < 0) {
+      scrollIndex = 0 ;
+    }
+    if (scrollIndex > - numOfDropsToDisplay + dropdownDisplay.length)
+    {
+      scrollIndex = dropdownDisplay.length - numOfDropsToDisplay;
     }
   }
 }
