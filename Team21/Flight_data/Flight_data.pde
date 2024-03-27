@@ -5,6 +5,7 @@ Screen [] screenArray;
 Dropdown [] dropdownArray;
 String [] airports;
 int [] numberFlights;
+String [] flightInfo;
 
 void settings() {
   size(SCREENX, SCREENY);
@@ -22,7 +23,7 @@ void setup() {
   textFont(arial);
   fill(0);
 
-  String[] flightInfo = readData();
+  flightInfo = readData();
   createDropdownArray();
   createScreens();
   //q1= new Query1(1, 21);
