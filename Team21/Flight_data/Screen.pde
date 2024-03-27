@@ -6,7 +6,7 @@ class Screen{
   Dropdown[] dropdowns;
   ArrayList<PieChart> pieCharts = new ArrayList<>();
   ArrayList<BarChart> barCharts = new ArrayList<>();
-  color backgroundColor = WHITE;
+  color backgroundColor = MIMI_PINK;
   int screenID;
   
   
@@ -24,10 +24,10 @@ class Screen{
     background(backgroundColor);
     PieChart pieChart;
     BarChart barChart;
-    /*for (int i = 0; i < buttons.length; i++)
+    for (int i = 0; i < buttons.length; i++)
     {
       buttons[i].draw();
-    }*/
+    }
     for (int i = 0; i < dropdowns.length; i++)
     {
       dropdowns[i].draw();
