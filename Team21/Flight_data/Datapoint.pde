@@ -10,6 +10,7 @@ public class Datapoint {
   Datapoint (String loadedData) {
 
 
+
     //The raw data
     String dataInString[] = loadedData.split(",");
 
@@ -19,9 +20,11 @@ public class Datapoint {
     dataInString[4] = dataInString [4] + dataInString[5];
     dataInString[9] = dataInString [9] + dataInString[10];
 
+
     this.FlightDate =                  dataInString[0];
     this.IACA_Code_Marketing_Airline = dataInString[1];
     this.FlightNumber =                Integer.parseInt(dataInString[2]);
+
 
 
     this.Origin =                   dataInString[3];
@@ -47,6 +50,7 @@ public class Datapoint {
       this.departure =               Integer.parseInt(dataInString[14]);
     }
 
+
     if (dataInString[15].equals(""))
     {
       this.CRSExcpetedArrivalTime =  -1;
@@ -60,6 +64,7 @@ public class Datapoint {
     } else {
       this.ArrivalTime =              Integer.parseInt(dataInString[16]);
     }
+
 
     this.distance =             distance;
 
