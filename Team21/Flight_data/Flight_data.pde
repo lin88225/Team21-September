@@ -18,7 +18,7 @@ void setup() {
   arial = loadFont("Arial-BoldMT-14.vlw");
   titleFont = loadFont("Gadugi-Bold-32.vlw");
   textFont(titleFont);
-  text("Please wait as wenget your data loaded", SCREENX/2, SCREENY/2);
+  text("Please wait as we\nget your data loaded", SCREENX/2, SCREENY/2);
   textFont(arial);
   fill(0);
 
