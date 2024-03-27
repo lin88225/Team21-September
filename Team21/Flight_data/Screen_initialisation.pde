@@ -6,7 +6,7 @@ void createDropdownArray()
   String [] airports = q.getArrayAirports();
   String [] states = q.getArrayStates();
   String [] cities = q.getArrayCities();
-  String [] airlines = q.getArrayAirlines();//ArrayIndexOutOfBoundsException: Index -4 out of bounds for length 1 
+  String [] airlines = q.getArrayAirlines();
   for (int i = 0; i < dropdownArray.length; i++)
   {
     switch(i)
@@ -26,6 +26,7 @@ void createDropdownArray()
     case 5:
       dropdownArray[i] = new Dropdown(SCREENX/2+DROPDOWN_WIDTH, SCREENY/2-2*DROPDOWN_HEIGHT, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
         "Average delay per airline", airlines, HOOKERS_GREEN, COLUMBIA_BLUE, DENIM, arial, true);
+
       break;
     case 4:
       dropdownArray[i] = new Dropdown(SCREENX/2-DROPDOWN_WIDTH, SCREENY/2, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
@@ -56,13 +57,13 @@ void createDropdownArray()
 // function to create Screens
 void createScreens()
 {
-  Query q= new Query(1, 100);
+  Query q= new Query(1, 10000);
   Button [] tempButtonArray = new Button [10];
   int[] tempData = q.getNumberFlightsPerAirport();
   int[] numFlightsAirport=q.getNumberFlightsPerAirport();
   int[] numFlightsState=q.getNumberFlightsPerState();
   int[] numFlightsCity=q.getNumberFlightsPerCity();
-  
+
   screenArray = new Screen [6];
   for (int i = 0; i< screenArray.length; i++)
   {

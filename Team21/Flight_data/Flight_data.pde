@@ -26,9 +26,6 @@ void setup() {
   flightInfo = readData();
   createDropdownArray();
   createScreens();
-  //q1= new Query1(1, 21);
-  //airports=q1.getArrayAirports();
-  //numberFlights=q1.getNumberFlightsPerAirport();
 }
 
 void draw() {
