@@ -17,7 +17,7 @@ public class Datapoint {
     boolean cancelled = (Float.parseFloat(dataInString[17]) == 1);
     boolean diverted = (Float.parseFloat(dataInString[18]) == 1);
     dataInString[4] = dataInString [4] + dataInString[5];
-    dataInString[8] = dataInString [8] + dataInString[9];
+    dataInString[9] = dataInString [9] + dataInString[10];
 
     this.FlightDate =                  dataInString[0];
     this.IACA_Code_Marketing_Airline = dataInString[1];
@@ -26,12 +26,12 @@ public class Datapoint {
 
     this.Origin =                   dataInString[3];
     this.OriginCityName =           dataInString[4];
-    this.OriginStateName =          dataInString[5];
+    this.OriginStateName =          dataInString[6];
     this.OriginWac =                Integer.parseInt(dataInString[7]);
 
-    this.Dest =                     dataInString[7];
-    this.DestinationCityName =      dataInString[8];
-    this.DestinationStateName =     dataInString[9];
+    this.Dest =                     dataInString[8];
+    this.DestinationCityName =      dataInString[9];
+    this.DestinationStateName =     dataInString[11];
     this.DestWac =                  Integer.parseInt(dataInString[12]);
 
     if (dataInString[13].equals(""))
