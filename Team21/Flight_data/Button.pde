@@ -18,7 +18,7 @@ class Button{
     this.width = width;
     arial = loadFont("Arial-BoldMT-14.vlw");
     this.text = text;
-    colorOfButton = GREY;
+    colorOfButton = DENIM;
   }
   
   Button(float xpos, float ypos, float height, float width, String text, color colorOfButton){
@@ -41,9 +41,11 @@ class Button{
   }
   
   public boolean isMouseOver(){
-    float bottomYOfButton = ypos + height;
-    float rightXOfButton = xpos + width;
-    if(xpos < mouseX && rightXOfButton > mouseX && ypos < mouseY && bottomYOfButton > mouseY){
+    float bottomYOfButton = ypos + height/2;
+    float rightXOfButton = xpos + width/2;
+    float leftXOfButton = xpos - width/2;
+    float topYOfButton = ypos - height/2;
+    if(leftXOfButton < mouseX && rightXOfButton > mouseX && topYOfButton < mouseY && bottomYOfButton > mouseY){
       return true;
     }
     return false;
@@ -51,10 +53,12 @@ class Button{
   
   public void drawText(){
     textFont(arial);
-    int textSize = (int) height / 3;
+    int textSize = (int) (height / 3);
     textSize(textSize);
-    text(text, xpos + width/2, ypos + height/2);
-  }
+    textAlign(CENTER, CENTER);
+    fill(0);
+    text(text, xpos, ypos);
+}
   
   public int getID(){
     return buttonID;
