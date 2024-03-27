@@ -88,7 +88,7 @@ class Screen{
     return pieCharts.remove(index);
   }
   
-  public void addBarChart(int [] xData, String [] yData, String title, String descriptionOfX, String descriptionOfY){
+  public void addBarChart(float [] xData, String [] yData, String title, String descriptionOfX, String descriptionOfY){
     BarChart barcharts = new BarChart(xData, yData, title, descriptionOfX, descriptionOfY);
     barCharts.add(barcharts);
   }

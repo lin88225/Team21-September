@@ -58,21 +58,23 @@ void createDropdownArray()
 void createScreens()
 {
   Query q= new Query(1, 10000);
-  Button [] tempButtonArray = new Button [10];
   int[] tempData = q.getNumberFlightsPerAirport();
   int[] numFlightsAirport=q.getNumberFlightsPerAirport();
   int[] numFlightsState=q.getNumberFlightsPerState();
   int[] numFlightsCity=q.getNumberFlightsPerCity();
-
+  float [] averageFlightDelay = q.calculateAverageDelay();
+  int [] carbonEmissions = {207, 44, 33, 136, 18, 11, 10, 32, 4};
+  float [] averageFlightDistance = q.averageFlightDistance();
   screenArray = new Screen [6];
   for (int i = 0; i< screenArray.length; i++)
   {
     if (i ==0)
     {
-      screenArray[i] = new Screen(tempButtonArray, dropdownArray);
+      //screenArray[i] = new Screen(dropdownArray);
+      screenArray[i] = new Screen();
     } else if (i == 1)
     {
-      screenArray[i] = new Screen(tempButtonArray);
+      screenArray[i] = new Screen();
       ArrayList <Integer> pieChartValues1 = new ArrayList <Integer>(0);
       ArrayList <String> pieChartDescriptions1 = new ArrayList <String>(0);
       String title1 = "Number of flights per state";
@@ -129,8 +131,8 @@ void createScreens()
       screenArray[i].addPieChart(pieChartInts3, pieChartLabels3, title3);
     } else if (i == 2)
     {
-      screenArray[i] = new Screen(tempButtonArray);
-      ArrayList <Integer> barChartXValues = new ArrayList <Integer>(0);
+      screenArray[i] = new Screen();
+      ArrayList <Float> barChartXValues = new ArrayList <Float>(0);
       ArrayList <String> barChartYValues = new ArrayList <String>(0);
       String title = "Average delay per airline";
       String descriptionOfX = "Average delay (minutes)";
@@ -139,12 +141,12 @@ void createScreens()
       {
         if (dropdownArray[5].clickMenu[j] % 2 ==0)
         {
-          barChartXValues.add(tempData[j]);
+          barChartXValues.add(averageFlightDelay[j]);
           barChartYValues.add(dropdownArray[5].dropdownDisplay[j]);
         }
       }
       String [] barChartValuesY = barChartYValues.toArray(new String[0]);
-      int [] barChartValuesX = new int [barChartXValues.size()];
+      float [] barChartValuesX = new float [barChartXValues.size()];
       for (int j = 0; j < barChartValuesX.length; j++)
       {
         barChartValuesX[j] = barChartXValues.get(j);
@@ -152,7 +154,7 @@ void createScreens()
       screenArray[i].addBarChart(barChartValuesX, barChartValuesY, title, descriptionOfX, descriptionOfY);
     } else if (i ==3)
     {
-      screenArray[i] = new Screen(tempButtonArray);
+      screenArray[i] = new Screen();
       ArrayList <Integer> barChartValues1 = new ArrayList <Integer>(0);
       ArrayList <String> barChartDescriptions1 = new ArrayList <String>(0);
       String title1 = "Number of cancelled and diverted flights per state";
@@ -166,7 +168,7 @@ void createScreens()
       {
         if (dropdownArray[4].clickMenu[j] % 2==0)
         {
-          barChartValues1.add(tempData[j]);
+          barChartValues1.add(q.getCancellationsAndDiversions(dropdownArray[4].dropdownDisplay[j])[j]);
           barChartDescriptions1.add(dropdownArray[4].dropdownDisplay[j]);
         }
       }
@@ -174,7 +176,7 @@ void createScreens()
       {
         if (dropdownArray[3].clickMenu[j] % 2==0)
         {
-          barChartValues2.add(tempData[j]);
+          barChartValues2.add(q.getCancellationsAndDiversions(dropdownArray[3].dropdownDisplay[j])[j]);
           barChartDescriptions2.add(dropdownArray[3].dropdownDisplay[j]);
         }
       }
@@ -182,13 +184,13 @@ void createScreens()
       {
         if (dropdownArray[2].clickMenu[j] % 2==0)
         {
-          barChartValues3.add(tempData[j]);
+          barChartValues3.add(q.getCancellationsAndDiversions(dropdownArray[2].dropdownDisplay[j])[j]);
           barChartDescriptions3.add(dropdownArray[2].dropdownDisplay[j]);
         }
       }
-      int [] barChartInts1 = new int[barChartValues1.size()];
-      int [] barChartInts2 = new int[barChartValues2.size()];
-      int [] barChartInts3 = new int[barChartValues3.size()];
+      float [] barChartInts1 = new float[barChartValues1.size()];
+      float [] barChartInts2 = new float[barChartValues2.size()];
+      float [] barChartInts3 = new float[barChartValues3.size()];
       for (int j = 0; j < barChartInts1.length; j++)
       {
         barChartInts1[j] = barChartValues1.get(j);
@@ -216,8 +218,8 @@ void createScreens()
       }
     } else if (i ==4)
     {
-      screenArray[i] = new Screen(tempButtonArray);
-      ArrayList <Integer> barChartXValues = new ArrayList <Integer>(0);
+      screenArray[i] = new Screen();
+      ArrayList <Float> barChartXValues = new ArrayList <Float>(0);
       ArrayList <String> barChartYValues = new ArrayList <String>(0);
       String title = "Average distance per airline";
       String descriptionOfX = "Average distance (km)";
@@ -226,12 +228,12 @@ void createScreens()
       {
         if (dropdownArray[1].clickMenu[j] % 2 ==0)
         {
-          barChartXValues.add(tempData[j]);
+          barChartXValues.add(averageFlightDistance[j]);
           barChartYValues.add(dropdownArray[1].dropdownDisplay[j]);
         }
       }
       String [] barChartValuesY = barChartYValues.toArray(new String[0]);
-      int [] barChartValuesX = new int [barChartXValues.size()];
+      float [] barChartValuesX = new float [barChartXValues.size()];
       for (int j = 0; j < barChartValuesX.length; j++)
       {
         barChartValuesX[j] = barChartXValues.get(j);
@@ -239,22 +241,22 @@ void createScreens()
       screenArray[i].addBarChart(barChartValuesX, barChartValuesY, title, descriptionOfX, descriptionOfY);
     } else if (i == 5)
     {
-      screenArray[i] = new Screen(tempButtonArray);
+      screenArray[i] = new Screen();
       ArrayList <Integer> barChartXValues = new ArrayList <Integer>(0);
       ArrayList <String> barChartYValues = new ArrayList <String>(0);
       String title = "Total carbon emissions per airline";
-      String descriptionOfX = "Total emissions (insert unit here)";
+      String descriptionOfX = "Total emissions ('000000 metric tons)";
       String descriptionOfY = "Airlines";
       for (int j = 0; j < dropdownArray[0].dropdownDisplay.length; j++)
       {
         if (dropdownArray[0].clickMenu[j] % 2 ==0)
         {
-          barChartXValues.add(tempData[j]);
+          barChartXValues.add(carbonEmissions[j]);
           barChartYValues.add(dropdownArray[0].dropdownDisplay[j]);
         }
       }
       String [] barChartValuesY = barChartYValues.toArray(new String[0]);
-      int [] barChartValuesX = new int [barChartXValues.size()];
+      float [] barChartValuesX = new float [barChartXValues.size()];
       for (int j = 0; j < barChartValuesX.length; j++)
       {
         barChartValuesX[j] = barChartXValues.get(j);

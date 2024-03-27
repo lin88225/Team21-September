@@ -30,11 +30,33 @@ void setup() {
 
 void draw() {
   background(255);
-  screenArray[0].draw();
+  switch(currentScreenShown)
+  {
+  case 0:
+    screenArray[0].draw();
+    break;
+  case 1:
+    screenArray[1].draw();
+    break;
+  case 2:
+    screenArray[2].draw();
+    break;
+  case 3:
+    screenArray[3].draw();
+    break;
+  case 4:
+    screenArray[4].draw();
+    break;
+  case 5:
+    screenArray[5].draw();
+    break;
+  default:
+    println("error");
+  }
 }
 
 String[] readData() {
-  String[] flightData = loadStrings("flights100k.csv");
+  String[] flightData = loadStrings("flights_full.csv");
   return flightData;
 }
 

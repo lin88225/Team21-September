@@ -122,4 +122,70 @@ class Query {
     }
     return flightCounts;//returns the flightCounts array containing the counts of flights for each airline
   }
+  float [] calculateAverageDelay() {
+    String [] airlineNames = getArrayAirlines();
+    float [] result = new float[airlineNames.length];
+    int [] numberOfFlightsPerAirline = getNumberFlightsPerAirline();
+    int [] totalDelays = new int[airlineNames.length];
+    for (int i = 0; i < theData.size(); i++)
+    {
+      int delay = theData.get(i).ArrivalTime - theData.get(i).CRSExcpetedArrivalTime;
+      delay = (delay<-1200? -delay:delay);
+      delay = (theData.get(i).ArrivalTime == -1? 2500: delay);
+      for (int j = 0; j < airlineNames.length; j++)
+      {
+        if (theData.get(i).IACA_Code_Marketing_Airline.equals(airlineNames[j]) && delay != 2500)
+        {
+          totalDelays[j] = delay;
+        } else if (delay == 2500)
+        {
+          numberOfFlightsPerAirline[j] --;
+        }
+      }
+    }
+    for (int i = 0; i < airlineNames.length; i++)
+    {
+      result[i] = (float)totalDelays[i]/(float)numberOfFlightsPerAirline[i];
+    }
+    return result;
+  }
+  int [] getCancellationsAndDiversions(String placeName) {
+    int [] result = new int [3];
+    for (int i = 0; i < theData.size(); i++)
+    {
+      if (placeName.equalsIgnoreCase(theData.get(i).OriginStateName) || placeName.equalsIgnoreCase(theData.get(i).OriginCityName) || placeName.equalsIgnoreCase(theData.get(i).IACA_Code_Marketing_Airline))
+      {
+        if (theData.get(i).cancelled) {
+          result[1]++;
+        } else if (theData.get(i).diverted) {
+          result[2]++;
+        } else {
+          result[0]++;
+        }
+      }
+    }
+    return result;
+  }
+  float [] averageFlightDistance(){
+    String [] airlineNames = getArrayAirlines();
+    int [] numberOfFlightsAirline = getNumberFlightsPerAirline();
+    float [] result = new float[airlineNames.length];
+    float [] totalDistances = new float[airlineNames.length];
+    for(int i = 0; i < theData.size(); i++)
+    {
+      float flightDistance = theData.get(i).distance;
+      for(int j = 0; j < airlineNames.length; j++)
+      {
+        if(airlineNames[j].equals(theData.get(i).IACA_Code_Marketing_Airline))
+        {
+          totalDistances[j] += flightDistance;
+        }
+      }
+    }
+    for (int i = 0; i < airlineNames.length; i++)
+    {
+      result[i] = totalDistances[i]/(float)numberOfFlightsAirline[i];
+    }
+    return result;
+  }
 }

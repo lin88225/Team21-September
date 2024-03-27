@@ -30,7 +30,7 @@ class Button{
     fill(colorOfButton);
     if(isMouseOver())
     {
-      stroke(WHITE);
+      stroke(MIMI_PINK);
     }else
     {
       stroke(BLACK);

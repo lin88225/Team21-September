@@ -4,13 +4,13 @@ class BarChart {
   // and also the title name and description of 2 axis
   // EXAMPLE: number of flights per airport
 
-  int [] xData;
+  float [] xData;
   String [] yData;
   int position;
   PFont font, font2;
   String title, descriptionOfX, descriptionOfY;
 
-  BarChart(int [] xData, String [] yData, String title, String descriptionOfX, String descriptionOfY) {
+  BarChart(float [] xData, String [] yData, String title, String descriptionOfX, String descriptionOfY) {
     this.xData=xData;
     this.yData=yData;
     this.title=title;
