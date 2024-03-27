@@ -1,5 +1,6 @@
 class Query {
-  /* getArrayAirports(): String[]
+  /*
+   getArrayAirports(): String[]
    getArrayStates(): String[]
    getArrayCities(): String[]
    getArrayAirlines(): String[]
@@ -33,7 +34,7 @@ class Query {
     // Creates an ArrayList with unique states values
     ArrayList<String> state = new ArrayList<>();
     for (int i = 0; i < theData.size(); i++) {
-      String value = theData.get(i).OriginStateName.replaceAll("\"", "");//replaceAll() is used to remove "" from the String 
+      String value = theData.get(i).OriginStateName.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
       if (!state.contains(value)) //checks if it does not contain the state yet
         state.add(value);
     }
@@ -44,7 +45,7 @@ class Query {
     // Creates an ArrayList with unique city values
     ArrayList<String> city = new ArrayList<>();
     for (int i = 0; i < theData.size(); i++) {
-      String value = theData.get(i).OriginCityName.replaceAll("\"", "");//replaceAll() is used to remove "" from the String 
+      String value = theData.get(i).OriginCityName.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
       if (!city.contains(value)) //checks if it does not contain the city yet
         city.add(value);
     }
