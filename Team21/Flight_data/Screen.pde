@@ -6,7 +6,7 @@ class Screen{
   Dropdown[] dropdowns;
   ArrayList<PieChart> pieCharts = new ArrayList<>();
   ArrayList<BarChart> barCharts = new ArrayList<>();
-  color backgroundColor = WHITE;
+  color backgroundColor = MIMI_PINK;
   int screenID;
   
   
