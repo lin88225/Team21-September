@@ -15,7 +15,7 @@ void setup() {
   //String[] flightInfo = readData();
   
   
-  American = new AirlinerProfile ("LogoAA.png","PlaneAA.png","AA.txt");
+  American = new AirlinerProfile ("AA");
 }
 
 void draw() {

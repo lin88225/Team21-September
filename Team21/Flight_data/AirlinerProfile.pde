@@ -15,10 +15,10 @@ public class AirlinerProfile {
   AirlinerProfile() {
   }
 
-  public AirlinerProfile(String logoFName, String planeFName, String mainFName) {
-    this.logoFName = logoFName;
-    this.planeFName = planeFName;
-    this.mainFName = mainFName;
+  public AirlinerProfile(String abrieviation) {
+    this.logoFName = ("Logo" + abrieviation + ".png");
+    this.planeFName = ("Logo" + abrieviation + ".png");
+    this.mainFName = (abrieviation + ".txt");
 
     logo = loadImage(this.logoFName);
     planePicture = loadImage(this.planeFName);
