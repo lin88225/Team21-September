@@ -1,4 +1,5 @@
 private static int numberOfScreens = NUMBER_OF_SCREENS;
+private static int currentNumberOfScreens = 0;
 private static int currentScreenShown = 0;
 
 class Screen{
@@ -13,8 +14,8 @@ class Screen{
   Button previuosScreen;
   
   Screen(){
-    screenID = numberOfScreens;
-    //numberOfScreens += 1;
+    screenID = currentNumberOfScreens;
+    numberOfScreens += 1;
     nextScreen = new Button(SCREENX - 100, 50, 50, 100, "Next");
     previuosScreen = new Button(100, 50, 50, 100, "Back");
     dropdowns = new Dropdown[] {};
@@ -50,18 +51,18 @@ class Screen{
       barChart = barCharts.get(i);
       barChart.draw();
     }
-    
+    print(screenID);
     if(screenID != 0){
         previuosScreen.draw();
     }
-    if(screenID != numberOfScreens - 1){
+    if(screenID != NUMBER_OF_SCREENS - 1){
         nextScreen.draw();
     }
   }
   
   public int checkButtonsPressed(){
     if(nextScreen.isMouseOver()){
-      if(currentScreenShown != numberOfScreens - 1){
+      if(currentScreenShown != NUMBER_OF_SCREENS - 1){
         currentScreenShown += 1;
     }
     }if(previuosScreen.isMouseOver()){

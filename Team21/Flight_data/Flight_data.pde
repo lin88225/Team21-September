@@ -45,11 +45,17 @@ void setup() {
   createDropdownArray();
   createFirstScreen();
   //createScreens();
+  //for(int i = 0; i < NUMBER_OF_SCREENS; i++){
+  //  createScreens(i);
+  //}
+  
+  
 }
 
 void draw() {
   background(255);
   createScreens(currentScreenShown);
+  /*
   switch(currentScreenShown)
   {
   case 0:
@@ -73,11 +79,16 @@ void draw() {
   default:
     println("error");
   }
+  */
+  screenArray[currentScreenShown].draw();
 }
 
 String[] readData() {
   String[] flightData = loadStrings("flights_full.csv");
   return flightData;
+}
+void mousePressed(){
+  screenArray[currentScreenShown].checkButtonsPressed();
 }
 
 // Parameters: ArrayList of datapoints you want to sort, String name of variable
