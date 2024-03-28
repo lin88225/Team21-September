@@ -1,4 +1,5 @@
 PFont arial;
+FlightHeatmap heatmap;
 
 void settings() {
   size(SCREENX, SCREENY);
@@ -14,11 +15,14 @@ void setup() {
   fill(0);
   
   String[] flightInfo = readData();
+  
+            FlightHeatmap heatmap = new FlightHeatmap("csv_to_sqlite.db");
+            heatmap.generateHeatmap();
 }
 
 void draw() {
   background(255);
-
+  heatmap.draw(this.getGraphics());
 }
 
 String[] readData() {
