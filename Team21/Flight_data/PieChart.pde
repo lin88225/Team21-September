@@ -26,7 +26,7 @@ class PieChart {
     pieChart(diameter, values);
     legend(values);
     textFont(font2);
-    text(title, x-50, y-(diameter/2+20));
+    text(title, x, y-(diameter/2+20));
   }
 
   int sum(int []data) {
@@ -52,13 +52,14 @@ class PieChart {
     int yRect;
     int squareSide=10;
     for (int i = 0; i < data.length; i++) {
-      yRect= y-diameter+(i*15);
+      yRect= y-(diameter/2-20)+(i*15);
       float gray = map(i, 0, data.length, 0, 255);
       fill(255, gray, 100);
       rect(xRect, yRect, squareSide, squareSide);
       textFont(font);
       fill(0);
-      text(description[i], xRect+20, yRect+10);
+      textMode(LEFT);
+      text(description[i], xRect+50, yRect);
     }
   }
 }

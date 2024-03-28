@@ -130,9 +130,9 @@ void createScreens(int i)
     String [] pieChartLabels1 = pieChartDescriptions1.toArray(new String[0]);
     String [] pieChartLabels2 = pieChartDescriptions2.toArray(new String[0]);
     String [] pieChartLabels3 = pieChartDescriptions3.toArray(new String[0]);
-    screenArray[i].addPieChart(pieChartInts1, 200, SCREENX/4, SCREENY/4, pieChartLabels1, title1);
-    screenArray[i].addPieChart(pieChartInts2, 200, SCREENX/2+50, SCREENY/4, pieChartLabels2, title2);
-    screenArray[i].addPieChart(pieChartInts3,200, SCREENX/4, SCREENY/2+50, pieChartLabels3, title3);
+    screenArray[i].addPieChart(pieChartInts1, 200, SCREENX/4, SCREENY/3, pieChartLabels1, title1);
+    screenArray[i].addPieChart(pieChartInts2, 200, SCREENX/2+100, SCREENY/3, pieChartLabels2, title2);
+    screenArray[i].addPieChart(pieChartInts3,200, SCREENX/4, SCREENY/2+150, pieChartLabels3, title3);
   } else if (i == 2)
   {
     screenArray[i] = new Screen();
