@@ -130,9 +130,9 @@ void createScreens(int i)
     String [] pieChartLabels1 = pieChartDescriptions1.toArray(new String[0]);
     String [] pieChartLabels2 = pieChartDescriptions2.toArray(new String[0]);
     String [] pieChartLabels3 = pieChartDescriptions3.toArray(new String[0]);
-    screenArray[i].addPieChart(pieChartInts1, pieChartLabels1, title1);
-    screenArray[i].addPieChart(pieChartInts2, pieChartLabels2, title2);
-    screenArray[i].addPieChart(pieChartInts3, pieChartLabels3, title3);
+    screenArray[i].addPieChart(pieChartInts1, 200, SCREENX/4, SCREENY/4, pieChartLabels1, title1);
+    screenArray[i].addPieChart(pieChartInts2, 200, SCREENX/2+50, SCREENY/4, pieChartLabels2, title2);
+    screenArray[i].addPieChart(pieChartInts3,200, SCREENX/4, SCREENY/2+50, pieChartLabels3, title3);
   } else if (i == 2)
   {
     screenArray[i] = new Screen();
@@ -155,7 +155,7 @@ void createScreens(int i)
     {
       barChartValuesX[j] = barChartXValues.get(j);
     }
-    screenArray[i].addBarChart(barChartValuesX, barChartValuesY, title, descriptionOfX, descriptionOfY);
+    screenArray[i].addBarChart(barChartValuesX, barChartValuesY, SCREENX/4, SCREENY/4, title, descriptionOfX, descriptionOfY);
   } else if (i ==3)
   {
     screenArray[i] = new Screen();
@@ -212,13 +212,13 @@ void createScreens(int i)
     String [] barChartLabels3 = barChartDescriptions3.toArray(new String[0]);
     if (barChartLabels1.length !=0)
     {
-      screenArray[i].addBarChart(barChartInts1, barChartLabels1, title1, "Number of flights on time, cancelled, and diverted", barChartLabels1[i]);
+      screenArray[i].addBarChart(barChartInts1, barChartLabels1, SCREENX/4, SCREENY/8, title1, "Number of flights on time, cancelled, and diverted", barChartLabels1[i]);
     }
     if (barChartLabels2.length !=0) {
-      screenArray[i].addBarChart(barChartInts2, barChartLabels2, title2, "Number of flights on time, cancelled, and diverted", barChartLabels2[i]);
+      screenArray[i].addBarChart(barChartInts2, barChartLabels2, SCREENX/2+20, SCREENY/8, title2, "Number of flights on time, cancelled, and diverted", barChartLabels2[i]);
     }
     if (barChartLabels3.length !=0) {
-      screenArray[i].addBarChart(barChartInts3, barChartLabels3, title3, "Number of flights on time, cancelled, and diverted", barChartLabels3[i]);
+      screenArray[i].addBarChart(barChartInts3, barChartLabels3, SCREENX/4, SCREENY/2, title3, "Number of flights on time, cancelled, and diverted", barChartLabels3[i]);
     }
   } else if (i ==4)
   {
@@ -242,7 +242,7 @@ void createScreens(int i)
     {
       barChartValuesX[j] = barChartXValues.get(j);
     }
-    screenArray[i].addBarChart(barChartValuesX, barChartValuesY, title, descriptionOfX, descriptionOfY);
+    screenArray[i].addBarChart(barChartValuesX, barChartValuesY, SCREENX/4, SCREENY/4, title, descriptionOfX, descriptionOfY);
   } else if (i == 5)
   {
     screenArray[i] = new Screen();
@@ -265,7 +265,7 @@ void createScreens(int i)
     {
       barChartValuesX[j] = barChartXValues.get(j);
     }
-    screenArray[i].addBarChart(barChartValuesX, barChartValuesY, title, descriptionOfX, descriptionOfY);
+    screenArray[i].addBarChart(barChartValuesX, barChartValuesY, SCREENX/4, SCREENY/4, title, descriptionOfX, descriptionOfY);
   }
   //}
 }

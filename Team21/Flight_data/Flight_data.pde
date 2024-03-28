@@ -53,7 +53,7 @@ void draw() {
   switch(currentScreenShown)
   {
   case 0:
-    screenArray[1].draw();
+    screenArray[0].draw();
     break;
   case 1:
     screenArray[1].draw();
