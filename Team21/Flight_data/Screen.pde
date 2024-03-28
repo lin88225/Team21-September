@@ -13,15 +13,16 @@ class Screen{
   Button nextScreen;
   Button previuosScreen;
   
-  Screen(){
+  Screen(int screenID){
+    this.screenID = screenID;
     screenID = currentNumberOfScreens;
     numberOfScreens += 1;
     nextScreen = new Button(SCREENX - 100, 50, 50, 100, "Next");
     previuosScreen = new Button(100, 50, 50, 100, "Back");
     dropdowns = new Dropdown[] {};
   }
-  Screen(Dropdown[] dropdowns){
-    this();
+  Screen(int screenID, Dropdown[] dropdowns){
+    this(screenID);
     this.dropdowns = dropdowns;
     
   }
