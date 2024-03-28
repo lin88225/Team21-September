@@ -1,7 +1,7 @@
 American Airlines
 peanuts and pringles
-1995
-3
+2009
+50
 1.345
 Dummy Version
 An airline company that has no connection 

@@ -17,7 +17,7 @@ public class AirlinerProfile {
 
   public AirlinerProfile(String abrieviation) {
     this.logoFName = ("Logo" + abrieviation + ".png");
-    this.planeFName = ("Logo" + abrieviation + ".png");
+    this.planeFName = ("Plane" + abrieviation + ".png");
     this.mainFName = (abrieviation + ".txt");
 
     logo = loadImage(this.logoFName);
@@ -27,7 +27,7 @@ public class AirlinerProfile {
     planePicture.resize(2*resizeTo, resizeTo);
     String[] desc = loadStrings(this.mainFName);
     name = desc[0];
-    
+
     foodMenu = desc[1];
     lastCrashDate = Integer.parseInt(desc[2]);
     totalNumberOfCrashes = Integer.parseInt(desc[3]);
@@ -63,7 +63,7 @@ public class AirlinerProfile {
     this.mouseDragged();
     stroke (255);
     fill (255);
-    rect (posX, posY, PROFILE_SIZE, PROFILE_SIZE,20);
+    rect (posX, posY, PROFILE_SIZE, PROFILE_SIZE, 20);
     image(logo, posX, posY);
     image(planePicture, posX+resizeTo, posY);
     fill (0);
@@ -74,15 +74,15 @@ public class AirlinerProfile {
 
     text("Date of last plane crash:" + lastCrashDate, posX, textYPos + spaceIncrement*3);
     text("Number of planes crashed:" + totalNumberOfCrashes, posX, textYPos + spaceIncrement*4);
-    
+
     text("Emmissions per distance unit:" + emissionPerDistanceUnit, posX, textYPos + spaceIncrement*5);
     text("In-Flight menu:" + foodMenu, posX, textYPos + spaceIncrement*7);
-    
-    
+
+
     text(description, posX, textYPos + spaceIncrement*10);
     textAlign(RIGHT, BOTTOM);
     text("Last updated:" + lastUpdated, posX + PROFILE_SIZE, posY + PROFILE_SIZE);
-    
+
     stroke (0);
   }
 
@@ -107,4 +107,38 @@ public class AirlinerProfile {
       this.disY = this.posY - mouseY;
     }
   }
+}
+
+float getGGHE(String airliner, int distance) {
+  float result = 0;
+//Get accurate info for each airliner, just brute force it
+
+
+  switch(airliner) {
+  case "AA":
+    //For each airliner, invoke it's unique variables,
+    // Average seat count, abc variables, Cargo factor,
+
+    break;
+  case "AS":
+    break;
+  case "B6":
+    break;
+  case "DL":
+    break;
+  case "F9":
+    break;
+  case "G4":
+    break;
+  case "HA":
+    break;
+  case "NK":
+    break;
+  case "UA":
+    break;
+  case "WN":
+    break;
+  default:
+  }
+  return result;
 }
