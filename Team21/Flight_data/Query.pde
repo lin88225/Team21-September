@@ -79,7 +79,7 @@ class Query {
   }
 
   int [] getNumberFlightsPerState() {
-    String states[]=getArrayAirports();
+    String states[]=getArrayStates();
     int[] flightCounts = new int[states.length];
     for (int index = 0; index < flightCounts.length; index++) {
       int stateCounts=0;
@@ -100,6 +100,7 @@ class Query {
       int cityCounts=0;
       for (int i = 0; i < theData.size(); i++) {
         String origin = theData.get(i).OriginCityName;
+        origin = origin.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
         if (cities[index].equals(origin))
           cityCounts++;
       }
