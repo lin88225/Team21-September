@@ -12,13 +12,17 @@ class Screen{
   Button nextScreen;
   Button previuosScreen;
   
-  
-  Screen(Dropdown[] dropdowns){
-    this.dropdowns = dropdowns;
+  Screen(){
     screenID = numberOfScreens;
     numberOfScreens += 1;
     nextScreen = new Button(SCREENX - 100, 50, 50, 100, "Next");
     previuosScreen = new Button(100, 50, 50, 100, "Back");
+    dropdowns = new Dropdown[] {};
+  }
+  Screen(Dropdown[] dropdowns){
+    this();
+    this.dropdowns = dropdowns;
+    
   }
   
   
