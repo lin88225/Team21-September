@@ -52,7 +52,6 @@ class Screen{
       barChart = barCharts.get(i);
       barChart.draw();
     }
-    print(screenID);
     if(screenID != 0){
         previuosScreen.draw();
     }
