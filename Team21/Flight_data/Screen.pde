@@ -1,4 +1,4 @@
-private static int numberOfScreens = 0;
+private static int numberOfScreens = NUMBER_OF_SCREENS;
 private static int currentScreenShown = 0;
 
 class Screen{
@@ -14,7 +14,7 @@ class Screen{
   
   Screen(){
     screenID = numberOfScreens;
-    numberOfScreens += 1;
+    //numberOfScreens += 1;
     nextScreen = new Button(SCREENX - 100, 50, 50, 100, "Next");
     previuosScreen = new Button(100, 50, 50, 100, "Back");
     dropdowns = new Dropdown[] {};
@@ -50,6 +50,7 @@ class Screen{
       barChart = barCharts.get(i);
       barChart.draw();
     }
+    
     if(screenID != 0){
         previuosScreen.draw();
     }
@@ -91,7 +92,7 @@ class Screen{
     return pieCharts.remove(index);
   }
   
-  public void addBarChart(int [] xData, String [] yData, String title, String descriptionOfX, String descriptionOfY){
+  public void addBarChart(float [] xData, String [] yData, String title, String descriptionOfX, String descriptionOfY){
     BarChart barcharts = new BarChart(xData, yData, title, descriptionOfX, descriptionOfY);
     barCharts.add(barcharts);
   }

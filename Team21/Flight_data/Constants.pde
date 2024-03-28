@@ -13,3 +13,5 @@ final int EVENT_NULL = 0;
 final int FRAMES_PER_CLICK =15;
 final int DROPDOWN_WIDTH = 200;
 final int DROPDOWN_HEIGHT = 40;
+
+final static int NUMBER_OF_SCREENS = 6;

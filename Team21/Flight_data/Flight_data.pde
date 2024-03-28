@@ -7,6 +7,15 @@ String [] airports;
 int [] numberFlights;
 String [] flightInfo;
 
+Query q;
+int[] tempData;
+int[] numFlightsAirport;
+int[] numFlightsState;
+int[] numFlightsCity;
+float [] averageFlightDelay;
+int [] carbonEmissions = {207, 44, 33, 136, 18, 11, 10, 32, 4};
+float [] averageFlightDistance;
+
 void settings() {
   size(SCREENX, SCREENY);
 }
@@ -22,14 +31,25 @@ void setup() {
   text("Please wait as we\nget your data loaded", SCREENX/2, SCREENY/2);
   textFont(arial);
   fill(0);
-
   flightInfo = readData();
+  q= new Query(1, 10000);
+  tempData = q.getNumberFlightsPerAirport();
+  numFlightsAirport=q.getNumberFlightsPerAirport();
+  numFlightsState=q.getNumberFlightsPerState();
+  numFlightsCity=q.getNumberFlightsPerCity();
+  averageFlightDelay = q.calculateAverageDelay();
+  //carbonEmissions = {207, 44, 33, 136, 18, 11, 10, 32, 4};
+  averageFlightDistance = q.averageFlightDistance();
+  screenArray = new Screen [6];
+
   createDropdownArray();
-  createScreens();
+  createFirstScreen();
+  //createScreens();
 }
 
 void draw() {
   background(255);
+  createScreens(currentScreenShown);
   switch(currentScreenShown)
   {
   case 0:
