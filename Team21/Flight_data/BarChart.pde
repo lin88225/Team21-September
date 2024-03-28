@@ -97,6 +97,7 @@ class BarChart {
   void draw() {
     //for loop draws the bar chart along with name and value for each column
     textAlign(LEFT);
+    rectMode(CORNER);
     //int xRect=SCREENX/4;
     int yRect;
     int hRect=20;
@@ -126,6 +127,7 @@ class BarChart {
     text(descriptionOfY, 0, SCREENY/2);
     popMatrix();
     textAlign(CENTER);
+    rectMode(CENTER);
   }
   
 }
