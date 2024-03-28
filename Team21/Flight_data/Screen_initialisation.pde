@@ -212,13 +212,15 @@ void createScreens(int i)
     String [] barChartLabels3 = barChartDescriptions3.toArray(new String[0]);
     if (barChartLabels1.length !=0)
     {
-      screenArray[i].addBarChart(barChartInts1, barChartLabels1, SCREENX/4, SCREENY/8, title1, "Number of flights cancelled", "");
+
+      screenArray[i].addBarChart(barChartInts1, barChartLabels1, SCREENX/5, 100, title1, "Number of flights cancelled", "");
     }
     if (barChartLabels2.length !=0) {
-      screenArray[i].addBarChart(barChartInts2, barChartLabels2, SCREENX/2+20, SCREENY/8, title2, "Number of flights cancelled", "");
+      screenArray[i].addBarChart(barChartInts2, barChartLabels2, SCREENX/5, 300, title2, "Number of flights cancelled", "");
     }
     if (barChartLabels3.length !=0) {
-      screenArray[i].addBarChart(barChartInts3, barChartLabels3, SCREENX/4, SCREENY/2, title3, "Number of flights cancelled", "");
+      screenArray[i].addBarChart(barChartInts3, barChartLabels3, SCREENX/5, 500, title3, "Number of flights cancelled", "");
+
     }
   } else if (i ==4)
   {
