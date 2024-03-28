@@ -185,7 +185,7 @@ class Query {
     }
     for (int i = 0; i < airlineNames.length; i++)
     {
-      result[i] = (totalDistances[i]/(float)numberOfFlightsAirline[i])*10000;
+      result[i] = (totalDistances[i]/(float)numberOfFlightsAirline[i])*100000;
     }
     return result;
   }

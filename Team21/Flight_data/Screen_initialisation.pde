@@ -172,7 +172,7 @@ void createScreens(int i)
     {
       if (dropdownArray[4].clickMenu[j] % 2==0)
       {
-        barChartValues1.add(q.getCancellationsAndDiversions(dropdownArray[4].dropdownDisplay[j])[j]);
+        barChartValues1.add(q.getCancellationsAndDiversions(dropdownArray[4].dropdownDisplay[j])[0]);
         barChartDescriptions1.add(dropdownArray[4].dropdownDisplay[j]);
       }
     }
@@ -180,7 +180,7 @@ void createScreens(int i)
     {
       if (dropdownArray[3].clickMenu[j] % 2==0)
       {
-        barChartValues2.add(q.getCancellationsAndDiversions(dropdownArray[3].dropdownDisplay[j])[j]);
+        barChartValues2.add(q.getCancellationsAndDiversions(dropdownArray[3].dropdownDisplay[j])[0]);
         barChartDescriptions2.add(dropdownArray[3].dropdownDisplay[j]);
       }
     }
@@ -188,7 +188,7 @@ void createScreens(int i)
     {
       if (dropdownArray[2].clickMenu[j] % 2==0)
       {
-        barChartValues3.add(q.getCancellationsAndDiversions(dropdownArray[2].dropdownDisplay[j])[j]);
+        barChartValues3.add(q.getCancellationsAndDiversions(dropdownArray[2].dropdownDisplay[j])[0]);
         barChartDescriptions3.add(dropdownArray[2].dropdownDisplay[j]);
       }
     }
