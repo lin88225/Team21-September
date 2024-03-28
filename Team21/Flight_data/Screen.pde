@@ -77,8 +77,8 @@ class Screen{
       }
       return NO_BUTTON_PRESSED;
   }
-  public void addPieChart(int [] values, String [] description, String title){
-    PieChart pieChart = new PieChart(values, description, title);
+  public void addPieChart(int [] values, int diameter, int x, int y, String [] description, String title){
+    PieChart pieChart = new PieChart(values, diameter, x, y, description, title);
     pieCharts.add(pieChart);
   }
   public void removePieChart(int index){
@@ -88,8 +88,8 @@ class Screen{
     return pieCharts.remove(index);
   }
   
-  public void addBarChart(float [] xData, String [] yData, String title, String descriptionOfX, String descriptionOfY){
-    BarChart barcharts = new BarChart(xData, yData, title, descriptionOfX, descriptionOfY);
+  public void addBarChart(float [] xData, String [] yData, int x, int y, String title, String descriptionOfX, String descriptionOfY){
+    BarChart barcharts = new BarChart(xData, yData, x, y, title, descriptionOfX, descriptionOfY);
     barCharts.add(barcharts);
   }
   public void removeBarChart(int index){
