@@ -30,15 +30,15 @@ void createDropdownArray()
       break;
     case 4:
       dropdownArray[i] = new Dropdown(SCREENX/2-DROPDOWN_WIDTH, SCREENY/2, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
-        "Number of cancellations\nand diversions per state", states, HOOKERS_GREEN, COLUMBIA_BLUE, DENIM, arial, false);
+        "Number of cancellations\nper state", states, HOOKERS_GREEN, COLUMBIA_BLUE, DENIM, arial, false);
       break;
     case 3:
       dropdownArray[i] = new Dropdown(SCREENX/2+DROPDOWN_WIDTH, SCREENY/2, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
-        "Number of cancellations\nand diversions per city", cities, HOOKERS_GREEN, COLUMBIA_BLUE, DENIM, arial, false);
+        "Number of cancellations\nper city", cities, HOOKERS_GREEN, COLUMBIA_BLUE, DENIM, arial, false);
       break;
     case 2:
       dropdownArray[i] = new Dropdown(SCREENX/2-DROPDOWN_WIDTH, SCREENY/2+2*DROPDOWN_HEIGHT, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
-        "Number of cancellations\nand diversions per airline", airlines, HOOKERS_GREEN, COLUMBIA_BLUE, DENIM, arial, false);
+        "Number of cancellations\nper airline", airlines, HOOKERS_GREEN, COLUMBIA_BLUE, DENIM, arial, false);
       break;
     case 1:
       dropdownArray[i] = new Dropdown(SCREENX/2+DROPDOWN_WIDTH, SCREENY/2+2*DROPDOWN_HEIGHT, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
@@ -161,13 +161,13 @@ void createScreens(int i)
     screenArray[i] = new Screen(3);
     ArrayList <Integer> barChartValues1 = new ArrayList <Integer>(0);
     ArrayList <String> barChartDescriptions1 = new ArrayList <String>(0);
-    String title1 = "Number of cancelled and diverted flights per state";
+    String title1 = "Number of cancelled flights per state";
     ArrayList <Integer> barChartValues2 = new ArrayList <Integer>(0);
     ArrayList <String> barChartDescriptions2 = new ArrayList <String>(0);
-    String title2 = "Number of cancelled and diverted flights per city";
+    String title2 = "Number of cancelled flights per city";
     ArrayList <Integer> barChartValues3 = new ArrayList <Integer>(0);
     ArrayList <String> barChartDescriptions3 = new ArrayList <String>(0);
-    String title3 = "Number of cancelled and diverted flights per airport";
+    String title3 = "Number of cancelled flights per airport";
     for (int j = 0; j < dropdownArray[4].dropdownDisplay.length; j++)
     {
       if (dropdownArray[4].clickMenu[j] % 2==0)
@@ -212,13 +212,13 @@ void createScreens(int i)
     String [] barChartLabels3 = barChartDescriptions3.toArray(new String[0]);
     if (barChartLabels1.length !=0)
     {
-      screenArray[i].addBarChart(barChartInts1, barChartLabels1, SCREENX/4, SCREENY/8, title1, "Number of flights on time, cancelled, and diverted", "");
+      screenArray[i].addBarChart(barChartInts1, barChartLabels1, SCREENX/4, SCREENY/8, title1, "Number of flights cancelled", "");
     }
     if (barChartLabels2.length !=0) {
-      screenArray[i].addBarChart(barChartInts2, barChartLabels2, SCREENX/2+20, SCREENY/8, title2, "Number of flights on time, cancelled, and diverted", "");
+      screenArray[i].addBarChart(barChartInts2, barChartLabels2, SCREENX/2+20, SCREENY/8, title2, "Number of flights cancelled", "");
     }
     if (barChartLabels3.length !=0) {
-      screenArray[i].addBarChart(barChartInts3, barChartLabels3, SCREENX/4, SCREENY/2, title3, "Number of flights on time, cancelled, and diverted", "");
+      screenArray[i].addBarChart(barChartInts3, barChartLabels3, SCREENX/4, SCREENY/2, title3, "Number of flights cancelled", "");
     }
   } else if (i ==4)
   {
