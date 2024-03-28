@@ -4,7 +4,7 @@ private static int currentScreenShown = 0;
 class Screen{
   ArrayList<PieChart> pieCharts = new ArrayList<>();
   ArrayList<BarChart> barCharts = new ArrayList<>();
-  ArrayList<Dropdown> dropdowns = new ArrayList<>();
+  Dropdown[] dropdowns;
   ArrayList<Button> buttons = new ArrayList<>();
   color backgroundColor = MIMI_PINK;
 
@@ -13,7 +13,8 @@ class Screen{
   Button previuosScreen;
   
   
-  Screen(){
+  Screen(Dropdown[] dropdowns){
+    this.dropdowns = dropdowns;
     screenID = numberOfScreens;
     numberOfScreens += 1;
     nextScreen = new Button(SCREENX - 100, 50, 50, 100, "Next");
@@ -24,7 +25,6 @@ class Screen{
   public void draw(){
     background(backgroundColor);
     Button button;
-    Dropdown dropdown;
     PieChart pieChart;
     BarChart barChart;
     for (int i = 0; i < buttons.size(); i++)
@@ -32,10 +32,9 @@ class Screen{
       button = buttons.get(i);
       button.draw();
     }
-    for (int i = 0; i < dropdowns.size(); i++)
+    for (int i = 0; i < dropdowns.length; i++)
     {
-      dropdown = dropdowns.get(i);
-      dropdown.draw();
+      dropdowns[i].draw();
     }
     for (int i = 0; i < pieCharts.size(); i++)
     {
@@ -88,7 +87,7 @@ class Screen{
     return pieCharts.remove(index);
   }
   
-  public void addBarChart(float [] xData, String [] yData, String title, String descriptionOfX, String descriptionOfY){
+  public void addBarChart(int [] xData, String [] yData, String title, String descriptionOfX, String descriptionOfY){
     BarChart barcharts = new BarChart(xData, yData, title, descriptionOfX, descriptionOfY);
     barCharts.add(barcharts);
   }
@@ -98,7 +97,7 @@ class Screen{
   public BarChart getBarChart(int index){
     return barCharts.get(index);
   }
-  
+  /*
   public void addDropdown(int x, int y, int width, int height, String dropdownTitle, String [] dropdownDisplay, color titleColour, color menuColour, color clickColour, PFont dropdownFont, boolean multipleSelection){
     Dropdown dropdown = new Dropdown(x, y, width, height, dropdownTitle, dropdownDisplay, titleColour, menuColour, clickColour, dropdownFont, multipleSelection);
     dropdowns.add(dropdown);
@@ -109,7 +108,7 @@ class Screen{
   public Dropdown getDropdown(int index){
     return dropdowns.get(index);
   }
-  
+  */
   public void addButton(float xpos, float ypos, float height, float width, String text){
     Button button = new Button( xpos,  ypos,  height,  width,  text);
     buttons.add(button);
