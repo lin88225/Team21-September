@@ -70,8 +70,8 @@ void createScreens()
   {
     if (i ==0)
     {
-      //screenArray[i] = new Screen(dropdownArray);
-      screenArray[i] = new Screen();
+      screenArray[i] = new Screen(dropdownArray);
+      //screenArray[i] = new Screen();
     } else if (i == 1)
     {
       screenArray[i] = new Screen();
