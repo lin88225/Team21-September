@@ -115,7 +115,7 @@ class BarChart {
     }
     //draws title of chart
     textFont(font2);
-    text(title, x, y-20);
+    text(title, x-30, y-20);
     textFont(font);
     //draws text for x-axis
     text(descriptionOfX, x, y+(position*25)+(y-20));
