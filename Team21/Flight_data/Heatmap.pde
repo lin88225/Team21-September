@@ -1,6 +1,11 @@
+// TO DO
+// -Alter intensity colours to constants?
+// -retrieve long and lat data of airports
+// -determine magnitude of the flights to influence 'intensity' colour around airports
+// -Uncomment call in main
+// 
+
 import java.awt.Color;
-import java.awt.Graphics;
-import javax.swing.JPanel;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -8,44 +13,38 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class FlightHeatmap {
-    private int[][] heatmap; // 2D array to store intensity values
-    private int width; // Width of the heatmap
-    private int height; // Height of the heatmap
-    private JPanel panel; // Panel to draw heatmap on
-    private String databasePath; // Path to SQLite database
+    private int[][] heatmap;
+    private int width;
+    private int height;
+    private String databasePath;
 
-    // Constructor to initialize heatmap size
-    public FlightHeatmap(int width, int height, JPanel panel) {
+    public FlightHeatmap(int width, int height) {
         this.width = width;
         this.height = height;
-        this.panel = panel;
         this.heatmap = new int[width][height];
     }
 
-    // Constructor to set database path
     public FlightHeatmap(String databasePath) {
         this.databasePath = databasePath;
     }
 
-    // Method to set intensity values
-    public void setIntensity(int x, int y, int intensity) {
+    public void setIntensity(int x, int y, int magnitude) {
         if (x >= 0 && x < width && y >= 0 && y < height) {
-            heatmap[x][y] = intensity;
+            heatmap[x][y] += magnitude; // Accumulate magnitudes
         }
     }
 
-    // Method to generate heatmap from the database
     public void generateHeatmap() {
         try {
             Connection connection = DriverManager.getConnection("jdbc:sqlite:" + databasePath);
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM intensity_data");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM flight_data");
 
             while (resultSet.next()) {
                 int x = resultSet.getInt("x_coordinate");
                 int y = resultSet.getInt("y_coordinate");
-                int intensity = resultSet.getInt("intensity");
-                setIntensity(x, y, intensity);
+                int magnitude = resultSet.getInt("magnitude");
+                setIntensity(x, y, magnitude);
             }
 
             resultSet.close();
@@ -56,25 +55,21 @@ public class FlightHeatmap {
         }
     }
 
-    // Method to draw the heatmap
     public void draw(PGraphics pg) {
-        // Define heatmap colors (you can adjust these)
         Color lowIntensityColor = Color.BLUE;
         Color highIntensityColor = Color.RED;
 
-        // Draw heatmap based on intensity values
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                int intensity = heatmap[x][y];
-                // Interpolate color based on intensity value
+                int magnitude = heatmap[x][y];
+                int intensity = (int) map(magnitude, 0, 1000, 0, 255);
                 Color color1 = interpolateColor(lowIntensityColor, highIntensityColor, intensity / 255.0);
                 pg.fill(color1.getRGB());
-                pg.rect(x, y, 1, 1); // Draw a single pixel
+                pg.rect(x, y, 1, 1);
             }
         }
     }
 
-    // Method to interpolate color between two colors based on intensity
     private Color interpolateColor(Color startColor, Color endColor, double intensity) {
         int r = (int) (startColor.getRed() + intensity * (endColor.getRed() - startColor.getRed()));
         int g = (int) (startColor.getGreen() + intensity * (endColor.getGreen() - startColor.getGreen()));
