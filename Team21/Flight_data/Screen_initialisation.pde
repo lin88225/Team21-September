@@ -55,7 +55,7 @@ void createDropdownArray()
 }
 
 void createFirstScreen() {
-  screenArray[0] = new Screen(dropdownArray);
+  screenArray[0] = new Screen(0, dropdownArray);
 }
 
 // function to create Screens
@@ -78,7 +78,7 @@ void createScreens(int i)
     //screenArray[i] = new Screen();
   } else if (i == 1)
   {
-    screenArray[i] = new Screen();
+    screenArray[i] = new Screen(1);
     ArrayList <Integer> pieChartValues1 = new ArrayList <Integer>(0);
     ArrayList <String> pieChartDescriptions1 = new ArrayList <String>(0);
     String title1 = "Number of flights per state";
@@ -135,7 +135,7 @@ void createScreens(int i)
     screenArray[i].addPieChart(pieChartInts3,200, SCREENX/4, SCREENY/2+150, pieChartLabels3, title3);
   } else if (i == 2)
   {
-    screenArray[i] = new Screen();
+    screenArray[i] = new Screen(2);
     ArrayList <Float> barChartXValues = new ArrayList <Float>(0);
     ArrayList <String> barChartYValues = new ArrayList <String>(0);
     String title = "Average delay per airline";
@@ -158,7 +158,7 @@ void createScreens(int i)
     screenArray[i].addBarChart(barChartValuesX, barChartValuesY, SCREENX/4, SCREENY/4, title, descriptionOfX, descriptionOfY);
   } else if (i ==3)
   {
-    screenArray[i] = new Screen();
+    screenArray[i] = new Screen(3);
     ArrayList <Integer> barChartValues1 = new ArrayList <Integer>(0);
     ArrayList <String> barChartDescriptions1 = new ArrayList <String>(0);
     String title1 = "Number of cancelled and diverted flights per state";
@@ -212,17 +212,17 @@ void createScreens(int i)
     String [] barChartLabels3 = barChartDescriptions3.toArray(new String[0]);
     if (barChartLabels1.length !=0)
     {
-      screenArray[i].addBarChart(barChartInts1, barChartLabels1, SCREENX/4, SCREENY/8, title1, "Number of flights on time, cancelled, and diverted", barChartLabels1[i]);
+      screenArray[i].addBarChart(barChartInts1, barChartLabels1, SCREENX/4, SCREENY/8, title1, "Number of flights on time, cancelled, and diverted", "");
     }
     if (barChartLabels2.length !=0) {
-      screenArray[i].addBarChart(barChartInts2, barChartLabels2, SCREENX/2+20, SCREENY/8, title2, "Number of flights on time, cancelled, and diverted", barChartLabels2[i]);
+      screenArray[i].addBarChart(barChartInts2, barChartLabels2, SCREENX/2+20, SCREENY/8, title2, "Number of flights on time, cancelled, and diverted", "");
     }
     if (barChartLabels3.length !=0) {
-      screenArray[i].addBarChart(barChartInts3, barChartLabels3, SCREENX/4, SCREENY/2, title3, "Number of flights on time, cancelled, and diverted", barChartLabels3[i]);
+      screenArray[i].addBarChart(barChartInts3, barChartLabels3, SCREENX/4, SCREENY/2, title3, "Number of flights on time, cancelled, and diverted", "");
     }
   } else if (i ==4)
   {
-    screenArray[i] = new Screen();
+    screenArray[i] = new Screen(4);
     ArrayList <Float> barChartXValues = new ArrayList <Float>(0);
     ArrayList <String> barChartYValues = new ArrayList <String>(0);
     String title = "Average distance per airline";
@@ -245,7 +245,7 @@ void createScreens(int i)
     screenArray[i].addBarChart(barChartValuesX, barChartValuesY, SCREENX/4, SCREENY/4, title, descriptionOfX, descriptionOfY);
   } else if (i == 5)
   {
-    screenArray[i] = new Screen();
+    screenArray[i] = new Screen(5);
     ArrayList <Integer> barChartXValues = new ArrayList <Integer>(0);
     ArrayList <String> barChartYValues = new ArrayList <String>(0);
     String title = "Total carbon emissions per airline";
