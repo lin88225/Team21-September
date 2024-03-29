@@ -24,7 +24,7 @@ class Widget {
   {
     fill(mainColour);
     hover(mouseX, mouseY);
-    rect(x, y, width, height);
+    rect(x, y, width, height, 10);
     fill(WHITE);
     textFont(widgetFont);
     text(label, x, y);

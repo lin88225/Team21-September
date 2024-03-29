@@ -15,6 +15,7 @@ class Dropdown
   int scrollIndex = 0; // This index tells the programme how far down the user has scrolled
   int numOfDropsToDisplay = 5;
   boolean multipleSelection;
+
   Dropdown(int x, int y, int width, int height, String dropdownTitle, String [] dropdownDisplay, color titleColour, color menuColour, color clickColour, PFont dropdownFont, boolean multipleSelection)
   {
     this.x = x;
@@ -88,13 +89,12 @@ class Dropdown
       for (int i = 0; i < numOfDropsToDisplay; i++)
       {
         selectOption();
-        if(scrollIndex!=0)
+        if (scrollIndex!=0)
         {
           menuWidgets[i+scrollIndex].y -= (scrollIndex)*height/2;
         }
         menuWidgets[i+scrollIndex].draw();
         hoverMenu = menuWidgets[i+scrollIndex].getEvent(pmouseX, pmouseY);
-        
       }
     }
   }
