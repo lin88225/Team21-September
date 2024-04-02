@@ -119,7 +119,7 @@ void mouseWheel(MouseEvent event) {
   }
 }
 
-void keyReleased() {
+void keyPressed() {
   switch (key) {
   case 'q':
     profile = new AirlinerProfile("AA");

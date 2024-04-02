@@ -12,7 +12,8 @@ public class AirlinerProfile {
   public PImage logo, planePicture;
   //public float emissionPerDistanceUnit;
   public float ratio = 0.2;
-  public int totalNumberOfCrashes, disX, disY, posX = SCREENX/2, posY = SCREENY/2;
+  public int totalNumberOfCrashes, disX, disY;
+  public int posX = SCREENX/2, posY = SCREENY/2;
   //public String foodMenu;
   public String name, description, lastUpdated, lastCrashDate;
   public String logoFName, planeFName, mainFName;
@@ -65,8 +66,8 @@ public class AirlinerProfile {
 
 
   public void draw () {
-    keyReleased();
-    if (show) {
+    
+    
       rectMode(CORNER);
       this.mouseDragged();
       stroke (255);
@@ -95,7 +96,7 @@ public class AirlinerProfile {
       rectMode(CENTER);
       textFont(arial);
       fill (255);
-    }
+    
   }
 
   boolean beingDragged = false;
