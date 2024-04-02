@@ -1,3 +1,9 @@
+/* A class that draws a dropdown menu and stores if inidividual values have been clicked or not
+The array clickTitle stores whether each value in the array has been clicked or not, the options in the menu also change colour to indicate to the user that the box has been clicked
+There is a 15 frame delay implemented in between clicks in order to stop bugs when the mouse is held down
+Cara Saulnier
+*/
+
 class Dropdown
 {
   int x, y, width, height;
