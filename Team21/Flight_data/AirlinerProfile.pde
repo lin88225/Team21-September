@@ -4,6 +4,8 @@
  This class stores the Airliner Profile for each of the Airlines
  These are read from a their respective files (To be added)
  This also can create a pop-up page for the profile
+ 
+ QWERTYUIOP to choose your airliner
  */
 public class AirlinerProfile {
   public boolean show = false;
