@@ -1,4 +1,7 @@
-// a function to create the dropdown array
+/* a function to create the dropdown array that gets displayed to the first screen to select data to display
+Some dropdowns may only have one value selected, and some can have multiple
+Cara Saulnier
+*/
 void createDropdownArray()
 {
   dropdownArray = new Dropdown[9];
@@ -52,13 +55,18 @@ void createDropdownArray()
     }
   }
 }
-
+/* Two functions:
+One is to initialise the first screen only, which contains the dropdown menus
+The second function initialises all other screens when they need to be created. i.e. when the arrows are clicked to called screen 3, the third screen will be created with its data
+and will be drawn
+Cara Saulnier
+*/
 void createFirstScreen() {
   screenArray[0] = new Screen(0, dropdownArray);
 }
 
-// function to create Screens
-void createScreens(int i)
+// function to create Screens 
+void createScreens(int i) // i is the variable that decides which screen will be drawn
 {
   if (i == 1)
   {
