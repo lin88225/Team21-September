@@ -173,7 +173,11 @@ void createScreens(int i)
       if (dropdownArray[4].clickMenu[j] % 2==0)
       {
         barChartValues1.add(q.getCancellationsAndDiversions(dropdownArray[4].dropdownDisplay[j])[0]);
+        barChartValues1.add(q.getCancellationsAndDiversions(dropdownArray[4].dropdownDisplay[j])[1]);
+        barChartValues1.add(q.getCancellationsAndDiversions(dropdownArray[4].dropdownDisplay[j])[2]);
+        barChartDescriptions1.add("");
         barChartDescriptions1.add(dropdownArray[4].dropdownDisplay[j]);
+        barChartDescriptions1.add("");
       }
     }
     for (int j = 0; j < dropdownArray[3].dropdownDisplay.length; j++)
@@ -181,7 +185,11 @@ void createScreens(int i)
       if (dropdownArray[3].clickMenu[j] % 2==0)
       {
         barChartValues2.add(q.getCancellationsAndDiversions(dropdownArray[3].dropdownDisplay[j])[0]);
+        barChartValues2.add(q.getCancellationsAndDiversions(dropdownArray[3].dropdownDisplay[j])[1]);
+        barChartValues2.add(q.getCancellationsAndDiversions(dropdownArray[3].dropdownDisplay[j])[2]);
+        barChartDescriptions2.add("");
         barChartDescriptions2.add(dropdownArray[3].dropdownDisplay[j]);
+        barChartDescriptions2.add("");
       }
     }
     for (int j = 0; j < dropdownArray[2].dropdownDisplay.length; j++)
@@ -189,7 +197,11 @@ void createScreens(int i)
       if (dropdownArray[2].clickMenu[j] % 2==0)
       {
         barChartValues3.add(q.getCancellationsAndDiversions(dropdownArray[2].dropdownDisplay[j])[0]);
+        barChartValues3.add(q.getCancellationsAndDiversions(dropdownArray[2].dropdownDisplay[j])[1]);
+        barChartValues3.add(q.getCancellationsAndDiversions(dropdownArray[2].dropdownDisplay[j])[2]);
+        barChartDescriptions3.add("");
         barChartDescriptions3.add(dropdownArray[2].dropdownDisplay[j]);
+        barChartDescriptions3.add("");
       }
     }
     float [] barChartInts1 = new float[barChartValues1.size()];

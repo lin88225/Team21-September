@@ -154,7 +154,7 @@ class Query {
     int [] result = new int [3];
     for (int i = 0; i < theData.size(); i++)
     {
-      if (placeName.equalsIgnoreCase(theData.get(i).OriginStateName) || placeName.equalsIgnoreCase(theData.get(i).OriginCityName) || placeName.equalsIgnoreCase(theData.get(i).IACA_Code_Marketing_Airline))
+      if (placeName.equals(theData.get(i).OriginStateName) || placeName.equals(theData.get(i).OriginCityName.replaceAll("\"", "")) || placeName.equals(theData.get(i).IACA_Code_Marketing_Airline))
       {
         if (theData.get(i).cancelled) {
           result[1]++;
