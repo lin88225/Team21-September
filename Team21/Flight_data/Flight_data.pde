@@ -16,6 +16,7 @@ int [] carbonEmissions = {207, 44, 33, 136, 18, 11, 10, 32, 4};
 float [] averageFlightDistance;
 PImage image;
 
+AirlinerProfile profile;
 void settings() {
   size(SCREENX, SCREENY);
 }
@@ -54,10 +55,12 @@ void setup() {
   //for(int i = 0; i < NUMBER_OF_SCREENS; i++){
   //  createScreens(i);
   //}
+  profile = new AirlinerProfile("AA");
 }
 
 void draw() {
   background(255);
+
   createScreens(currentScreenShown);
   /*
   switch(currentScreenShown)
@@ -85,6 +88,10 @@ void draw() {
    }
    */
   screenArray[currentScreenShown].draw();
+  if (profile.show) {
+    profile.draw();
+    profile.mouseDragged();
+  }
   image(image, 0, 0);
   textAlign(CENTER, CENTER);
 }
@@ -121,5 +128,59 @@ void mouseWheel(MouseEvent event) {
         dropdownArray[i].scroll((int)event.getCount());
       }
     }
+  }
+}
+
+void keyReleased() {
+  switch (key) {
+  case 'q':
+    profile = new AirlinerProfile("AA");
+    profile.show = true;
+
+    break;
+  case 'w':
+    profile = new AirlinerProfile("AS");
+    profile.show = true;
+
+    break;
+  case 'e':
+    profile = new AirlinerProfile("B6");
+    profile.show = true;
+
+    break;
+  case 'r':
+    profile = new AirlinerProfile("DL");
+    profile.show = true;
+
+    break;
+  case 't':
+    profile = new AirlinerProfile("F9");
+    profile.show = true;
+
+    break;
+  case 'y':
+    profile = new AirlinerProfile("G4");
+    profile.show = true;
+
+    break;
+  case 'u':
+    profile = new AirlinerProfile("HA");
+    profile.show = true;
+    break;
+  case 'i':
+    profile = new AirlinerProfile("NK");
+    profile.show = true;
+    break;
+  case 'o':
+    profile = new AirlinerProfile("UA");
+    profile.show = true;
+    break;
+  case 'p':
+    profile = new AirlinerProfile("WN");
+    profile.show = true;
+    break;
+  default:
+    profile.show = false;
+    break;
   }
 }

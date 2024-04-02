@@ -6,7 +6,7 @@
  This also can create a pop-up page for the profile
  */
 public class AirlinerProfile {
-  public boolean show = true;
+  public boolean show = false;
   public PImage logo, planePicture;
   //public float emissionPerDistanceUnit;
   public float ratio = 0.2;
@@ -65,6 +65,7 @@ public class AirlinerProfile {
   public void draw () {
     keyReleased();
     if (show) {
+      rectMode(CORNER);
       this.mouseDragged();
       stroke (255);
       fill (255);
@@ -89,6 +90,9 @@ public class AirlinerProfile {
       text("Last updated:" + lastUpdated, posX + PROFILE_SIZE - 10, posY + PROFILE_SIZE);
 
       stroke (0);
+      rectMode(CENTER);
+      textFont(arial);
+      fill (255);
     }
   }
 
@@ -100,24 +104,14 @@ public class AirlinerProfile {
    
    
    */
-  void keyReleased() {
-    if (keyPressed) {
-      if (key == 'x') {
-        show = false;
-      }
-      else if (key == 'y'){
-        show = true;
-      }
-    }
-  }
   void mouseDragged() {
     boolean withinX = (mouseX >= posX && mouseX <= posX + PROFILE_SIZE);
     boolean withinY = (mouseY >= posY && mouseY <= posY + PROFILE_SIZE);
     boolean within = withinX && withinY;
     //If the mouse is within the bounds of the box
-
     if (within && mousePressed) {
       beingDragged = true;
+      
     } else if (!mousePressed) {
       beingDragged = false;
     }
