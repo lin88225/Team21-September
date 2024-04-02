@@ -1,7 +1,7 @@
 // a function to create the dropdown array
 void createDropdownArray()
 {
-  Query q= new Query(1, 100000);
+  Query q= new Query(1, flightInfo.length);
   dropdownArray = new Dropdown[9];
   String [] airports = q.getArrayAirports();
   String [] states = q.getArrayStates();

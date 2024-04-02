@@ -5,6 +5,7 @@ Dropdown [] dropdownArray;
 String [] airports;
 int [] numberFlights;
 String [] flightInfo;
+BufferedReader reader;
 
 Query q;
 int[] tempData;
@@ -37,15 +38,16 @@ void setup() {
   textFont(arial);
   fill(0);
   flightInfo = readData();
+
+  q= new Query(1, flightInfo.length);
   
-  q= new Query(1, 10000);
   tempData = q.getNumberFlightsPerAirport();
   numFlightsAirport=q.getNumberFlightsPerAirport();
   numFlightsState=q.getNumberFlightsPerState();
   numFlightsCity=q.getNumberFlightsPerCity();
   averageFlightDelay = q.calculateAverageDelay();
   averageFlightDistance = q.averageFlightDistance();
-  
+
   screenArray = new Screen [6];
   image= loadImage("AirTrackr2.png");
   createDropdownArray();
@@ -55,39 +57,27 @@ void setup() {
 void draw() {
   background(255);
   createScreens(currentScreenShown);
-  /*
-  switch(currentScreenShown)
-   {
-   case 0:
-   screenArray[0].draw();
-   break;
-   case 1:
-   screenArray[1].draw();
-   break;
-   case 2:
-   screenArray[2].draw();
-   break;
-   case 3:
-   screenArray[3].draw();
-   break;
-   case 4:
-   screenArray[4].draw();
-   break;
-   case 5:
-   screenArray[5].draw();
-   break;
-   default:
-   println("error");
-   }
-   */
   screenArray[currentScreenShown].draw();
   image(image, 0, 0);
   textAlign(CENTER, CENTER);
 }
 
 String[] readData() {
-  String[] flightData = loadStrings("flights_full.csv");
-  return flightData;
+  String line = null;
+  ArrayList <String> file = new ArrayList<>();
+  
+  reader = createReader("flights_full.csv");
+  try {
+    while ((line = reader.readLine()) != null) {
+      file.add(line);
+    }
+    reader.close();
+  }
+  catch(IOException e) {
+    println("exception");
+    exit();
+  }
+  return file.toArray(new String [0]);
 }
 void mousePressed() {
   screenArray[currentScreenShown].checkButtonsPressed();

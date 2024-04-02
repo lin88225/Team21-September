@@ -72,44 +72,22 @@ public class Datapoint {
 
 //A public function for intializing an arraylist of datapoints
 //(EG: if you have a screen to represent 30 datapoints, use an arraylist of size 30)
-ArrayList <Datapoint> initializeDataList (String []fileData, int start, int amount) {
+ArrayList <Datapoint> initializeDataList (String []fileData, int amount) {
   ArrayList <Datapoint> result = new ArrayList <Datapoint> (0);
 
-  for (int i = start; i < amount; i ++) {
+  for (int i = 1; i < amount; i ++) {
     Datapoint placeHolder = new Datapoint (fileData[i]);
     result.add(placeHolder);
   }
   return result;
 }
-//Datapoint [] initializeDataArray (String fileName, int start, int amount) {
-//  Datapoint [] result = new Datapoint [amount];
 
-//  for (int i = start; i < amount; i ++) {
-//    Datapoint placeHolder = new Datapoint (loadStrings(fileName), i);
-//    result[i] = placeHolder;
-//  }
-//  return result;
-//}
+Datapoint [] initializeDataArray (String []fileData, int start,int amount) {
+  Datapoint [] result = new Datapoint [amount];
 
-/*
-Comments:
- The try catch is used such that any fields that MIGHT be empty are replaced
- With an error code (-1)
- 
- 
- Scrap Code:
- //properData.add(placeHolder);
- //println (properData.get(i-1).FlightDate);
- //theData = loadStrings("flights100k.csv");
- 
- for (int j = 0; j < 20; j ++) {
- println("Value [" + j + "]:" + dataInString[j]);
- }
- 
- Datapoint(
- 2, dataInString[1], dataInString[2], dataInString[3], dataInString[4], dataInString[6], dataInString[7], dataInString[8],
- eI[0], eI[1], eI[2], eI[3], eI[4], eI[5], eI[6],
- distance,
- cancelled, diverted);
- 
- */
+  for (int i = start; i < amount; i ++) {
+    Datapoint placeHolder = new Datapoint (fileData[i]);
+    result[i] = placeHolder;
+  }
+  return result;
+}
