@@ -31,7 +31,6 @@ void setup() {
    Same thing for the colour and shape of the widgets...
    K.N.
    */
-  image= loadImage("AirTrackr2.png");
   arial = loadFont("Arial-BoldMT-14.vlw");
   titleFont = loadFont("Gadugi-Bold-32.vlw");
   textFont(titleFont);
@@ -39,22 +38,19 @@ void setup() {
   textFont(arial);
   fill(0);
   flightInfo = readData();
+  
   q= new Query(1, 10000);
   tempData = q.getNumberFlightsPerAirport();
   numFlightsAirport=q.getNumberFlightsPerAirport();
   numFlightsState=q.getNumberFlightsPerState();
   numFlightsCity=q.getNumberFlightsPerCity();
   averageFlightDelay = q.calculateAverageDelay();
-  //carbonEmissions = {207, 44, 33, 136, 18, 11, 10, 32, 4};
   averageFlightDistance = q.averageFlightDistance();
+  
   screenArray = new Screen [6];
-
+  image= loadImage("AirTrackr2.png");
   createDropdownArray();
   createFirstScreen();
-  //createScreens();
-  //for(int i = 0; i < NUMBER_OF_SCREENS; i++){
-  //  createScreens(i);
-  //}
 }
 
 void draw() {

@@ -1,3 +1,4 @@
+
 private static int numberOfScreens = NUMBER_OF_SCREENS;
 private static int currentNumberOfScreens = 0;
 private static int currentScreenShown = 0;
@@ -6,12 +7,15 @@ class Screen {
   // I converted the 2 buttons Next and Back into Arrows...Idk what the class Button is used for
   // We could merge Button and Arrow if we wanted to use the Button class just for this 2 buttons
   // K.N.
+
   ArrayList<PieChart> pieCharts = new ArrayList<>();
   ArrayList<BarChart> barCharts = new ArrayList<>();
   Dropdown[] dropdowns;
   ArrayList<Button> buttons = new ArrayList<>();
   color backgroundColor = MIMI_PINK;
+
   int screenID;
+
   //Button nextScreen;
   //Button previousScreen;
   Arrow nextScreen;
@@ -29,6 +33,7 @@ class Screen {
     nextScreen = new Arrow(SCREENX - 100, SCREENY-80, image1, image2);
     previousScreen = new Arrow(100-image3.width, SCREENY-80, image3, image4);
     dropdowns = new Dropdown[] {};
+
   }
   Screen(int screenID, Dropdown[] dropdowns) {
     this(screenID);
@@ -60,6 +65,7 @@ class Screen {
       barChart = barCharts.get(i);
       barChart.draw();
     }
+
     if (screenID != 0) {
       previousScreen.draw();
     }
@@ -87,6 +93,7 @@ class Screen {
       if (buttons.get(i).isMouseOver())
       {
         return buttons.get(i).getID();
+
       }
     }
     return NO_BUTTON_PRESSED;
@@ -95,6 +102,7 @@ class Screen {
     PieChart pieChart = new PieChart(values, diameter, x, y, description, title);
     pieCharts.add(pieChart);
   }
+
   public void removePieChart(int index) {
     pieCharts.remove(index);
   }
@@ -110,10 +118,12 @@ class Screen {
     barCharts.remove(index);
   }
   public BarChart getBarChart(int index) {
+
     return barCharts.get(index);
   }
   /*
   public void addDropdown(int x, int y, int width, int height, String dropdownTitle, String [] dropdownDisplay, color titleColour, color menuColour, color clickColour, PFont dropdownFont, boolean multipleSelection){
+
    Dropdown dropdown = new Dropdown(x, y, width, height, dropdownTitle, dropdownDisplay, titleColour, menuColour, clickColour, dropdownFont, multipleSelection);
    dropdowns.add(dropdown);
    }
@@ -132,6 +142,7 @@ class Screen {
     buttons.remove(index);
   }
   public Button getButton(int index) {
+
     return buttons.get(index);
   }
 }

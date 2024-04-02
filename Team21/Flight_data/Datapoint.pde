@@ -18,7 +18,7 @@ public class Datapoint {
     dataInString[9] = dataInString [9] + dataInString[10];
 
 
-    this.FlightDate =                  dataInString[0];
+    this.FlightDate =                  dataInString[0].replaceAll("12:00:00 AM", "");
     this.IACA_Code_Marketing_Airline = dataInString[1];
     this.FlightNumber =                Integer.parseInt(dataInString[2]);
 
