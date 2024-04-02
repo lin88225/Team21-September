@@ -65,6 +65,17 @@ class Query {
     }
     return sort(airline.toArray(new String[airline.size()]));//converts to Array and returns it in alphabetical order
   }
+  
+    String[] getArrayDates() {
+    // Creates an ArrayList with unique airlines values
+    ArrayList<String> dates = new ArrayList<>();
+    for (int i = 0; i < theData.size(); i++) {
+      String value = theData.get(i).FlightDate;
+      if (!dates.contains(value)) //checks if it does not contain the date yet
+        dates.add(value);
+    }
+    return sort(dates.toArray(new String[dates.size()]));//converts to Array and returns it in alphabetical order
+  }
 
   int [] getNumberFlightsPerAirport() {
     String airports[]=getArrayAirports();
