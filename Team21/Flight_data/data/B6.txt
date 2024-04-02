@@ -1,8 +1,8 @@
-Jet Blue
+JetBlue
 peanuts and pringles
-2000
-3
-1.345
-Dummy Version
-An airliner company that is
-pretty cool
+NA
+0
+0.123456789
+2/4/2024
+An airline company headquarted in Long Island City
+No crashes due in part to being founded in 2000

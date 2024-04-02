@@ -1,8 +1,8 @@
 Hawaiian Airlines
 peanuts and pringles
-2000
-3
-1.345
-Dummy Version
-An airline company that has exists for
-flights to and from Hawaii
+NA
+0
+0.123456789
+2/4/2024
+An airline company headquarted in Honolulu
+Oldest USA carrier to never have a fatal accident

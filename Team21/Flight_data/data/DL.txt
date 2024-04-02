@@ -1,8 +1,8 @@
 Delta Airlines
 peanuts and pringles
-2001
-3
-1.345
+5/3/2015
+14
+0.123456789
 Dummy Version
-An airline company that has is known for
-it's rough but cheap flights
+An airline company headquarted in Atlanta
+Oldest operating Airline in the USA
