@@ -5,6 +5,7 @@ Dropdown [] dropdownArray;
 String [] airports;
 int [] numberFlights;
 String [] flightInfo;
+BufferedReader reader;
 
 Query q;
 int[] tempData;
@@ -31,7 +32,7 @@ void setup() {
    Same thing for the colour and shape of the widgets...
    K.N.
    */
-  image= loadImage("AirTrackr2.png");
+
   arial = loadFont("Arial-BoldMT-14.vlw");
   titleFont = loadFont("Gadugi-Bold-32.vlw");
   textFont(titleFont);
@@ -39,22 +40,20 @@ void setup() {
   textFont(arial);
   fill(0);
   flightInfo = readData();
-  q= new Query(1, 10000);
+  q= new Query(1, flightInfo.length);
   tempData = q.getNumberFlightsPerAirport();
   numFlightsAirport=q.getNumberFlightsPerAirport();
   numFlightsState=q.getNumberFlightsPerState();
   numFlightsCity=q.getNumberFlightsPerCity();
   averageFlightDelay = q.calculateAverageDelay();
-  //carbonEmissions = {207, 44, 33, 136, 18, 11, 10, 32, 4};
+
   averageFlightDistance = q.averageFlightDistance();
   screenArray = new Screen [6];
 
+  image= loadImage("AirTrackr2.png");
   createDropdownArray();
   createFirstScreen();
-  //createScreens();
-  //for(int i = 0; i < NUMBER_OF_SCREENS; i++){
-  //  createScreens(i);
-  //}
+
   profile = new AirlinerProfile("AA");
 }
 
@@ -62,31 +61,7 @@ void draw() {
   background(255);
 
   createScreens(currentScreenShown);
-  /*
-  switch(currentScreenShown)
-   {
-   case 0:
-   screenArray[0].draw();
-   break;
-   case 1:
-   screenArray[1].draw();
-   break;
-   case 2:
-   screenArray[2].draw();
-   break;
-   case 3:
-   screenArray[3].draw();
-   break;
-   case 4:
-   screenArray[4].draw();
-   break;
-   case 5:
-   screenArray[5].draw();
-   break;
-   default:
-   println("error");
-   }
-   */
+
   screenArray[currentScreenShown].draw();
   if (profile.show) {
     profile.draw();
@@ -97,8 +72,21 @@ void draw() {
 }
 
 String[] readData() {
-  String[] flightData = loadStrings("flights_full.csv");
-  return flightData;
+  String line = null;
+  ArrayList <String> file = new ArrayList<>();
+
+  reader = createReader("flights_full.csv");
+  try {
+    while ((line = reader.readLine()) != null) {
+      file.add(line);
+    }
+    reader.close();
+  }
+  catch(IOException e) {
+    println("exception");
+    exit();
+  }
+  return file.toArray(new String [0]);
 }
 void mousePressed() {
   screenArray[currentScreenShown].checkButtonsPressed();

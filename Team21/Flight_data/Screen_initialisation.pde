@@ -1,7 +1,6 @@
 // a function to create the dropdown array
 void createDropdownArray()
 {
-  Query q= new Query(1, 100000);
   dropdownArray = new Dropdown[9];
   String [] airports = q.getArrayAirports();
   String [] states = q.getArrayStates();
@@ -61,22 +60,7 @@ void createFirstScreen() {
 // function to create Screens
 void createScreens(int i)
 {
-  //Query q= new Query(1, 10000);
-  //int[] tempData = q.getNumberFlightsPerAirport();
-  //int[] numFlightsAirport=q.getNumberFlightsPerAirport();
-  //int[] numFlightsState=q.getNumberFlightsPerState();
-  //int[] numFlightsCity=q.getNumberFlightsPerCity();
-  //float [] averageFlightDelay = q.calculateAverageDelay();
-  //int [] carbonEmissions = {207, 44, 33, 136, 18, 11, 10, 32, 4};
-  //float [] averageFlightDistance = q.averageFlightDistance();
-
-  //for (int i = 0; i< screenArray.length; i++)
-  //{
-  if (i ==0)
-  {
-    //screenArray[i] = new Screen(dropdownArray);
-    //screenArray[i] = new Screen();
-  } else if (i == 1)
+  if (i == 1)
   {
     screenArray[i] = new Screen(1);
     ArrayList <Integer> pieChartValues1 = new ArrayList <Integer>(0);
@@ -139,7 +123,7 @@ void createScreens(int i)
     ArrayList <Float> barChartXValues = new ArrayList <Float>(0);
     ArrayList <String> barChartYValues = new ArrayList <String>(0);
     String title = "Average delay per airline";
-    String descriptionOfX = "Average delay (minutes)";
+    String descriptionOfX = "Average delay (hours)";
     String descriptionOfY = "Airlines";
     for (int j = 0; j < dropdownArray[5].dropdownDisplay.length; j++)
     {
@@ -239,7 +223,7 @@ void createScreens(int i)
     ArrayList <Float> barChartXValues = new ArrayList <Float>(0);
     ArrayList <String> barChartYValues = new ArrayList <String>(0);
     String title = "Average distance per airline";
-    String descriptionOfX = "Average distance (km)";
+    String descriptionOfX = "Average distance (miles)";
     String descriptionOfY = "Airlines";
     for (int j = 0; j < dropdownArray[1].dropdownDisplay.length; j++)
     {
