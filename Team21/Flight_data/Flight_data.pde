@@ -17,7 +17,6 @@ int [] carbonEmissions = {207, 44, 33, 136, 18, 11, 10, 32, 4};
 float [] averageFlightDistance;
 PImage image;
 
-
 void settings() {
   size(SCREENX, SCREENY);
 }

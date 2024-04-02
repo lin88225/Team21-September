@@ -25,7 +25,7 @@ class Query {
   String[] getArrayAirports() {
     // Creates an ArrayList with unique airport values
     ArrayList<String> airport = new ArrayList<>();
-    for (int i = 0; i < theData.length; i++) {
+    for (int i = 1; i < theData.length; i++) {
       String value = theData[i].Origin;
       if (!airport.contains(value)) //checks if it does not contain the airport yet
         airport.add(value);
@@ -36,7 +36,7 @@ class Query {
   String[] getArrayStates() {
     // Creates an ArrayList with unique states values
     ArrayList<String> state = new ArrayList<>();
-    for (int i = 0; i < theData.length; i++) {
+    for (int i = 1; i < theData.length; i++) {
       String value = theData[i].OriginStateName.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
       if (!state.contains(value)) //checks if it does not contain the state yet
         state.add(value);
@@ -47,7 +47,7 @@ class Query {
   String[] getArrayCities() {
     // Creates an ArrayList with unique city values
     ArrayList<String> city = new ArrayList<>();
-    for (int i = 0; i < theData.length; i++) {
+    for (int i = 1; i < theData.length; i++) {
       String value = theData[i].OriginCityName.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
       if (!city.contains(value)) //checks if it does not contain the city yet
         city.add(value);
@@ -58,23 +58,12 @@ class Query {
   String[] getArrayAirlines() {
     // Creates an ArrayList with unique airlines values
     ArrayList<String> airline = new ArrayList<>();
-    for (int i = 0; i < theData.length; i++) {
+    for (int i = 1; i < theData.length; i++) {
       String value = theData[i].IACA_Code_Marketing_Airline;
       if (!airline.contains(value)) //checks if it does not contain the airline yet
         airline.add(value);
     }
     return sort(airline.toArray(new String[airline.size()]));//converts to Array and returns it in alphabetical order
-  }
-  
-    String[] getArrayDates() {
-    // Creates an ArrayList with unique airlines values
-    ArrayList<String> dates = new ArrayList<>();
-    for (int i = 0; i < theData.size(); i++) {
-      String value = theData.get(i).FlightDate;
-      if (!dates.contains(value)) //checks if it does not contain the date yet
-        dates.add(value);
-    }
-    return sort(dates.toArray(new String[dates.size()]));//converts to Array and returns it in alphabetical order
   }
 
   int [] getNumberFlightsPerAirport() {
@@ -82,7 +71,7 @@ class Query {
     int[] flightCounts = new int[airports.length];
     for (int index = 0; index < flightCounts.length; index++) {
       int airportCounts=0;
-      for (int i = 0; i < theData.length; i++) {
+      for (int i = 1; i < theData.length; i++) {
         String origin = theData[i].Origin;
         if (airports[index].equals(origin))
           airportCounts++;
@@ -97,7 +86,7 @@ class Query {
     int[] flightCounts = new int[states.length];
     for (int index = 0; index < flightCounts.length; index++) {
       int stateCounts=0;
-      for (int i = 0; i < theData.length; i++) {
+      for (int i = 1; i < theData.length; i++) {
         String origin = theData[i].OriginStateName;
         if (states[index].equals(origin))
           stateCounts++;
@@ -112,7 +101,7 @@ class Query {
     int[] flightCounts = new int[cities.length];
     for (int index = 0; index < flightCounts.length; index++) {
       int cityCounts=0;
-      for (int i = 0; i < theData.length; i++) {
+      for (int i = 1; i < theData.length; i++) {
         String origin = theData[i].OriginCityName;
         origin = origin.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
         if (cities[index].equals(origin))
@@ -128,7 +117,7 @@ class Query {
     int[] flightCounts = new int[airlines.length];
     for (int index = 0; index < flightCounts.length; index++) {
       int airlineCounts=0;
-      for (int i = 0; i < theData.length; i++) {
+      for (int i = 1; i < theData.length; i++) {
         String origin = theData[i].IACA_Code_Marketing_Airline;
         if (airlines[index].equals(origin))
           airlineCounts++;
@@ -143,7 +132,7 @@ class Query {
     float [] result = new float[airlineNames.length];
     int [] numberOfFlightsPerAirline = getNumberFlightsPerAirline();
     int [] totalDelays = new int[airlineNames.length];
-    for (int i = 0; i < theData.length; i++)
+    for (int i = 1; i < theData.length; i++)
     {
       int delay = theData[i].ArrivalTime - theData[i].CRSExcpetedArrivalTime;
       delay = (delay<-1200? -delay:delay);
@@ -168,7 +157,7 @@ class Query {
 
   int [] getCancellationsAndDiversions(String placeName) {
     int [] result = new int [3];
-    for (int i = 0; i < theData.length; i++)
+    for (int i = 1; i < theData.length; i++)
     {
       if (placeName.equals(theData[i].OriginStateName) || placeName.equals(theData[i].OriginCityName.replaceAll("\"", "")) || placeName.equals(theData[i].IACA_Code_Marketing_Airline))
       {
@@ -189,7 +178,7 @@ class Query {
     int [] numberOfFlightsAirline = getNumberFlightsPerAirline();
     float [] result = new float[airlineNames.length];
     float [] totalDistances = new float[airlineNames.length];
-    for (int i = 0; i < theData.length; i++)
+    for (int i = 1; i < theData.length; i++)
     {
       float flightDistance = theData[i].distance;
       for (int j = 0; j < airlineNames.length; j++)
