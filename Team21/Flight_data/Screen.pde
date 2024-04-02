@@ -1,32 +1,55 @@
-private static int numberOfScreens = 0;
 
+private static int numberOfScreens = NUMBER_OF_SCREENS;
+private static int currentNumberOfScreens = 0;
+private static int currentScreenShown = 0;
 
-class Screen{
-  Button[] buttons;
-  Dropdown[] dropdowns;
+class Screen {
+  // I converted the 2 buttons Next and Back into Arrows...Idk what the class Button is used for
+  // We could merge Button and Arrow if we wanted to use the Button class just for this 2 buttons
+  // K.N.
+
   ArrayList<PieChart> pieCharts = new ArrayList<>();
   ArrayList<BarChart> barCharts = new ArrayList<>();
-  color backgroundColor = WHITE;
+  Dropdown[] dropdowns;
+  ArrayList<Button> buttons = new ArrayList<>();
+  color backgroundColor = MIMI_PINK;
+
   int screenID;
-  
-  
-  Screen(Button[] buttons, Dropdown[] dropdowns){
-    this(buttons);
+
+  //Button nextScreen;
+  //Button previousScreen;
+  Arrow nextScreen;
+  Arrow previousScreen;
+  PImage image1, image2, image3, image4;
+
+  Screen(int screenID) {
+    this.screenID = screenID;
+    screenID = currentNumberOfScreens;
+    numberOfScreens += 1;
+    image1=loadImage("blueArrowNextDarker.png");
+    image2=loadImage("blueArrowNextDarker2.png");
+    image3=loadImage("blueArrowBackDarker.png");
+    image4=loadImage("blueArrowBackDarker2.png");
+    nextScreen = new Arrow(SCREENX - 100, SCREENY-80, image1, image2);
+    previousScreen = new Arrow(100-image3.width, SCREENY-80, image3, image4);
+    dropdowns = new Dropdown[] {};
+
+  }
+  Screen(int screenID, Dropdown[] dropdowns) {
+    this(screenID);
     this.dropdowns = dropdowns;
   }
-  Screen(Button[] buttons){
-    this.buttons = buttons;
-    dropdowns = new Dropdown[] {};
-  }
-  
-  
-  public void draw(){
+
+
+  public void draw() {
     background(backgroundColor);
+    Button button;
     PieChart pieChart;
     BarChart barChart;
-    for (int i = 0; i < buttons.length; i++)
+    for (int i = 0; i < buttons.size(); i++)
     {
-      buttons[i].draw();
+      button = buttons.get(i);
+      button.draw();
     }
     for (int i = 0; i < dropdowns.length; i++)
     {
@@ -42,64 +65,84 @@ class Screen{
       barChart = barCharts.get(i);
       barChart.draw();
     }
+
+    if (screenID != 0) {
+      previousScreen.draw();
+    }
+    if (screenID != NUMBER_OF_SCREENS - 1) {
+      nextScreen.draw();
+    }
   }
-  
-  public int checkButtonsPressed(){
-    final int NO_BUTTON_PRESSED = -1;
-    for (int i = 0; i < buttons.length; i++)
-      {
-        if(buttons[i].isMouseOver())
-        {
-          return buttons[i].getID();
-        }
+
+  public int checkButtonsPressed() {
+    if (nextScreen.isMouseOver()) {
+      if (currentScreenShown != NUMBER_OF_SCREENS - 1) {
+        currentScreenShown += 1;
       }
-      return NO_BUTTON_PRESSED;
+    }
+    if (previousScreen.isMouseOver()) {
+      if (currentScreenShown !=0) {
+        currentScreenShown -= 1;
+      }
+    }
+
+
+    final int NO_BUTTON_PRESSED = -1;
+    for (int i = 0; i < buttons.size(); i++)
+    {
+      if (buttons.get(i).isMouseOver())
+      {
+        return buttons.get(i).getID();
+
+      }
+    }
+    return NO_BUTTON_PRESSED;
   }
-  public void addPieChart(int [] values, String [] description, String title){
-    PieChart pieChart = new PieChart(values, description, title);
+  public void addPieChart(int [] values, int diameter, int x, int y, String [] description, String title) {
+    PieChart pieChart = new PieChart(values, diameter, x, y, description, title);
     pieCharts.add(pieChart);
   }
-  public void addBarChart(int [] xData, String [] yData, String title, String descriptionOfX, String descriptionOfY){
-    BarChart barcharts = new BarChart(xData, yData, title, descriptionOfX, descriptionOfY);
+
+  public void removePieChart(int index) {
+    pieCharts.remove(index);
+  }
+  public PieChart getPieChart(int index) {
+    return pieCharts.remove(index);
+  }
+
+  public void addBarChart(float [] xData, String [] yData, int x, int y, String title, String descriptionOfX, String descriptionOfY) {
+    BarChart barcharts = new BarChart(xData, yData, x, y, title, descriptionOfX, descriptionOfY);
     barCharts.add(barcharts);
   }
-}
-
-
-/*
-In the main program you want to put all your screens into an array, and make a global variable to keep track of what screen your on
-
-Under the mousePressed function make a switch statement that has the funtion of each button
-EX of how to setup:
-
-
-
-Button button1 = new Button(50, 50, 50, 100, "switch");
-Button button2 = new Button(50, 300, 50, 100, "test1");
-Button[] buttons1 = new Button[]{button1, button2};
-screen1 = new Screen(buttons1);
-Button button3= new Button(300, 50, 50, 100, "switch");
-Button button4 = new Button(300, 300, 50, 100, "test2");
-Button[] buttons2 = new Button[]{button3, button4};
-screen2 = new Screen(buttons2);
-  
-screens = new Screen[] {screen1, screen2};
-int currentScreen = 0;
-void mousePressed(){
-  int event = screens[currentScreen].checkButtonsPressed(); the event will equal the button id
-  switch (event) {
-    case 0:
-      currentScreen += 1;
-      break;
-    case 1:
-      print("test1");
-      break;
-    case 2:
-      currentScreen -= 1;
-      break;
-    case 3:
-      print("test2");
-      break;
+  public void removeBarChart(int index) {
+    barCharts.remove(index);
   }
+  public BarChart getBarChart(int index) {
 
-*/
+    return barCharts.get(index);
+  }
+  /*
+  public void addDropdown(int x, int y, int width, int height, String dropdownTitle, String [] dropdownDisplay, color titleColour, color menuColour, color clickColour, PFont dropdownFont, boolean multipleSelection){
+
+   Dropdown dropdown = new Dropdown(x, y, width, height, dropdownTitle, dropdownDisplay, titleColour, menuColour, clickColour, dropdownFont, multipleSelection);
+   dropdowns.add(dropdown);
+   }
+   public void removeDropdown(int index){
+   dropdowns.remove(index);
+   }
+   public Dropdown getDropdown(int index){
+   return dropdowns.get(index);
+   }
+   */
+  public void addButton(float xpos, float ypos, float height, float width, String text) {
+    Button button = new Button( xpos, ypos, height, width, text);
+    buttons.add(button);
+  }
+  public void removeButton(int index) {
+    buttons.remove(index);
+  }
+  public Button getButton(int index) {
+
+    return buttons.get(index);
+  }
+}

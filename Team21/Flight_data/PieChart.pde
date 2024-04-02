@@ -7,9 +7,15 @@ class PieChart {
   String [] description;
   String title;
   PFont font, font2;
+  int diameter;
+  int x;
+  int y;
 
-  PieChart(int [] values, String [] description, String title) {
+  PieChart(int [] values, int diameter, int x, int y, String [] description, String title) {
     this.values=values;
+    this.diameter=diameter;
+    this.x=x;
+    this.y=y;
     this.description=description;
     this.title=title;
     font=loadFont("ArialNova-Light-16.vlw");
@@ -17,10 +23,10 @@ class PieChart {
   }
 
   void draw() {
-    pieChart(400, values);
+    pieChart(diameter, values);
     legend(values);
     textFont(font2);
-    text(title, SCREENX/5, 50);
+    text(title, x-(diameter/2+20), y-(diameter/2+20));
   }
 
   int sum(int []data) {
@@ -36,23 +42,24 @@ class PieChart {
     for (int i = 0; i < data.length; i++) {
       float gray = map(i, 0, data.length, 0, 255);
       fill(255, gray, 100);
-      arc(SCREENX/3, SCREENY/2, diameter, diameter, lastAngle, lastAngle+(radians(data[i])/sum(data)*360));
+      arc(x, y, diameter, diameter, lastAngle, lastAngle+(radians(data[i])/sum(data)*360));
       lastAngle += (radians(data[i])/sum(data)*360);
     }
   }
 
   void legend(int [] data) {
-    int xRect=SCREENX-300;
+    int xRect=x+diameter/2+20;
     int yRect;
     int squareSide=10;
     for (int i = 0; i < data.length; i++) {
-      yRect= 80+(i*15);
+      yRect= y-(diameter/2-20)+(i*15);
       float gray = map(i, 0, data.length, 0, 255);
       fill(255, gray, 100);
       rect(xRect, yRect, squareSide, squareSide);
       textFont(font);
       fill(0);
-      text(description[i], xRect+20, yRect+10);
+      textAlign(LEFT);
+      text(description[i], xRect+15, yRect+5);
     }
   }
 }
