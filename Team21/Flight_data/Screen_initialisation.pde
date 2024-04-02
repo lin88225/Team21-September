@@ -21,7 +21,7 @@ void createDropdownArray()
       break;
     case 6:
       dropdownArray[i] = new Dropdown(SCREENX/2-DROPDOWN_WIDTH, SCREENY/2-2*DROPDOWN_HEIGHT, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
-        "Number of flights per airport", airports, HOOKERS_GREEN, COLUMBIA_BLUE, DENIM, arial, true);
+        "Number of flights\nper airport", airports, HOOKERS_GREEN, COLUMBIA_BLUE, DENIM, arial, true);
       break;
     case 5:
       dropdownArray[i] = new Dropdown(SCREENX/2+DROPDOWN_WIDTH, SCREENY/2-2*DROPDOWN_HEIGHT, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
@@ -46,7 +46,7 @@ void createDropdownArray()
       break;
     case 0:
       dropdownArray[i] = new Dropdown(SCREENX/2-DROPDOWN_WIDTH, SCREENY/2+4*DROPDOWN_HEIGHT, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
-        "Carbon emissions per airline", airlines, HOOKERS_GREEN, COLUMBIA_BLUE, DENIM, arial, true);
+        "Carbon emissions\nper airline", airlines, HOOKERS_GREEN, COLUMBIA_BLUE, DENIM, arial, true);
       break;
     default:
       System.out.println("error ");
@@ -130,9 +130,9 @@ void createScreens(int i)
     String [] pieChartLabels1 = pieChartDescriptions1.toArray(new String[0]);
     String [] pieChartLabels2 = pieChartDescriptions2.toArray(new String[0]);
     String [] pieChartLabels3 = pieChartDescriptions3.toArray(new String[0]);
-    screenArray[i].addPieChart(pieChartInts1, 200, SCREENX/4, SCREENY/3, pieChartLabels1, title1);
-    screenArray[i].addPieChart(pieChartInts2, 200, SCREENX/2+100, SCREENY/3, pieChartLabels2, title2);
-    screenArray[i].addPieChart(pieChartInts3,200, SCREENX/4, SCREENY/2+150, pieChartLabels3, title3);
+    screenArray[i].addPieChart(pieChartInts1, 200, SCREENX/4, SCREENY/3+30, pieChartLabels1, title1);
+    screenArray[i].addPieChart(pieChartInts2, 200, SCREENX/2+170, SCREENY/3+30, pieChartLabels2, title2);
+    screenArray[i].addPieChart(pieChartInts3, 200, SCREENX/4, SCREENY/2+180, pieChartLabels3, title3);
   } else if (i == 2)
   {
     screenArray[i] = new Screen(2);
@@ -155,7 +155,7 @@ void createScreens(int i)
     {
       barChartValuesX[j] = barChartXValues.get(j);
     }
-    screenArray[i].addBarChart(barChartValuesX, barChartValuesY, SCREENX/4, SCREENY/4, title, descriptionOfX, descriptionOfY);
+    screenArray[i].addBarChart(barChartValuesX, barChartValuesY, SCREENX/4, SCREENY/3, title, descriptionOfX, descriptionOfY);
   } else if (i ==3)
   {
     screenArray[i] = new Screen(3);
@@ -225,14 +225,13 @@ void createScreens(int i)
     if (barChartLabels1.length !=0)
     {
 
-      screenArray[i].addBarChart(barChartInts1, barChartLabels1, SCREENX/5, 100, title1, "Number of flights cancelled", "");
+      screenArray[i].addBarChart(barChartInts1, barChartLabels1, SCREENX/4, 150, title1, "Number of flights cancelled", "");
     }
     if (barChartLabels2.length !=0) {
-      screenArray[i].addBarChart(barChartInts2, barChartLabels2, SCREENX/5, 300, title2, "Number of flights cancelled", "");
+      screenArray[i].addBarChart(barChartInts2, barChartLabels2, SCREENX/4, 300, title2, "Number of flights cancelled", "");
     }
     if (barChartLabels3.length !=0) {
-      screenArray[i].addBarChart(barChartInts3, barChartLabels3, SCREENX/5, 500, title3, "Number of flights cancelled", "");
-
+      screenArray[i].addBarChart(barChartInts3, barChartLabels3, SCREENX/4, 450, title3, "Number of flights cancelled", "");
     }
   } else if (i ==4)
   {
@@ -256,7 +255,7 @@ void createScreens(int i)
     {
       barChartValuesX[j] = barChartXValues.get(j);
     }
-    screenArray[i].addBarChart(barChartValuesX, barChartValuesY, SCREENX/4, SCREENY/4, title, descriptionOfX, descriptionOfY);
+    screenArray[i].addBarChart(barChartValuesX, barChartValuesY, SCREENX/4, SCREENY/3, title, descriptionOfX, descriptionOfY);
   } else if (i == 5)
   {
     screenArray[i] = new Screen(5);
@@ -279,7 +278,7 @@ void createScreens(int i)
     {
       barChartValuesX[j] = barChartXValues.get(j);
     }
-    screenArray[i].addBarChart(barChartValuesX, barChartValuesY, SCREENX/4, SCREENY/4, title, descriptionOfX, descriptionOfY);
+    screenArray[i].addBarChart(barChartValuesX, barChartValuesY, SCREENX/4, SCREENY/3, title, descriptionOfX, descriptionOfY);
   }
   //}
 }

@@ -8,9 +8,6 @@ public class Datapoint {
   public boolean cancelled, diverted;
 
   Datapoint (String loadedData) {
-
-
-
     //The raw data
     String dataInString[] = loadedData.split(",");
 

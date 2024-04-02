@@ -8,6 +8,9 @@ class Query {
    getNumberFlightsPerState(): int[]
    getNumberFlightsPerCity(): int[]
    getNumberFlightsPerAirline(): int[]
+   calculateAverageDelay(): float[]
+   getCancellationsAndDiversions(String placeName): int[]
+   averageFlightDistance(): float[]
    */
   ArrayList<Datapoint> theData;
   int start;
@@ -123,6 +126,7 @@ class Query {
     }
     return flightCounts;//returns the flightCounts array containing the counts of flights for each airline
   }
+
   float [] calculateAverageDelay() {
     String [] airlineNames = getArrayAirlines();
     float [] result = new float[airlineNames.length];
@@ -150,6 +154,7 @@ class Query {
     }
     return result;
   }
+
   int [] getCancellationsAndDiversions(String placeName) {
     int [] result = new int [3];
     for (int i = 0; i < theData.size(); i++)
@@ -167,17 +172,18 @@ class Query {
     }
     return result;
   }
-  float [] averageFlightDistance(){
+
+  float [] averageFlightDistance() {
     String [] airlineNames = getArrayAirlines();
     int [] numberOfFlightsAirline = getNumberFlightsPerAirline();
     float [] result = new float[airlineNames.length];
     float [] totalDistances = new float[airlineNames.length];
-    for(int i = 0; i < theData.size(); i++)
+    for (int i = 0; i < theData.size(); i++)
     {
       float flightDistance = theData.get(i).distance;
-      for(int j = 0; j < airlineNames.length; j++)
+      for (int j = 0; j < airlineNames.length; j++)
       {
-        if(airlineNames[j].equals(theData.get(i).IACA_Code_Marketing_Airline))
+        if (airlineNames[j].equals(theData.get(i).IACA_Code_Marketing_Airline))
         {
           totalDistances[j] += flightDistance;
         }
