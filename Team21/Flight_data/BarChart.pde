@@ -32,6 +32,11 @@ class BarChart {
         {
           biggestDataPoint = xData[i];
         }
+        if(abs(biggestDataPoint) < 1)
+        {
+          biggestDataPoint = 1 / biggestDataPoint;
+          biggestDataPoint /= 100;
+        }
       }
     }
     //textAlign(LEFT);
