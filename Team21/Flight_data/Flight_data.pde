@@ -1,4 +1,5 @@
 PFont arial;
+// Heatmap heatmap; // uncomment to apply heatmap
 PFont titleFont;
 Screen [] screenArray;
 Dropdown [] dropdownArray;
@@ -39,6 +40,11 @@ void setup() {
   text("Please wait as we\nget your data loaded", SCREENX/2, SCREENY/2);
   textFont(arial);
   fill(0);
+  
+  String[] flightInfo = readData();
+  
+  // heatmap = new Heatmap(this); // uncomment to apply heatmap
+
   flightInfo = readData();
   q= new Query(1, flightInfo.length);
   tempData = q.getNumberFlightsPerAirport();
@@ -59,6 +65,7 @@ void setup() {
 
 void draw() {
   background(255);
+// heatmap.drawAirports(); // uncomment to draw heatmap
 
   createScreens(currentScreenShown);
 
