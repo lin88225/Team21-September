@@ -15,3 +15,4 @@ final int DROPDOWN_WIDTH = 200;
 final int DROPDOWN_HEIGHT = 40;
 
 final static int NUMBER_OF_SCREENS = 6;
+int PROFILE_SIZE = 300;
