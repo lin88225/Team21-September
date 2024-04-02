@@ -81,35 +81,12 @@ ArrayList <Datapoint> initializeDataList (String []fileData, int start, int amou
   }
   return result;
 }
-//Datapoint [] initializeDataArray (String fileName, int start, int amount) {
-//  Datapoint [] result = new Datapoint [amount];
+Datapoint [] initializeDataArray (String []fileData, int start,int amount) {
+  Datapoint [] result = new Datapoint [amount];
 
-//  for (int i = start; i < amount; i ++) {
-//    Datapoint placeHolder = new Datapoint (loadStrings(fileName), i);
-//    result[i] = placeHolder;
-//  }
-//  return result;
-//}
-
-/*
-Comments:
- The try catch is used such that any fields that MIGHT be empty are replaced
- With an error code (-1)
- 
- 
- Scrap Code:
- //properData.add(placeHolder);
- //println (properData.get(i-1).FlightDate);
- //theData = loadStrings("flights100k.csv");
- 
- for (int j = 0; j < 20; j ++) {
- println("Value [" + j + "]:" + dataInString[j]);
- }
- 
- Datapoint(
- 2, dataInString[1], dataInString[2], dataInString[3], dataInString[4], dataInString[6], dataInString[7], dataInString[8],
- eI[0], eI[1], eI[2], eI[3], eI[4], eI[5], eI[6],
- distance,
- cancelled, diverted);
- 
- */
+  for (int i = start; i < amount; i ++) {
+    Datapoint placeHolder = new Datapoint (fileData[i]);
+    result[i] = placeHolder;
+  }
+  return result;
+}
