@@ -6,6 +6,7 @@
  This also can create a pop-up page for the profile
  */
 public class AirlinerProfile {
+  public boolean show = true;
   public PImage logo, planePicture;
   //public float emissionPerDistanceUnit;
   public float ratio = 0.2;
@@ -60,42 +61,55 @@ public class AirlinerProfile {
    }
    */
 
+
   public void draw () {
+    keyReleased();
+    if (show) {
+      this.mouseDragged();
+      stroke (255);
+      fill (255);
+      rect (posX, posY, PROFILE_SIZE, PROFILE_SIZE, 20);
+      image(logo, posX, posY);
+      image(planePicture, posX+resizeTo, posY);
+      fill (0);
+      textAlign(LEFT, TOP);
+      textFont(sans);
+      float textYPos = posY + resizeTo;
+      text("Name:" + name, posX, textYPos + spaceIncrement);
 
-    this.mouseDragged();
-    stroke (255);
-    fill (255);
-    rect (posX, posY, PROFILE_SIZE, PROFILE_SIZE, 20);
-    image(logo, posX, posY);
-    image(planePicture, posX+resizeTo, posY);
-    fill (0);
-    textAlign(LEFT, TOP);
-    textFont(sans);
-    float textYPos = posY + resizeTo;
-    text("Name:" + name, posX, textYPos + spaceIncrement);
+      text("Date of last plane crash:" + lastCrashDate, posX, textYPos + spaceIncrement*3);
+      text("Number of planes crashed:" + totalNumberOfCrashes, posX, textYPos + spaceIncrement*4);
 
-    text("Date of last plane crash:" + lastCrashDate, posX, textYPos + spaceIncrement*3);
-    text("Number of planes crashed:" + totalNumberOfCrashes, posX, textYPos + spaceIncrement*4);
-
-    //text("Emmissions per distance unit:" + emissionPerDistanceUnit, posX, textYPos + spaceIncrement*5);
-    //text("In-Flight menu:" + foodMenu, posX, textYPos + spaceIncrement*7);
+      //text("Emmissions per distance unit:" + emissionPerDistanceUnit, posX, textYPos + spaceIncrement*5);
+      //text("In-Flight menu:" + foodMenu, posX, textYPos + spaceIncrement*7);
 
 
-    text(description, posX, textYPos + spaceIncrement*10);
-    textAlign(RIGHT, BOTTOM);
-    text("Last updated:" + lastUpdated, posX + PROFILE_SIZE - 10, posY + PROFILE_SIZE);
+      text(description, posX, textYPos + spaceIncrement*10);
+      textAlign(RIGHT, BOTTOM);
+      text("Last updated:" + lastUpdated, posX + PROFILE_SIZE - 10, posY + PROFILE_SIZE);
 
-    stroke (0);
+      stroke (0);
+    }
   }
 
   boolean beingDragged = false;
-  
+
   /*
   Checks first that
-  
-  
-  
-  */
+   
+   
+   
+   */
+  void keyReleased() {
+    if (keyPressed) {
+      if (key == 'x') {
+        show = false;
+      }
+      else if (key == 'y'){
+        show = true;
+      }
+    }
+  }
   void mouseDragged() {
     boolean withinX = (mouseX >= posX && mouseX <= posX + PROFILE_SIZE);
     boolean withinY = (mouseY >= posY && mouseY <= posY + PROFILE_SIZE);
