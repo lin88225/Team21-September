@@ -41,13 +41,12 @@ void setup() {
   textFont(arial);
   fill(0);
   
-  //String[] flightInfo = readData();
   
   // heatmap = new Heatmap(this); // uncomment to apply heatmap
 
   flightInfo = readData();
   q= new Query(1, flightInfo.length);
-  /*
+  
   tempData = q.getNumberFlightsPerAirport();
   numFlightsAirport=q.getNumberFlightsPerAirport();
   numFlightsState=q.getNumberFlightsPerState();
@@ -55,7 +54,7 @@ void setup() {
   averageFlightDelay = q.calculateAverageDelay();
 
   averageFlightDistance = q.averageFlightDistance();
-  */
+  
   screenArray = new Screen [6];
 
   image= loadImage("AirTrackr2.png");
