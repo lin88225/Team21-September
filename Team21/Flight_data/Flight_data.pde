@@ -47,6 +47,7 @@ void setup() {
 
   flightInfo = readData();
   q= new Query(1, flightInfo.length);
+  /*
   tempData = q.getNumberFlightsPerAirport();
   numFlightsAirport=q.getNumberFlightsPerAirport();
   numFlightsState=q.getNumberFlightsPerState();
@@ -54,6 +55,7 @@ void setup() {
   averageFlightDelay = q.calculateAverageDelay();
 
   averageFlightDistance = q.averageFlightDistance();
+  */
   screenArray = new Screen [6];
 
   image= loadImage("AirTrackr2.png");
@@ -70,11 +72,12 @@ void draw() {
   createScreens(currentScreenShown);
 
   screenArray[currentScreenShown].draw();
+  image(image, 0, 0);
   if (profile.show) {
     profile.draw();
     profile.mouseDragged();
   }
-  image(image, 0, 0);
+  
   textAlign(CENTER, CENTER);
 }
 
