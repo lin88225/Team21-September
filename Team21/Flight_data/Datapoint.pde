@@ -18,14 +18,14 @@ public class Datapoint {
     dataInString[9] = dataInString [9] + dataInString[10];
 
 
-    this.FlightDate =                  dataInString[0].replaceAll("12:00:00 AM", "");
+    this.FlightDate =                  dataInString[0].replaceAll(" 12:00:00 AM", "");//added a space in front of 12 because otherwise it wouldn't read the date in the TextWidget
     this.IACA_Code_Marketing_Airline = dataInString[1];
     this.FlightNumber =                Integer.parseInt(dataInString[2]);
 
 
 
     this.Origin =                   dataInString[3];
-    this.OriginCityName =           dataInString[4];
+    this.OriginCityName =           dataInString[4].replaceAll("\"", "");
     this.OriginStateName =          dataInString[6];
     this.OriginWac =                Integer.parseInt(dataInString[7]);
 

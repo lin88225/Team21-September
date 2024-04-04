@@ -14,4 +14,4 @@ final int FRAMES_PER_CLICK =15;
 final int DROPDOWN_WIDTH = 200;
 final int DROPDOWN_HEIGHT = 40;
 
-final static int NUMBER_OF_SCREENS = 6;
+final static int NUMBER_OF_SCREENS = 7; //added a screen

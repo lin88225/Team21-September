@@ -11,6 +11,7 @@ class Screen {
   ArrayList<PieChart> pieCharts = new ArrayList<>();
   ArrayList<BarChart> barCharts = new ArrayList<>();
   Dropdown[] dropdowns;
+  TextWidget[] textWidgets;
   ArrayList<Button> buttons = new ArrayList<>();
   color backgroundColor = MIMI_PINK;
 
@@ -18,6 +19,7 @@ class Screen {
 
   //Button nextScreen;
   //Button previousScreen;
+  //changed buttons to arrows
   Arrow nextScreen;
   Arrow previousScreen;
   PImage image1, image2, image3, image4;
@@ -33,11 +35,19 @@ class Screen {
     nextScreen = new Arrow(SCREENX - 100, SCREENY-80, image1, image2);
     previousScreen = new Arrow(100-image3.width, SCREENY-80, image3, image4);
     dropdowns = new Dropdown[] {};
+    textWidgets = new TextWidget[]{};
 
   }
+  
   Screen(int screenID, Dropdown[] dropdowns) {
     this(screenID);
     this.dropdowns = dropdowns;
+  }
+  
+  Screen(int screenID, Dropdown[] dropdowns, TextWidget textWidgets[]) {//added a constructor that allows a Screen to have TextWidgets - K.N.
+    this(screenID);
+    this.dropdowns = dropdowns;
+    this.textWidgets = textWidgets;
   }
 
 
@@ -54,6 +64,10 @@ class Screen {
     for (int i = 0; i < dropdowns.length; i++)
     {
       dropdowns[i].draw();
+    }
+    for (int i = 0; i < textWidgets.length; i++)
+    {
+      textWidgets[i].draw();
     }
     for (int i = 0; i < pieCharts.size(); i++)
     {

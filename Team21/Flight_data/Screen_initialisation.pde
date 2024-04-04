@@ -1,7 +1,7 @@
 // a function to create the dropdown array
 void createDropdownArray()
 {
-  Query q= new Query(1, flightInfo.length);
+  //Query q= new Query(1, flightInfo.length);
   dropdownArray = new Dropdown[9];
   String [] airports = q.getArrayAirports();
   String [] states = q.getArrayStates();
@@ -54,6 +54,35 @@ void createDropdownArray()
   }
 }
 
+void createOtherDropdown() {
+  //Created and initialised a new array of dropdowns for screen number 6 based on what Cara did for the others
+  //K.N.
+  dropdownArray2=new Dropdown[3];
+  String [] airports = q.getArrayAirports();
+  String [] states = q.getArrayStates();
+  String [] cities = q.getArrayCities();
+  for (int index = 0; index < dropdownArray.length; index++)
+  {
+    switch(index)
+    {
+    case 0:
+      dropdownArray2[index] = new Dropdown(SCREENX/2+DROPDOWN_WIDTH+130, SCREENY/2-4*DROPDOWN_HEIGHT, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
+        "States", states, color(171, 177, 207), COLUMBIA_BLUE, DENIM, arial, false);
+      break;
+    case 1:
+      dropdownArray2[index] = new Dropdown(SCREENX/2+DROPDOWN_WIDTH+130, SCREENY/2-2*DROPDOWN_HEIGHT+65, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
+        "Cities", cities, color(171, 177, 207), COLUMBIA_BLUE, DENIM, arial, false);
+      break;
+    case 2:
+      dropdownArray2[index] = new Dropdown(SCREENX/2+DROPDOWN_WIDTH+130, SCREENY/2+130, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
+        "Airports", airports, color(171, 177, 207), COLUMBIA_BLUE, DENIM, arial, false);
+      break;
+    default:
+      System.out.println("error ");
+    }
+  }
+}
+
 void createFirstScreen() {
   screenArray[0] = new Screen(0, dropdownArray);
 }
@@ -61,17 +90,6 @@ void createFirstScreen() {
 // function to create Screens
 void createScreens(int i)
 {
-  //Query q= new Query(1, 10000);
-  //int[] tempData = q.getNumberFlightsPerAirport();
-  //int[] numFlightsAirport=q.getNumberFlightsPerAirport();
-  //int[] numFlightsState=q.getNumberFlightsPerState();
-  //int[] numFlightsCity=q.getNumberFlightsPerCity();
-  //float [] averageFlightDelay = q.calculateAverageDelay();
-  //int [] carbonEmissions = {207, 44, 33, 136, 18, 11, 10, 32, 4};
-  //float [] averageFlightDistance = q.averageFlightDistance();
-
-  //for (int i = 0; i< screenArray.length; i++)
-  //{
   if (i ==0)
   {
     //screenArray[i] = new Screen(dropdownArray);
@@ -279,6 +297,107 @@ void createScreens(int i)
       barChartValuesX[j] = barChartXValues.get(j);
     }
     screenArray[i].addBarChart(barChartValuesX, barChartValuesY, SCREENX/4, SCREENY/3, title, descriptionOfX, descriptionOfY);
+  } else if (i ==6)
+  {
+    //Added screen that displays the number of flights per day of a selected state, city or airport
+    //The days are being selected choosing a start date and an end date. This can be done by writing on the two TextWidgets
+    //K.N.
+    
+    screenArray[i] = new Screen(6, dropdownArray2, text);
+    int indexStartDate=0;
+    int indexEndDate=0;
+    String arrayDates[]=q.getArrayDates();
+    String title = "Number of flights per day";
+    String descriptionOfX = "number of flights";
+
+    ArrayList <Integer> barChartValues1 = new ArrayList <Integer>(0);
+    ArrayList <String> barChartDescriptions1 = new ArrayList <String>(0);
+    ArrayList <Integer> barChartValues2 = new ArrayList <Integer>(0);
+    ArrayList <String> barChartDescriptions2 = new ArrayList <String>(0);
+    ArrayList <Integer> barChartValues3 = new ArrayList <Integer>(0);
+    ArrayList <String> barChartDescriptions3 = new ArrayList <String>(0);
+
+    for (int j = 0; j < arrayDates.length; j++) {//gives the indexes for the start and end date
+      if (arrayDates[j].equals(startDate))
+        indexStartDate=j;
+      if (arrayDates[j].equals(endDate))
+        indexEndDate=j;
+    }
+
+    int sumFlightsState=0;
+    for (int k = 0; k < dropdownArray2[0].dropdownDisplay.length; k++)
+    {
+      if (dropdownArray2[0].clickMenu[k] % 2==0)
+      {
+        for (int j = indexStartDate; j <=indexEndDate; j++) {
+          barChartDescriptions1.add(arrayDates[j]);
+          barChartValues1.add(q.getNumberFlightsPerStatePerDay(arrayDates[j])[k]);
+          sumFlightsState+=q.getNumberFlightsPerStatePerDay(arrayDates[j])[k];
+        }
+        barChartValues1.add(sumFlightsState);
+        barChartDescriptions1.add(dropdownArray2[0].dropdownDisplay[k]);
+      }
+    }
+
+    int sumFlightsCity=0;
+    for (int k = 0; k < dropdownArray2[1].dropdownDisplay.length; k++)
+    {
+      if (dropdownArray2[1].clickMenu[k] % 2==0)
+      {
+        for (int j = indexStartDate; j <=indexEndDate; j++) {
+          barChartDescriptions2.add(arrayDates[j]);
+          barChartValues2.add(q.getNumberFlightsPerCityPerDay(arrayDates[j])[k]);//problema con quelli per city al giorno
+          sumFlightsCity+=q.getNumberFlightsPerCityPerDay(arrayDates[j])[k];
+        }
+        barChartValues2.add(sumFlightsCity);
+        barChartDescriptions2.add(dropdownArray2[1].dropdownDisplay[k]);
+      }
+    }
+
+    int sumFlightsAirport=0;
+    for (int k = 0; k < dropdownArray2[2].dropdownDisplay.length; k++)
+    {
+      if (dropdownArray2[2].clickMenu[k] % 2==0)
+      {
+        for (int j = indexStartDate; j <=indexEndDate; j++) {
+          barChartDescriptions3.add(arrayDates[j]);
+          barChartValues3.add(q.getNumberFlightsPerAirportPerDay(arrayDates[j])[k]);
+          sumFlightsAirport+=q.getNumberFlightsPerAirportPerDay(arrayDates[j])[k];
+        }
+        barChartValues3.add(sumFlightsAirport);
+        barChartValues3.add(numFlightsAirport[k]);
+        barChartDescriptions3.add(dropdownArray2[2].dropdownDisplay[k]);
+      }
+    }
+
+    float [] barChartInts1 = new float[barChartValues1.size()];
+    float [] barChartInts2 = new float[barChartValues2.size()];
+    float [] barChartInts3 = new float[barChartValues3.size()];
+    for (int j = 0; j < barChartInts1.length; j++)
+    {
+      barChartInts1[j] = barChartValues1.get(j);
+    }
+    for (int j = 0; j < barChartInts2.length; j++)
+    {
+      barChartInts2[j] = barChartValues2.get(j);
+    }
+    for (int j = 0; j < barChartInts3.length; j++)
+    {
+      barChartInts3[j] = barChartValues3.get(j);
+    }
+    String [] barChartLabels1 = barChartDescriptions1.toArray(new String[0]);
+    String [] barChartLabels2 = barChartDescriptions2.toArray(new String[0]);
+    String [] barChartLabels3 = barChartDescriptions3.toArray(new String[0]);
+    if (barChartLabels1.length !=0)
+    {
+
+      screenArray[i].addBarChart(barChartInts1, barChartLabels1, SCREENX/3, 150, title, "", "");
+    }
+    if (barChartLabels2.length !=0) {
+      screenArray[i].addBarChart(barChartInts2, barChartLabels2, SCREENX/3, 300, "", "", "");
+    }
+    if (barChartLabels3.length !=0) {
+      screenArray[i].addBarChart(barChartInts3, barChartLabels3, SCREENX/3, 450, "", descriptionOfX, "");
+    }
   }
-  //}
 }

@@ -2,6 +2,8 @@ PFont arial;
 PFont titleFont;
 Screen [] screenArray;
 Dropdown [] dropdownArray;
+Dropdown [] dropdownArray2;
+Dropdown[] wheelDropdown;
 String [] airports;
 int [] numberFlights;
 String [] flightInfo;
@@ -16,6 +18,16 @@ float [] averageFlightDelay;
 int [] carbonEmissions = {207, 44, 33, 136, 18, 11, 10, 32, 4};
 float [] averageFlightDistance;
 PImage image;
+
+String [] airport;
+String [] states;
+String [] cities;
+
+TextWidget text[];
+TextWidget focus;
+TextWidget focus2;
+String startDate="";
+String endDate="";
 
 void settings() {
   size(SCREENX, SCREENY);
@@ -39,8 +51,13 @@ void setup() {
   fill(0);
   flightInfo = readData();
 
-  q= new Query(1, flightInfo.length);
-  
+  //q= new Query(1, flightInfo.length);
+  q= new Query(1, 40000); // the amount parameter is less than expected for test purposes
+
+  // airports = q.getArrayAirports();
+  // states = q.getArrayStates();
+  // cities = q.getArrayCities();
+
   tempData = q.getNumberFlightsPerAirport();
   numFlightsAirport=q.getNumberFlightsPerAirport();
   numFlightsState=q.getNumberFlightsPerState();
@@ -48,10 +65,21 @@ void setup() {
   averageFlightDelay = q.calculateAverageDelay();
   averageFlightDistance = q.averageFlightDistance();
 
-  screenArray = new Screen [6];
+  screenArray = new Screen [7];//added a screen
   image= loadImage("AirTrackr2.png");
   createDropdownArray();
   createFirstScreen();
+  createOtherDropdown();
+
+  text=new TextWidget[2];
+  text[0]=new TextWidget(100, SCREENY/2-4*DROPDOWN_HEIGHT, 120, 40,
+    "from", color(197, 185, 205), color(255), arial, 3, 10);
+  text[1]=new TextWidget(100, SCREENY/2-4*DROPDOWN_HEIGHT+50, 120, 40,
+    "to", color(197, 185, 205), color(255), arial, 2, 10);
+  startDate=text[0].label;
+  endDate=text[1].label;
+  focus=null;
+  focus2=null;
 }
 
 void draw() {
@@ -65,7 +93,7 @@ void draw() {
 String[] readData() {
   String line = null;
   ArrayList <String> file = new ArrayList<>();
-  
+
   reader = createReader("flights_full.csv");
   try {
     while ((line = reader.readLine()) != null) {
@@ -79,8 +107,32 @@ String[] readData() {
   }
   return file.toArray(new String [0]);
 }
+
 void mousePressed() {
   screenArray[currentScreenShown].checkButtonsPressed();
+
+  int event;
+  for (int i = 0; i < text.length; i++) {  //this allows to recognise if we click over a TextWidget - K.N.
+    Widget theWidget = (Widget)text[i];
+    event = theWidget.getEvent(mouseX, mouseY);
+    switch(event) {
+    case 3:
+      println("text widget");
+      focus= (TextWidget)theWidget;
+      return;
+    case 2:
+      println("text widget");
+      focus2= (TextWidget)theWidget;
+      return;
+    case 1:
+      println("other");
+      focus=null;
+      return;
+    default:
+      println("blah blah");
+      focus=null;
+    }
+  }
 }
 
 // Parameters: ArrayList of datapoints you want to sort, String name of variable
@@ -98,14 +150,43 @@ void sortFlightsNumerically(ArrayList<Datapoint> flights, String variable) {
   }
 }
 void mouseWheel(MouseEvent event) {
-  for (int i =0; i < dropdownArray.length; i++)
+  // Modified body of this method because in this way it can take different dropdown arrays - K.N.
+  if (currentScreenShown==0)
+    wheelDropdown=dropdownArray;
+  else if (currentScreenShown==6)  wheelDropdown=dropdownArray2;
+
+  for (int i =0; i < wheelDropdown.length; i++)
   {
-    for (int j =0; j < dropdownArray[i].dropdownDisplay.length; j++)
+    for (int j =0; j < wheelDropdown[i].dropdownDisplay.length; j++)
     {
-      if ((dropdownArray[i].menuWidgets[j].getEvent(pmouseX, pmouseY) ==1 || dropdownArray[i].titleWidget.getEvent(pmouseX, pmouseY) ==1) && dropdownArray[i].clickTitle % 2==0)
+      if ((wheelDropdown[i].menuWidgets[j].getEvent(pmouseX, pmouseY) ==1 || wheelDropdown[i].titleWidget.getEvent(pmouseX, pmouseY) ==1) && wheelDropdown[i].clickTitle % 2==0)
       {
-        dropdownArray[i].scroll((int)event.getCount());
+        wheelDropdown[i].scroll((int)event.getCount());
       }
     }
+  }
+
+  /*for (int i =0; i < dropdownArray.length; i++)
+   {
+   for (int j =0; j < dropdownArray[i].dropdownDisplay.length; j++)
+   {
+   if ((dropdownArray[i].menuWidgets[j].getEvent(pmouseX, pmouseY) ==1 || dropdownArray[i].titleWidget.getEvent(pmouseX, pmouseY) ==1) && dropdownArray[i].clickTitle % 2==0)
+   {
+   dropdownArray[i].scroll((int)event.getCount());
+   }
+   }
+   }*/
+}
+
+void keyPressed() {
+  //This method allows a TextWidget label to take what is being inserted - K.N.
+  if (focus != null) {
+    text[0].append(key);
+    startDate=text[0].label;
+  }
+
+  if (focus2 != null) {
+    text[1].append(key);
+    endDate=text[1].label;
   }
 }
