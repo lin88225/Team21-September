@@ -41,7 +41,7 @@ void setup() {
   textFont(arial);
   fill(0);
   
-  String[] flightInfo = readData();
+  //String[] flightInfo = readData();
   
   // heatmap = new Heatmap(this); // uncomment to apply heatmap
 
