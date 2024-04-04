@@ -1,5 +1,4 @@
 PFont arial;
-// Heatmap heatmap; // uncomment to apply heatmap
 PFont titleFont;
 Screen [] screenArray;
 Dropdown [] dropdownArray;
@@ -22,7 +21,8 @@ AirlinerProfile profile;
 void settings() {
   size(SCREENX, SCREENY);
 }
-
+/* The code used to use multiple fonts, I went through all  the files and now they are all Gadugi, even if the file names say otherwise - Cara Saulnier
+*/
 void setup() {
   background(MIMI_PINK);
   textAlign(CENTER, CENTER);
@@ -40,9 +40,6 @@ void setup() {
   text("Please wait as we\nget your data loaded", SCREENX/2, SCREENY/2);
   textFont(arial);
   fill(0);
-  
-  
-  // heatmap = new Heatmap(this); // uncomment to apply heatmap
 
   flightInfo = readData();
   q= new Query(1, flightInfo.length);
@@ -66,7 +63,6 @@ void setup() {
 
 void draw() {
   background(255);
-// heatmap.drawAirports(); // uncomment to draw heatmap
 
   createScreens(currentScreenShown);
 
@@ -128,31 +124,37 @@ void mouseWheel(MouseEvent event) {
   }
 }
 
-void keyPressed() {
+void keyReleased() {
   switch (key) {
   case '1':
     profile = new AirlinerProfile("AA");
     profile.show = true;
+
     break;
   case '2':
     profile = new AirlinerProfile("AS");
     profile.show = true;
+
     break;
   case '3':
     profile = new AirlinerProfile("B6");
     profile.show = true;
+
     break;
   case '4':
     profile = new AirlinerProfile("DL");
     profile.show = true;
+
     break;
   case '5':
     profile = new AirlinerProfile("F9");
     profile.show = true;
+
     break;
   case '6':
     profile = new AirlinerProfile("G4");
     profile.show = true;
+
     break;
   case '7':
     profile = new AirlinerProfile("HA");
