@@ -1,13 +1,13 @@
-color darker = color(0,100,100,100);
 /*
 -L.Mc
  This class stores the Airliner Profile for each of the Airlines
  These are read from a their respective files (To be added)
  This also can create a pop-up page for the profile
  
- QWERTYUIOP to choose your airliner
+ 
  */
 public class AirlinerProfile {
+  color darker = color(0,100,100,100);
   public boolean show = false;
   public PImage logo, planePicture;
   //public float emissionPerDistanceUnit;
