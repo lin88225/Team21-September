@@ -1,4 +1,4 @@
-
+color darker = color(0,100,100,100);
 /*
 -L.Mc
  This class stores the Airliner Profile for each of the Airlines
@@ -57,7 +57,7 @@ public class AirlinerProfile {
       rectMode(CORNER);
       this.mouseDragged();
       stroke (BLACK);
-      fill (MIMI_PINK);
+      fill (MIMI_PINK - darker);
       rect (posX, posY, PROFILE_SIZE, PROFILE_SIZE, 20);
       image(logo, posX + 20, posY+3);
       image(planePicture, posX+resizeTo + 20, posY+3);

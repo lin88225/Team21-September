@@ -128,49 +128,43 @@ void mouseWheel(MouseEvent event) {
 
 void keyPressed() {
   switch (key) {
-  case 'q':
+  case '1':
     profile = new AirlinerProfile("AA");
     profile.show = true;
-
     break;
-  case 'w':
+  case '2':
     profile = new AirlinerProfile("AS");
     profile.show = true;
-
     break;
-  case 'e':
+  case '3':
     profile = new AirlinerProfile("B6");
     profile.show = true;
-
     break;
-  case 'r':
+  case '4':
     profile = new AirlinerProfile("DL");
     profile.show = true;
-
     break;
-  case 't':
+  case '5':
     profile = new AirlinerProfile("F9");
     profile.show = true;
-
     break;
-  case 'y':
+  case '6':
     profile = new AirlinerProfile("G4");
     profile.show = true;
-
     break;
-  case 'u':
+  case '7':
     profile = new AirlinerProfile("HA");
     profile.show = true;
     break;
-  case 'i':
+  case '8':
     profile = new AirlinerProfile("NK");
     profile.show = true;
     break;
-  case 'o':
+  case '9':
     profile = new AirlinerProfile("UA");
     profile.show = true;
     break;
-  case 'p':
+  case '0':
     profile = new AirlinerProfile("WN");
     profile.show = true;
     break;
