@@ -1,5 +1,8 @@
 //A version of the Datapoint Class that takes
 //A String array of loaded data and a specific line
+/* Code initally written by Lloyd McNally
+Small mistakes regarding numbers were fixed, with obsolete code removed. The functions calling the code were changed as well as changing the constructor in order to run more efficiently. - Cara Saulnier
+*/
 
 public class Datapoint {
   public String  FlightDate, IACA_Code_Marketing_Airline, Origin, OriginCityName, OriginStateName, Dest, DestinationCityName, DestinationStateName;
@@ -74,19 +77,19 @@ public class Datapoint {
 //(EG: if you have a screen to represent 30 datapoints, use an arraylist of size 30)
 ArrayList <Datapoint> initializeDataList (String []fileData, int start, int amount) {
   ArrayList <Datapoint> result = new ArrayList <Datapoint> (0);
-  println("DataArrayList start!" + "      " + millis());
+
   for (int i = start; i < amount; i ++) {
-    result.add(new Datapoint (fileData[i]));
+    Datapoint placeHolder = new Datapoint (fileData[i]);
+    result.add(placeHolder);
   }
-  println("DataArrayList finish!" + "     " + millis());
   return result;
 }
-Datapoint [] initializeDataArray (String []fileData, int start, int amount) {
+Datapoint [] initializeDataArray (String []fileData, int start,int amount) {
   Datapoint [] result = new Datapoint [amount];
-  println("DataArray start!" + "      " + millis());
+
   for (int i = start; i < amount; i ++) {
-    result[i] = new Datapoint (fileData[i]);
+    Datapoint placeHolder = new Datapoint (fileData[i]);
+    result[i] = placeHolder;
   }
-  println("DataArray finish!" + "     " + millis());
   return result;
 }

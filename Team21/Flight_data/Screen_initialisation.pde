@@ -68,7 +68,7 @@ void createFirstScreen() {
 // function to create Screens 
 void createScreens(int i) // i is the variable that decides which screen will be drawn
 {
-  if (i == 1)
+  if (i == 1) // A screen displaying the number of flights per state, city, and airport
   {
     screenArray[i] = new Screen(1);
     ArrayList <Integer> pieChartValues1 = new ArrayList <Integer>(0);
@@ -125,7 +125,7 @@ void createScreens(int i) // i is the variable that decides which screen will be
     screenArray[i].addPieChart(pieChartInts1, 200, SCREENX/4, SCREENY/3+30, pieChartLabels1, title1);
     screenArray[i].addPieChart(pieChartInts2, 200, SCREENX/2+170, SCREENY/3+30, pieChartLabels2, title2);
     screenArray[i].addPieChart(pieChartInts3, 200, SCREENX/4, SCREENY/2+180, pieChartLabels3, title3);
-  } else if (i == 2)
+  } else if (i == 2) // displays the average delay per airline
   {
     screenArray[i] = new Screen(2);
     ArrayList <Float> barChartXValues = new ArrayList <Float>(0);
@@ -148,7 +148,7 @@ void createScreens(int i) // i is the variable that decides which screen will be
       barChartValuesX[j] = barChartXValues.get(j);
     }
     screenArray[i].addBarChart(barChartValuesX, barChartValuesY, SCREENX/4, SCREENY/3, title, descriptionOfX, descriptionOfY);
-  } else if (i ==3)
+  } else if (i ==3) // displays the number of flights departed, cancelled, or diverted for state, city, and airport
   {
     screenArray[i] = new Screen(3);
     ArrayList <Integer> barChartValues1 = new ArrayList <Integer>(0);
@@ -225,7 +225,7 @@ void createScreens(int i) // i is the variable that decides which screen will be
     if (barChartLabels3.length !=0) {
       screenArray[i].addBarChart(barChartInts3, barChartLabels3, SCREENX/4, 450, title3, "Number of flights cancelled", "");
     }
-  } else if (i ==4)
+  } else if (i ==4) // calculates teh average flight distance 
   {
     screenArray[i] = new Screen(4);
     ArrayList <Float> barChartXValues = new ArrayList <Float>(0);
@@ -248,7 +248,7 @@ void createScreens(int i) // i is the variable that decides which screen will be
       barChartValuesX[j] = barChartXValues.get(j);
     }
     screenArray[i].addBarChart(barChartValuesX, barChartValuesY, SCREENX/4, SCREENY/3, title, descriptionOfX, descriptionOfY);
-  } else if (i == 5)
+  } else if (i == 5) // calculates the number of metric tons of carbon emissions released per airline, rounded to the nearest million
   {
     screenArray[i] = new Screen(5);
     ArrayList <Integer> barChartXValues = new ArrayList <Integer>(0);
