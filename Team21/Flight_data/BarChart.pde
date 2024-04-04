@@ -1,5 +1,5 @@
 class BarChart {
-  //call BarChart class when  specific button is pressed
+  // call BarChart class when  specific button is pressed
   // put into constructor as parameters array of int and string we want to represent
   // and also the title name and description of 2 axis
   // EXAMPLE: number of flights per airport  
@@ -40,7 +40,6 @@ class BarChart {
         }
       }
     }
-    //textAlign(LEFT);
   }
 
   void draw() {

@@ -1,11 +1,11 @@
-
 private static int numberOfScreens = NUMBER_OF_SCREENS;
 private static int currentNumberOfScreens = 0;
 private static int currentScreenShown = 0;
 
 class Screen {
-  // I converted the 2 buttons Next and Back into Arrows...Idk what the class Button is used for
-  // We could merge Button and Arrow if we wanted to use the Button class just for this 2 buttons
+  // I converted the 2 buttons Next and Back into Arrows
+  // Added image I edited on Canva as background of our start page (screen(0))
+  // Added playButton for start page so you can enter the app
   // K.N.
 
   ArrayList<PieChart> pieCharts = new ArrayList<>();
@@ -22,7 +22,8 @@ class Screen {
   //changed buttons to arrows
   Arrow nextScreen;
   Arrow previousScreen;
-  PImage image1, image2, image3, image4;
+  Arrow playButton;
+  PImage image1, image2, image3, image4, imgFirstPage, imgPlayButton1, imgPlayButton2;
 
   Screen(int screenID) {
     this.screenID = screenID;
@@ -32,18 +33,21 @@ class Screen {
     image2=loadImage("blueArrowNextDarker2.png");
     image3=loadImage("blueArrowBackDarker.png");
     image4=loadImage("blueArrowBackDarker2.png");
+    imgFirstPage=loadImage("AirtrackrFirstPage.png");//added image first screen
+    imgPlayButton1=loadImage("playButton1.png");
+    imgPlayButton2=loadImage("playButton2.png");
     nextScreen = new Arrow(SCREENX - 100, SCREENY-80, image1, image2);
     previousScreen = new Arrow(100-image3.width, SCREENY-80, image3, image4);
+    playButton = new Arrow(SCREENX/2-imgPlayButton1.width/2, SCREENY/2-imgPlayButton1.height/2, imgPlayButton1, imgPlayButton2);
     dropdowns = new Dropdown[] {};
     textWidgets = new TextWidget[]{};
-
   }
-  
+
   Screen(int screenID, Dropdown[] dropdowns) {
     this(screenID);
     this.dropdowns = dropdowns;
   }
-  
+
   Screen(int screenID, Dropdown[] dropdowns, TextWidget textWidgets[]) {//added a constructor that allows a Screen to have TextWidgets - K.N.
     this(screenID);
     this.dropdowns = dropdowns;
@@ -80,23 +84,33 @@ class Screen {
       barChart.draw();
     }
 
-    if (screenID != 0) {
+    if (screenID == 0) {
+      image(imgFirstPage, 0, 0);
+      playButton.draw();
+    }
+
+    if (screenID != 0 && screenID !=1) { //modified condition
       previousScreen.draw();
     }
-    if (screenID != NUMBER_OF_SCREENS - 1) {
+    if (screenID != NUMBER_OF_SCREENS - 1 && screenID !=0 ) { //modified condition
       nextScreen.draw();
     }
   }
 
   public int checkButtonsPressed() {
     if (nextScreen.isMouseOver()) {
-      if (currentScreenShown != NUMBER_OF_SCREENS - 1) {
+      if (currentScreenShown != NUMBER_OF_SCREENS - 1 && currentScreenShown!=0) {
         currentScreenShown += 1;
       }
     }
     if (previousScreen.isMouseOver()) {
-      if (currentScreenShown !=0) {
+      if (currentScreenShown !=0 && currentScreenShown!=1) {
         currentScreenShown -= 1;
+      }
+    }
+    if (playButton.isMouseOver()) {
+      if (currentScreenShown == 0) {
+        currentScreenShown = 1;
       }
     }
 
@@ -107,7 +121,6 @@ class Screen {
       if (buttons.get(i).isMouseOver())
       {
         return buttons.get(i).getID();
-
       }
     }
     return NO_BUTTON_PRESSED;
@@ -137,7 +150,7 @@ class Screen {
   }
   /*
   public void addDropdown(int x, int y, int width, int height, String dropdownTitle, String [] dropdownDisplay, color titleColour, color menuColour, color clickColour, PFont dropdownFont, boolean multipleSelection){
-
+   
    Dropdown dropdown = new Dropdown(x, y, width, height, dropdownTitle, dropdownDisplay, titleColour, menuColour, clickColour, dropdownFont, multipleSelection);
    dropdowns.add(dropdown);
    }
@@ -148,6 +161,8 @@ class Screen {
    return dropdowns.get(index);
    }
    */
+   
+  // do we need these methods???
   public void addButton(float xpos, float ypos, float height, float width, String text) {
     Button button = new Button( xpos, ypos, height, width, text);
     buttons.add(button);

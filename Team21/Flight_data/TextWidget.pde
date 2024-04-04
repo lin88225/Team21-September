@@ -1,10 +1,12 @@
 class TextWidget extends Widget {
- // This class allows to write some input on a Widget - K.N.
+ // This class allows to write some input on a Widget 
+ // Example: you write a date on the widget and its label will take that date as its value
+ // K.N.
  
-  int maxlen;
+  int maxLenght;
   
   TextWidget(int x, int y, int width, int height,
-    String label, color widgetColour,color clickedColour, PFont font, int event, int maxlen) {
+    String label, color widgetColour,color clickedColour, PFont font, int event, int maxLenght) {
     super(x, y, width, height, label, widgetColour, clickedColour, font, event);
     this.x=x;
     this.y=y;
@@ -15,13 +17,13 @@ class TextWidget extends Widget {
     this.widgetColour=widgetColour;
     this.widgetFont=font;
     labelColour=DENIM;
-    this.maxlen=maxlen;
+    this.maxLenght=maxLenght;
   }
   void append(char s) {
     if (s==BACKSPACE) {
       if (!label.equals(""))
         label=label.substring(0, label.length()-1);
-    } else if (label.length() <maxlen)
+    } else if (label.length() <maxLenght)
       label=label+str(s);
   }
 }

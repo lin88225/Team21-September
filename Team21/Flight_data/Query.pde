@@ -1,4 +1,4 @@
-class Query {
+class Query {//need to modify functions...Hash map/sets
   /*
    getArrayAirports(): String[]
    getArrayStates(): String[]
@@ -119,7 +119,7 @@ class Query {
       int cityCounts=0;
       for (int i = 1; i < theData.length; i++) {
         String origin = theData[i].OriginCityName;
-       // origin = origin.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
+        // origin = origin.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
         if (cities[index].equals(origin))
           cityCounts++;
       }
