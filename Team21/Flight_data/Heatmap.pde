@@ -78,4 +78,3 @@ public class Heatmap {
         return decimal;
     }
 }
-

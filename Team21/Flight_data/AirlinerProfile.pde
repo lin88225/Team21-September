@@ -49,33 +49,19 @@ public class AirlinerProfile {
    This creates a draggable profile-page for the profile
    */
   float spaceIncrement = PROFILE_SIZE/25;
-  PFont sans = createFont("Comic Sans MS", spaceIncrement);
-  /*
-  public void updateProfileValues() {
-   
-   logo = loadImage(logoFName);
-   planePicture = loadImage(planeFName);
-   spaceIncrement = PROFILE_SIZE/25;
-   sans = createFont("Comic Sans MS", spaceIncrement);
-   logo.resize(resizeTo, resizeTo);
-   planePicture.resize(2*resizeTo, resizeTo);
-   resizeTo = (int)(ratio*PROFILE_SIZE);
-   
-   }
-   */
-
+  PFont sans = createFont("Gadugi Bold", spaceIncrement);
 
   public void draw () {
     
-    
+      
       rectMode(CORNER);
       this.mouseDragged();
-      stroke (255);
-      fill (255);
+      stroke (BLACK);
+      fill (MIMI_PINK);
       rect (posX, posY, PROFILE_SIZE, PROFILE_SIZE, 20);
-      image(logo, posX, posY);
-      image(planePicture, posX+resizeTo, posY);
-      fill (0);
+      image(logo, posX + 20, posY+3);
+      image(planePicture, posX+resizeTo + 20, posY+3);
+      fill (WHITE);
       textAlign(LEFT, TOP);
       textFont(sans);
       float textYPos = posY + resizeTo;

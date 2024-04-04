@@ -47,13 +47,13 @@ void setup() {
 
   flightInfo = readData();
   q= new Query(1, flightInfo.length);
-  tempData = q.getNumberFlightsPerAirport();
-  numFlightsAirport=q.getNumberFlightsPerAirport();
-  numFlightsState=q.getNumberFlightsPerState();
-  numFlightsCity=q.getNumberFlightsPerCity();
-  averageFlightDelay = q.calculateAverageDelay();
+  //tempData = q.getNumberFlightsPerAirport();
+  //numFlightsAirport=q.getNumberFlightsPerAirport();
+  //numFlightsState=q.getNumberFlightsPerState();
+  //numFlightsCity=q.getNumberFlightsPerCity();
+  //averageFlightDelay = q.calculateAverageDelay();
 
-  averageFlightDistance = q.averageFlightDistance();
+  //averageFlightDistance = q.averageFlightDistance();
   screenArray = new Screen [6];
 
   image= loadImage("AirTrackr2.png");

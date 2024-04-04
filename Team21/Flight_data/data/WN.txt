@@ -1,8 +1,8 @@
 Southwest Airlines
 peanuts and pringles
-2000
-3
+NA
+0
 1.345
-Dummy Version
+4/4/2024
 An airline company headquartered in Love Field
 Southwest Airlines allows free checked baggage
