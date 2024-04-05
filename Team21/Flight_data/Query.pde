@@ -42,7 +42,8 @@ class Query {//need to modify functions...Hash map/sets
     // Creates an ArrayList with unique states values
     ArrayList<String> state = new ArrayList<>();
     for (int i = 1; i < theData.length; i++) {
-      String value = theData[i].OriginStateName.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
+      //String value = theData[i].OriginStateName.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
+      String value = theData[i].OriginStateName;
       if (!state.contains(value)) //checks if it does not contain the state yet
         state.add(value);
     }
@@ -53,7 +54,7 @@ class Query {//need to modify functions...Hash map/sets
     // Creates an ArrayList with unique city values
     ArrayList<String> city = new ArrayList<>();
     for (int i = 1; i < theData.length; i++) {
-      String value = theData[i].OriginCityName.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
+      String value = theData[i].OriginCityName;//replaceAll() is used to remove "" from the String
       if (!city.contains(value)) //checks if it does not contain the city yet
         city.add(value);
     }

@@ -332,7 +332,7 @@ void createScreens(int i)
     {
       if (dropdownArray2[0].clickMenu[k] % 2==0)
       {
-        for (int j = indexStartDate; j <=indexEndDate; j++) {
+        for (int j = indexStartDate; j <=indexEndDate; j++) {   //problems with the 3 for loops 
           barChartDescriptions1.add(arrayDates[j]);
           barChartValues1.add(q.getNumberFlightsPerStatePerDay(arrayDates[j])[k]);
           sumFlightsState+=q.getNumberFlightsPerStatePerDay(arrayDates[j])[k];
@@ -347,11 +347,11 @@ void createScreens(int i)
     {
       if (dropdownArray2[1].clickMenu[k] % 2==0)
       {
-        for (int j = indexStartDate; j <=indexEndDate; j++) {
-          barChartDescriptions2.add(arrayDates[j]);
-          barChartValues2.add(q.getNumberFlightsPerCityPerDay(arrayDates[j])[k]);
-          sumFlightsCity+=q.getNumberFlightsPerCityPerDay(arrayDates[j])[k];
-        }
+          for (int j = indexStartDate; j <=indexEndDate; j++) {
+            barChartDescriptions2.add(arrayDates[j]);
+            barChartValues2.add(q.getNumberFlightsPerCityPerDay(arrayDates[j])[k]);
+            sumFlightsCity+=q.getNumberFlightsPerCityPerDay(arrayDates[j])[k];
+         }
         barChartValues2.add(sumFlightsCity);
         barChartDescriptions2.add(dropdownArray2[1].dropdownDisplay[k]);
       }
@@ -362,11 +362,11 @@ void createScreens(int i)
     {
       if (dropdownArray2[2].clickMenu[k] % 2==0)
       {
-        for (int j = indexStartDate; j <=indexEndDate; j++) {
-          barChartDescriptions3.add(arrayDates[j]);
-          barChartValues3.add(q.getNumberFlightsPerAirportPerDay(arrayDates[j])[k]);
-          sumFlightsAirport+=q.getNumberFlightsPerAirportPerDay(arrayDates[j])[k];
-        }
+           for (int j = indexStartDate; j <=indexEndDate; j++) {
+             barChartDescriptions3.add(arrayDates[j]);
+             barChartValues3.add(q.getNumberFlightsPerAirportPerDay(arrayDates[j])[k]);
+             sumFlightsAirport+=q.getNumberFlightsPerAirportPerDay(arrayDates[j])[k];
+           }
         barChartValues3.add(sumFlightsAirport);
         barChartDescriptions3.add(dropdownArray2[2].dropdownDisplay[k]);
       }
@@ -390,9 +390,9 @@ void createScreens(int i)
     String [] barChartLabels1 = barChartDescriptions1.toArray(new String[0]);
     String [] barChartLabels2 = barChartDescriptions2.toArray(new String[0]);
     String [] barChartLabels3 = barChartDescriptions3.toArray(new String[0]);
+
     if (barChartLabels1.length !=0)
     {
-
       screenArray[i].addBarChart(barChartInts1, barChartLabels1, SCREENX/3, 150, title, "", "");
     }
     if (barChartLabels2.length !=0) {
