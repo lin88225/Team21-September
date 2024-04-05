@@ -69,42 +69,66 @@ class Query {
   int [] getNumberFlightsPerAirport() {
     String airports[]=getArrayAirports();
     int[] flightCounts = new int[airports.length];
-    for (int index = 0; index < flightCounts.length; index++) {
-      int airportCounts=0;
-      for (int i = 1; i < theData.length; i++) {
-        String origin = theData[i].Origin;
-        if (airports[index].equals(origin))
-          airportCounts++;
+
+    /*
+    Code changed by L.Mc
+     Function now checks all airports for each datapoint with break function
+     Improved performance
+     */
+
+    //println(millis());
+    for (int i = 1; i < theData.length; i++) {
+      String origin = theData[i].Origin;
+      origin = origin.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
+      for (int index = 0; index < airports.length; index++) {
+        if (airports[index].equals(origin)) {
+          flightCounts[index] ++;
+          break;
+        }
       }
-      flightCounts[index]=airportCounts;
     }
+    //println(millis());
+    //printArray(flightCounts);
     return flightCounts;//returns the flightCounts array containing the counts of flights for each airport
   }
 
   int [] getNumberFlightsPerState() {
     String states[]=getArrayStates();
     int[] flightCounts = new int[states.length];
-    for (int index = 0; index < flightCounts.length; index++) {
-      int stateCounts=0;
-      for (int i = 1; i < theData.length; i++) {
-        String origin = theData[i].OriginStateName;
-        if (states[index].equals(origin))
-          stateCounts++;
+
+    /*
+    Code changed by L.Mc
+     Function now checks all states for each datapoint with break function
+     Improved performance
+     */
+
+    //println(millis());
+    for (int i = 1; i < theData.length; i++) {
+      String origin = theData[i].OriginStateName;
+      origin = origin.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
+      for (int index = 0; index < states.length; index++) {
+        if (states[index].equals(origin)) {
+          flightCounts[index] ++;
+          break;
+        }
       }
-      flightCounts[index]=stateCounts;
     }
+    //println(millis());
+    //printArray(flightCounts);
     return flightCounts;//returns the flightCounts array containing the counts of flights for each state
   }
 
   int [] getNumberFlightsPerCity() {
     String cities[]=getArrayCities();
     int[] flightCounts = new int[cities.length];
-    //println(millis());
+
     /*
     Code changed by L.Mc
-    Function now checks all cities for each datapoint with break function
-    Improved performance
-    */
+     Function now checks all cities for each datapoint with break function
+     Improved performance
+     */
+
+    //println(millis());
     for (int i = 1; i < theData.length; i++) {
       String origin = theData[i].OriginCityName;
       origin = origin.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
@@ -116,21 +140,33 @@ class Query {
       }
     }
     //println(millis());
+    //printArray(flightCounts);
     return flightCounts;//returns the flightCounts array containing the counts of flights for each city
   }
 
   int [] getNumberFlightsPerAirline() {
     String airlines[]=getArrayAirlines();
     int[] flightCounts = new int[airlines.length];
-    for (int index = 0; index < flightCounts.length; index++) {
-      int airlineCounts=0;
-      for (int i = 1; i < theData.length; i++) {
-        String origin = theData[i].IACA_Code_Marketing_Airline;
-        if (airlines[index].equals(origin))
-          airlineCounts++;
+
+    /*
+    Code changed by L.Mc
+     Function now checks all states for each datapoint with break function
+     Slightly improved performance
+     */
+
+    //println(millis());
+    for (int i = 1; i < theData.length; i++) {
+      String origin = theData[i].IACA_Code_Marketing_Airline;
+      origin = origin.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
+      for (int index = 0; index < airlines.length; index++) {
+        if (airlines[index].equals(origin)) {
+          flightCounts[index] ++;
+          break;
+        }
       }
-      flightCounts[index]=airlineCounts;
     }
+    //println(millis());
+    //printArray(flightCounts);
     return flightCounts;//returns the flightCounts array containing the counts of flights for each airline
   }
 
