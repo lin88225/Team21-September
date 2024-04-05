@@ -134,7 +134,7 @@ void mouseWheel(MouseEvent event) {
   // Modified body of this method because in this way it can take different dropdown arrays
   // like the one in screen(1) and also on screen(7) even if they have different names
   // K.N.
-  if (currentScreenShown==0)
+  if (currentScreenShown==1)
     wheelDropdown=dropdownArray;
   else if (currentScreenShown==7)  wheelDropdown=dropdownArray2;
 
