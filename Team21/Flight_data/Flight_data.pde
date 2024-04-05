@@ -17,6 +17,10 @@ int[] numFlightsCity;
 float [] averageFlightDelay;
 int [] carbonEmissions = {207, 44, 33, 136, 18, 11, 10, 32, 4};
 float [] averageFlightDistance;
+String arrayDates[];
+int [][] dailyCityFlights;
+int [][] dailyStateFlights;
+int [][] dailyAirportFlights;
 PImage image;
 
 String [] airport;
@@ -47,8 +51,8 @@ void setup() {
   fill(0);
   flightInfo = readData();
 
-  //q= new Query(1, flightInfo.length);
-  q= new Query(1, 40000); // the amount parameter is less than expected for test purposes
+  q= new Query(1, flightInfo.length);
+  //q= new Query(1, 40000); // the amount parameter is less than expected for test purposes
 
   // airports = q.getArrayAirports();
   // states = q.getArrayStates();
@@ -59,6 +63,10 @@ void setup() {
   numFlightsCity=q.getNumberFlightsPerCity();
   averageFlightDelay = q.calculateAverageDelay();
   averageFlightDistance = q.averageFlightDistance();
+  arrayDates =q.getArrayDates();
+  dailyCityFlights = q.getNumberFlightsPerCityForEveryDay();
+  dailyStateFlights = q.getNumberFlightsPerStateForEveryDay();;
+  dailyAirportFlights = q.getNumberFlightsPerAirportForEveryDay();;
 
   //screenArray = new Screen [7];//added a screen
   screenArray = new Screen [8];//added a screen

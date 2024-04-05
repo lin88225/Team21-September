@@ -306,7 +306,6 @@ void createScreens(int i)
     screenArray[i] = new Screen(7, dropdownArray2, text);
     int indexStartDate=0;
     int indexEndDate=0;
-    String arrayDates[]=q.getArrayDates();
     String title = "Number of flights per day";
     String descriptionOfX = "number of flights";
 
@@ -331,10 +330,11 @@ void createScreens(int i)
       {
         for (int j = indexStartDate; j <=indexEndDate; j++) {
           barChartDescriptions1.add(arrayDates[j]);
-          barChartValues1.add(q.getNumberFlightsPerStatePerDay(arrayDates[j])[k]);
-          sumFlightsState+=q.getNumberFlightsPerStatePerDay(arrayDates[j])[k];
+          barChartValues1.add(dailyStateFlights[j][k]);
+          sumFlightsState+=dailyStateFlights[j][k];
         }
         barChartValues1.add(sumFlightsState);
+        println(barChartValues1.size());
         barChartDescriptions1.add(dropdownArray2[0].dropdownDisplay[k]);
       }
     }
@@ -346,8 +346,8 @@ void createScreens(int i)
       {
         for (int j = indexStartDate; j <=indexEndDate; j++) {
           barChartDescriptions2.add(arrayDates[j]);
-          barChartValues2.add(q.getNumberFlightsPerCityPerDay(arrayDates[j])[k]);
-          sumFlightsCity+=q.getNumberFlightsPerCityPerDay(arrayDates[j])[k];
+          barChartValues2.add(dailyCityFlights[j][k]);
+          sumFlightsCity+=dailyCityFlights[j][k];
         }
         barChartValues2.add(sumFlightsCity);
         barChartDescriptions2.add(dropdownArray2[1].dropdownDisplay[k]);
@@ -361,8 +361,8 @@ void createScreens(int i)
       {
         for (int j = indexStartDate; j <=indexEndDate; j++) {
           barChartDescriptions3.add(arrayDates[j]);
-          barChartValues3.add(q.getNumberFlightsPerAirportPerDay(arrayDates[j])[k]);
-          sumFlightsAirport+=q.getNumberFlightsPerAirportPerDay(arrayDates[j])[k];
+          barChartValues3.add(dailyAirportFlights[j][k]);
+          sumFlightsAirport+=dailyAirportFlights[j][k];
         }
         barChartValues3.add(sumFlightsAirport);
         barChartValues3.add(numFlightsAirport[k]);
