@@ -99,16 +99,23 @@ class Query {
   int [] getNumberFlightsPerCity() {
     String cities[]=getArrayCities();
     int[] flightCounts = new int[cities.length];
-    for (int index = 0; index < flightCounts.length; index++) {
-      int cityCounts=0;
-      for (int i = 1; i < theData.length; i++) {
-        String origin = theData[i].OriginCityName;
-        origin = origin.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
-        if (cities[index].equals(origin))
-          cityCounts++;
+    //println(millis());
+    /*
+    Code changed by L.Mc
+    Function now checks all cities for each datapoint with break function
+    Improved performance
+    */
+    for (int i = 1; i < theData.length; i++) {
+      String origin = theData[i].OriginCityName;
+      origin = origin.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
+      for (int index = 0; index < cities.length; index++) {
+        if (cities[index].equals(origin)) {
+          flightCounts[index] ++;
+          break;
+        }
       }
-      flightCounts[index]=cityCounts;
     }
+    //println(millis());
     return flightCounts;//returns the flightCounts array containing the counts of flights for each city
   }
 
