@@ -254,7 +254,7 @@ class Query {//need to modify functions...Hash map/sets
         int flightsForDay = 0;
         for (int i = 1; i < theData.length; i++)
         {
-          if (theData[i].FlightDate.equals(dates[days]) && theData[i].OriginStateName.equals(cities[cityInts]))
+          if (theData[i].FlightDate.equals(dates[days]) && theData[i].OriginCityName.equals(cities[cityInts]))
           {
             flightsForDay++;
           }

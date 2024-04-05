@@ -65,8 +65,10 @@ void setup() {
   averageFlightDistance = q.averageFlightDistance();
   arrayDates =q.getArrayDates();
   dailyCityFlights = q.getNumberFlightsPerCityForEveryDay();
-  dailyStateFlights = q.getNumberFlightsPerStateForEveryDay();;
-  dailyAirportFlights = q.getNumberFlightsPerAirportForEveryDay();;
+  dailyStateFlights = q.getNumberFlightsPerStateForEveryDay();
+  ;
+  dailyAirportFlights = q.getNumberFlightsPerAirportForEveryDay();
+  ;
 
   //screenArray = new Screen [7];//added a screen
   screenArray = new Screen [8];//added a screen
@@ -125,18 +127,17 @@ void mousePressed() {
     case 3:
       println("text widget");
       focus= (TextWidget)theWidget;
+      focus2=null;
       return;
     case 2:
       println("text widget");
       focus2= (TextWidget)theWidget;
-      return;
-    case 1:
-      println("other");
       focus=null;
       return;
     default:
       println("blah blah");
       focus=null;
+      focus2=null;
     }
   }
 }
