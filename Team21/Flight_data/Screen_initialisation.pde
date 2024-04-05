@@ -368,7 +368,6 @@ void createScreens(int i)
           sumFlightsAirport+=q.getNumberFlightsPerAirportPerDay(arrayDates[j])[k];
         }
         barChartValues3.add(sumFlightsAirport);
-        barChartValues3.add(numFlightsAirport[k]);
         barChartDescriptions3.add(dropdownArray2[2].dropdownDisplay[k]);
       }
     }
