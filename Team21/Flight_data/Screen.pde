@@ -140,7 +140,7 @@ class Screen {
     }
 
     if (screenID == 7) {
-      text("Insert date range:", 100, SCREENY/2-2*DROPDOWN_HEIGHT-10);
+      text("Insert date range\n(MM/DD/YYYY):", 100, SCREENY/2-2*DROPDOWN_HEIGHT-10);
     }
 
     if (screenID == NUMBER_OF_SCREENS - 1) {
