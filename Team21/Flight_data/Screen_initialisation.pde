@@ -85,7 +85,9 @@ void createOtherDropdown() {
 
 void createFirstScreen() {
   //screenArray[0] = new Screen(0, dropdownArray);
-  screenArray[0] = new Screen(0);//modified screenIDs to add as screen(0) the initial page and as screen(1) the homepage with all the dropdowns
+  //modified screenIDs to add as screen(0) the initial page and as screen(1) the homepage with all the dropdowns
+  //K.N.
+  screenArray[0] = new Screen(0);
 }
 
 // function to create Screens
@@ -93,10 +95,10 @@ void createScreens(int i)
 {
   if (i == 1)
   {
-    screenArray[i] = new Screen(1, dropdownArray);
+    screenArray[i] = new Screen(i, dropdownArray);
   } else if (i == 2)
   {
-    screenArray[i] = new Screen(2);
+    screenArray[i] = new Screen(i);
     ArrayList <Integer> pieChartValues1 = new ArrayList <Integer>(0);
     ArrayList <String> pieChartDescriptions1 = new ArrayList <String>(0);
     String title1 = "Number of flights per state";
@@ -153,7 +155,7 @@ void createScreens(int i)
     screenArray[i].addPieChart(pieChartInts3, 200, SCREENX/4, SCREENY/2+180, pieChartLabels3, title3);
   } else if (i == 3)
   {
-    screenArray[i] = new Screen(3);
+    screenArray[i] = new Screen(i);
     ArrayList <Float> barChartXValues = new ArrayList <Float>(0);
     ArrayList <String> barChartYValues = new ArrayList <String>(0);
     String title = "Average delay per airline";
@@ -176,7 +178,7 @@ void createScreens(int i)
     screenArray[i].addBarChart(barChartValuesX, barChartValuesY, SCREENX/4, SCREENY/3, title, descriptionOfX, descriptionOfY);
   } else if (i ==4)
   {
-    screenArray[i] = new Screen(4);
+    screenArray[i] = new Screen(i);
     ArrayList <Integer> barChartValues1 = new ArrayList <Integer>(0);
     ArrayList <String> barChartDescriptions1 = new ArrayList <String>(0);
     String title1 = "Number of departed, cancelled, and diverted per state";
@@ -253,7 +255,7 @@ void createScreens(int i)
     }
   } else if (i == 5)
   {
-    screenArray[i] = new Screen(5);
+    screenArray[i] = new Screen(i);
     ArrayList <Float> barChartXValues = new ArrayList <Float>(0);
     ArrayList <String> barChartYValues = new ArrayList <String>(0);
     String title = "Average distance per airline";
@@ -276,7 +278,7 @@ void createScreens(int i)
     screenArray[i].addBarChart(barChartValuesX, barChartValuesY, SCREENX/4, SCREENY/3, title, descriptionOfX, descriptionOfY);
   } else if (i == 6)
   {
-    screenArray[i] = new Screen(6);
+    screenArray[i] = new Screen(i);
     ArrayList <Integer> barChartXValues = new ArrayList <Integer>(0);
     ArrayList <String> barChartYValues = new ArrayList <String>(0);
     String title = "Total carbon emissions per airline";
@@ -301,9 +303,10 @@ void createScreens(int i)
   {
     //Added screen that displays the number of flights per day of a selected state, city or airport
     //The days are being selected choosing a start date and an end date. This can be done by writing on the two TextWidgets
+    //I used methods that Cara already made in the code above
     //K.N.
 
-    screenArray[i] = new Screen(7, dropdownArray2, text);
+    screenArray[i] = new Screen(i, dropdownArray2, text);
     int indexStartDate=0;
     int indexEndDate=0;
     String arrayDates[]=q.getArrayDates();
@@ -399,5 +402,11 @@ void createScreens(int i)
     if (barChartLabels3.length !=0) {
       screenArray[i].addBarChart(barChartInts3, barChartLabels3, SCREENX/3, 450, "", descriptionOfX, "");
     }
+  } else if (i == 8) {
+    screenArray[i] = new Screen(i);
+    //for the map
+  } else if (i == NUMBER_OF_SCREENS -1) {
+    screenArray[i] = new Screen(i);
+    //for the menu
   }
 }

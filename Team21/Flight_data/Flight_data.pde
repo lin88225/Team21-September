@@ -34,7 +34,7 @@ void settings() {
 }
 
 void setup() {
-  // I added an image at the top of the screens and changed the colour/shape of widgets to improve the design.
+  // Added an image at the top of the screens and changed the colour/shape of widgets to improve the design.
   // K.N.
   background(MIMI_PINK);
   textAlign(CENTER, CENTER);
@@ -60,9 +60,8 @@ void setup() {
   averageFlightDelay = q.calculateAverageDelay();
   averageFlightDistance = q.averageFlightDistance();
 
-  //screenArray = new Screen [7];//added a screen
-  screenArray = new Screen [8];//added a screen
-  image= loadImage("AirTrackr2.png");
+  screenArray = new Screen [NUMBER_OF_SCREENS];
+  image= loadImage("AirTrackr3.png");
   createDropdownArray();
   createFirstScreen();
   createOtherDropdown();//dropdown array for screen(7)
@@ -83,8 +82,6 @@ void draw() {
   background(255);
   createScreens(currentScreenShown);
   screenArray[currentScreenShown].draw();
-  if (currentScreenShown!=0)
-    image(image, 0, 0);
   textAlign(CENTER, CENTER);
 }
 
@@ -178,16 +175,16 @@ void keyPressed() {
 }
 
 // Parameters: ArrayList of datapoints you want to sort, String name of variable
-void sortFlightsNumerically(ArrayList<Datapoint> flights, String variable) {
-  switch (variable) {
-  case "intArrivalTime":
-    quickSortByIntArrivalTime(flights, 0, flights.size() - 1);
-    break;
-  case "CRSDepTime":
-    quickSortByCRSDepTime(flights, 0, flights.size() - 1);
-    break;
-  default:
-    println("Invalid variable name");
-    break;
-  }
-}
+/*void sortFlightsNumerically(ArrayList<Datapoint> flights, String variable) {
+ switch (variable) {
+ case "intArrivalTime":
+ quickSortByIntArrivalTime(flights, 0, flights.size() - 1);
+ break;
+ case "CRSDepTime":
+ quickSortByCRSDepTime(flights, 0, flights.size() - 1);
+ break;
+ default:
+ println("Invalid variable name");
+ break;
+ }
+ }*/
