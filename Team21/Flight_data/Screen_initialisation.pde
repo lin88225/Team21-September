@@ -1,7 +1,6 @@
 // a function to create the dropdown array
 void createDropdownArray()
 {
-  //Query q= new Query(1, flightInfo.length);
   dropdownArray = new Dropdown[9];
   String [] airports = q.getArrayAirports();
   String [] states = q.getArrayStates();
@@ -334,7 +333,6 @@ void createScreens(int i)
           sumFlightsState+=dailyStateFlights[j][k];
         }
         barChartValues1.add(sumFlightsState);
-        println(barChartValues1.size());
         barChartDescriptions1.add(dropdownArray2[0].dropdownDisplay[k]);
       }
     }

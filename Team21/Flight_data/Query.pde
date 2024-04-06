@@ -79,7 +79,7 @@ class Query {//need to modify functions...Hash map/sets
       if (!date.contains(value)) //checks if it does not contain the airline yet
         date.add(value);
     }
-    return sort(date.toArray(new String[date.size()]));//converts to Array and returns it in alphabetical order
+    return date.toArray(new String[date.size()]);//converts to Array and returns it in alphabetical order
   }
 
   int [] getNumberFlightsPerAirport() {
