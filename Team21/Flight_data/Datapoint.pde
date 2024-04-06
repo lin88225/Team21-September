@@ -25,8 +25,8 @@ public class Datapoint {
 
 
     this.Origin =                   dataInString[3];
-    this.OriginCityName =           dataInString[4].replaceAll("\"", "");
-    this.OriginStateName =          dataInString[6];
+    this.OriginCityName =           dataInString[4].replaceAll("\"", "");//replaceAll() is used to remove "" from the String
+    this.OriginStateName =          dataInString[6].replaceAll("\"", "");
     this.OriginWac =                Integer.parseInt(dataInString[7]);
 
     this.Dest =                     dataInString[8];

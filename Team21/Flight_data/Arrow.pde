@@ -1,6 +1,6 @@
 class Arrow {
   //Arrow class is like the button class but with images that will represent that button 
-  // if it is pressen or not 
+  // if it is pressed or not.
   // K.N.
   
   float xpos;
