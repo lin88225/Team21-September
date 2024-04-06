@@ -1,5 +1,8 @@
 class Arrow {
-  //Arrow class is like the button class but with images
+  //Arrow class is like the button class but with images that will represent that button 
+  // if it is pressed or not.
+  // K.N.
+  
   float xpos;
   float ypos;
   PImage img1, img2;

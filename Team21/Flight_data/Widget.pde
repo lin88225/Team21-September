@@ -9,6 +9,7 @@ class Widget {
   color mainColour, widgetColour, labelColour, clickedColour;
   PFont widgetFont;
   color lineColour;
+
   Widget(int x, int y, int width, int height, String label, color widgetColour, color clickedColour, PFont widgetFont, int event)
   {
     this.x=x;
@@ -21,18 +22,20 @@ class Widget {
     this.widgetColour=widgetColour;
     this.widgetFont=widgetFont;
     this.clickedColour=clickedColour;
-    labelColour= color(0);
+    labelColour= WHITE;
     lineColour = color(0);
   }
+  
   void draw()
   {
     fill(mainColour);
     hover(mouseX, mouseY);
     rect(x, y, width, height, 10);
-    fill(WHITE);
+    fill(labelColour);
     textFont(widgetFont);
     text(label, x, y);
   }
+  
   int getEvent(int mX, int mY)
   {
     if (mX >= x-width/2 && mX <= x+width/2 && mY >= y-height/2 && mY <= y+height/2)
@@ -46,8 +49,7 @@ class Widget {
     if (mX >= x-width/2 && mX <= x+width/2 && mY >= y-height/2 && mY <= y+height/2)
     {
       stroke(MIMI_PINK);
-    } 
-    else
+    } else
     {
       stroke(BLACK);
     }

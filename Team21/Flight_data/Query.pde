@@ -1,24 +1,31 @@
-class Query {
+class Query {//need to modify functions...Hash map/sets
   /*
    getArrayAirports(): String[]
    getArrayStates(): String[]
    getArrayCities(): String[]
    getArrayAirlines(): String[]
+   getArrayDates(): String []
    getNumberFlightsPerAirport(): int[]
    getNumberFlightsPerState(): int[]
    getNumberFlightsPerCity(): int[]
    getNumberFlightsPerAirline(): int[]
+   getNumberFlightsPerDate(): int[]
+   getNumberFlightsPerStatePerDay(String date): int[]
+   getNumberFlightsPerCityPerDay(String date): int[]
+   getNumberFlightsPerAirportPerDay(String date): int[]
    calculateAverageDelay(): float[]
    getCancellationsAndDiversions(String placeName): int[]
    averageFlightDistance(): float[]
    */
   Datapoint [] theData;
+
   int start;
   int amount;
+  int start;
 
   Query(int start, int amount) {
-    this.start=start;
     this.amount=amount;
+    this.start = start;
     theData = initializeDataArray(flightInfo, start, amount);
   }
 
@@ -37,7 +44,7 @@ class Query {
     // Creates an ArrayList with unique states values
     ArrayList<String> state = new ArrayList<>();
     for (int i = 1; i < theData.length; i++) {
-      String value = theData[i].OriginStateName.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
+      String value = theData[i].OriginStateName;
       if (!state.contains(value)) //checks if it does not contain the state yet
         state.add(value);
     }
@@ -66,6 +73,17 @@ class Query {
     return sort(airline.toArray(new String[airline.size()]));//converts to Array and returns it in alphabetical order
   }
 
+  String[] getArrayDates() {
+    // Creates an ArrayList with unique airlines values
+    ArrayList<String> date = new ArrayList<>();
+    for (int i = 1; i < theData.length; i++) {
+      String value = theData[i].FlightDate;
+      if (!date.contains(value)) //checks if it does not contain the airline yet
+        date.add(value);
+    }
+    return date.toArray(new String[date.size()]);//converts to Array and returns it in alphabetical order
+  }
+
   int [] getNumberFlightsPerAirport() {
     String airports[]=getArrayAirports();
     int[] flightCounts = new int[airports.length];
@@ -75,8 +93,6 @@ class Query {
      Function now checks all airports for each datapoint with break function
      Improved performance
      */
-
-    //println(millis());
     for (int i = 1; i < theData.length; i++) {
       String origin = theData[i].Origin;
       origin = origin.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
@@ -85,24 +101,22 @@ class Query {
           flightCounts[index] ++;
           break;
         }
+
       }
     }
-    //println(millis());
-    //printArray(flightCounts);
+
     return flightCounts;//returns the flightCounts array containing the counts of flights for each airport
   }
 
   int [] getNumberFlightsPerState() {
     String states[]=getArrayStates();
     int[] flightCounts = new int[states.length];
-
     /*
     Code changed by L.Mc
      Function now checks all states for each datapoint with break function
      Improved performance
      */
 
-    //println(millis());
     for (int i = 1; i < theData.length; i++) {
       String origin = theData[i].OriginStateName;
       origin = origin.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
@@ -113,8 +127,6 @@ class Query {
         }
       }
     }
-    //println(millis());
-    //printArray(flightCounts);
     return flightCounts;//returns the flightCounts array containing the counts of flights for each state
   }
 
@@ -127,8 +139,6 @@ class Query {
      Function now checks all cities for each datapoint with break function
      Improved performance
      */
-
-    //println(millis());
     for (int i = 1; i < theData.length; i++) {
       String origin = theData[i].OriginCityName;
       origin = origin.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
@@ -139,8 +149,6 @@ class Query {
         }
       }
     }
-    //println(millis());
-    //printArray(flightCounts);
     return flightCounts;//returns the flightCounts array containing the counts of flights for each city
   }
 
@@ -153,8 +161,6 @@ class Query {
      Function now checks all states for each datapoint with break function
      Slightly improved performance
      */
-
-    //println(millis());
     for (int i = 1; i < theData.length; i++) {
       String origin = theData[i].IACA_Code_Marketing_Airline;
       origin = origin.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
@@ -165,9 +171,128 @@ class Query {
         }
       }
     }
-    //println(millis());
-    //printArray(flightCounts);
     return flightCounts;//returns the flightCounts array containing the counts of flights for each airline
+  }
+
+  int [] getNumberFlightsPerDate() {
+    String dates[]=getArrayDates();
+    int[] flightCounts = new int[dates.length];
+    for (int index = 0; index < flightCounts.length; index++) {
+      int dateCounts=0;
+      for (int i = 1; i < theData.length; i++) {
+        String origin = theData[i].FlightDate;
+        if (dates[index].equals(origin))
+          dateCounts++;
+      }
+      flightCounts[index]=dateCounts;
+    }
+    return flightCounts;
+  }
+
+  int [] getNumberFlightsPerStatePerDay(String date) {//given a date it counts the number of flights per State on that specific day
+    String states[]=getArrayStates();
+    int[] flightCounts = new int[states.length];
+    for (int index = 0; index < flightCounts.length; index++) {
+      int stateCounts=0;
+      for (int i = 1; i < theData.length; i++) {
+        String origin = theData[i].OriginStateName;
+        String day=theData[i].FlightDate;
+        if (states[index].equals(origin)&& date.equals(day))
+          stateCounts++;
+      }
+      flightCounts[index]=stateCounts;
+    }
+    return flightCounts;
+  }
+
+  int [] getNumberFlightsPerCityPerDay(String date) {//I have to fix this
+    String cities[]=getArrayCities();
+    int[] flightCounts = new int[cities.length];
+    for (int index = 0; index < flightCounts.length; index++) {
+      int cityCounts=0;
+      for (int i = 1; i < theData.length; i++) {
+        String origin = theData[i].OriginCityName;
+        String day=theData[i].FlightDate;
+        if (cities[index].equals(origin)&& date.equals(day))
+          cityCounts++;
+      }
+      flightCounts[index]=cityCounts;
+    }
+    return flightCounts;
+  }
+
+  int [] getNumberFlightsPerAirportPerDay(String date) {
+    String airports[]=getArrayAirports();
+    int[] flightCounts = new int[airports.length];
+    for (int index = 0; index < flightCounts.length; index++) {
+      int airportCounts=0;
+      for (int i = 1; i < theData.length; i++) {
+        String origin = theData[i].Origin;
+        String day=theData[i].FlightDate;
+        if (airports[index].equals(origin)&& date.equals(day))
+          airportCounts++;
+      }
+      flightCounts[index]=airportCounts;
+    }
+    return flightCounts;
+  }
+
+  int[][] getNumberFlightsPerAirportForEveryDay() { // first index is the date, second is the airport
+    String airports[]=getArrayAirports();
+    String dates [] =  getArrayDates();
+    int answer [][] = new int [dates.length][airports.length];
+    for (int days = 0; days < answer.length; days++)
+      for (int airportInts = 0; airportInts < answer[days].length; airportInts++)
+      {
+        int flightsForDay = 0;
+        for (int i = 1; i < theData.length; i++)
+        {
+          if (theData[i].FlightDate.equals(dates[days]) && theData[i].Origin.equals(airports[airportInts]))
+          {
+            flightsForDay++;
+          }
+        }
+        answer[days][airportInts] = flightsForDay;
+      }
+    return answer;
+  }
+  int[][] getNumberFlightsPerStateForEveryDay() { // first index is the date, second is the state
+    String states[]=getArrayStates();
+    String dates [] =  getArrayDates();
+    int answer [][] = new int [dates.length][states.length];
+    for (int days = 0; days < answer.length; days++)
+      for (int stateInts = 0; stateInts < answer[days].length; stateInts++)
+      {
+        int flightsForDay = 0;
+        for (int i = 1; i < theData.length; i++)
+        {
+          if (theData[i].FlightDate.equals(dates[days]) && theData[i].OriginStateName.equals(states[stateInts]))
+          {
+            flightsForDay++;
+          }
+        }
+        answer[days][stateInts] = flightsForDay;
+      }
+    return answer;
+  }
+  int[][] getNumberFlightsPerCityForEveryDay() { // first index is the date, second is the city
+    String cities[]=getArrayCities();
+    String dates [] =  getArrayDates();
+    int answer [][] = new int [dates.length][cities.length];
+    for (int days = 0; days < answer.length; days++)
+      for (int cityInts = 0; cityInts < answer[days].length; cityInts++)
+      {
+        int flightsForDay = 0;
+        for (int i = 1; i < theData.length; i++)
+        {
+          if (theData[i].FlightDate.equals(dates[days]) && theData[i].OriginCityName.equals(cities[cityInts]))
+          {
+            flightsForDay++;
+          }
+        }
+        answer[days][cityInts] = flightsForDay;
+      }
+    return answer;
   }
 
   float [] calculateAverageDelay() {

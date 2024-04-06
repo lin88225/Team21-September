@@ -1,8 +1,9 @@
 class BarChart {
-  //call BarChart class when  specific button is pressed
+  // call BarChart class when  specific button is pressed
   // put into constructor as parameters array of int and string we want to represent
   // and also the title name and description of 2 axis
-  // EXAMPLE: number of flights per airport
+  // EXAMPLE: number of flights per airport  
+  // K.N.
 
   float [] xData;
   String [] yData;
@@ -39,14 +40,12 @@ class BarChart {
         }
       }
     }
-    //textAlign(LEFT);
   }
 
   void draw() {
-    //for loop draws the bar chart along with name and value for each column
+    //for loop draws the bar chart along with name and value for each column 
     textAlign(LEFT);
     rectMode(CORNER);
-    //int xRect=SCREENX/4;
     int yRect;
     int hRect=20;
     int cornerRadius=8;

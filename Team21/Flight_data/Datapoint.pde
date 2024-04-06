@@ -21,15 +21,15 @@ public class Datapoint {
     dataInString[9] = dataInString [9] + dataInString[10];
 
 
-    this.FlightDate =                  dataInString[0];
+    this.FlightDate =                  dataInString[0].replaceAll(" 12:00:00 AM", "");//added a space in front of 12 because otherwise it wouldn't read the date in the TextWidget
     this.IACA_Code_Marketing_Airline = dataInString[1];
     this.FlightNumber =                Integer.parseInt(dataInString[2]);
 
 
 
     this.Origin =                   dataInString[3];
-    this.OriginCityName =           dataInString[4];
-    this.OriginStateName =          dataInString[6];
+    this.OriginCityName =           dataInString[4].replaceAll("\"", "");//replaceAll() is used to remove "" from the String
+    this.OriginStateName =          dataInString[6].replaceAll("\"", "");
     this.OriginWac =                Integer.parseInt(dataInString[7]);
 
     this.Dest =                     dataInString[8];
@@ -75,15 +75,16 @@ public class Datapoint {
 
 //A public function for intializing an arraylist of datapoints
 //(EG: if you have a screen to represent 30 datapoints, use an arraylist of size 30)
-ArrayList <Datapoint> initializeDataList (String []fileData, int start, int amount) {
+ArrayList <Datapoint> initializeDataList (String []fileData, int amount) {
   ArrayList <Datapoint> result = new ArrayList <Datapoint> (0);
 
-  for (int i = start; i < amount; i ++) {
+  for (int i = 1; i < amount; i ++) {
     Datapoint placeHolder = new Datapoint (fileData[i]);
     result.add(placeHolder);
   }
   return result;
 }
+
 Datapoint [] initializeDataArray (String []fileData, int start,int amount) {
   Datapoint [] result = new Datapoint [amount];
 
