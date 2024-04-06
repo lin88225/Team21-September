@@ -18,6 +18,8 @@ class Query {//need to modify functions...Hash map/sets
    averageFlightDistance(): float[]
    */
   Datapoint [] theData;
+
+  int start;
   int amount;
   int start;
 
@@ -42,7 +44,6 @@ class Query {//need to modify functions...Hash map/sets
     // Creates an ArrayList with unique states values
     ArrayList<String> state = new ArrayList<>();
     for (int i = 1; i < theData.length; i++) {
-      //String value = theData[i].OriginStateName.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
       String value = theData[i].OriginStateName;
       if (!state.contains(value)) //checks if it does not contain the state yet
         state.add(value);
@@ -54,7 +55,7 @@ class Query {//need to modify functions...Hash map/sets
     // Creates an ArrayList with unique city values
     ArrayList<String> city = new ArrayList<>();
     for (int i = 1; i < theData.length; i++) {
-      String value = theData[i].OriginCityName;//replaceAll() is used to remove "" from the String
+      String value = theData[i].OriginCityName.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
       if (!city.contains(value)) //checks if it does not contain the city yet
         city.add(value);
     }
@@ -86,29 +87,45 @@ class Query {//need to modify functions...Hash map/sets
   int [] getNumberFlightsPerAirport() {
     String airports[]=getArrayAirports();
     int[] flightCounts = new int[airports.length];
-    for (int index = 0; index < flightCounts.length; index++) {
-      int airportCounts=0;
-      for (int i = 1; i < theData.length; i++) {
-        String origin = theData[i].Origin;
-        if (airports[index].equals(origin))
-          airportCounts++;
+
+    /*
+    Code changed by L.Mc
+     Function now checks all airports for each datapoint with break function
+     Improved performance
+     */
+    for (int i = 1; i < theData.length; i++) {
+      String origin = theData[i].Origin;
+      origin = origin.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
+      for (int index = 0; index < airports.length; index++) {
+        if (airports[index].equals(origin)) {
+          flightCounts[index] ++;
+          break;
+        }
+
       }
-      flightCounts[index]=airportCounts;
     }
+
     return flightCounts;//returns the flightCounts array containing the counts of flights for each airport
   }
 
   int [] getNumberFlightsPerState() {
     String states[]=getArrayStates();
     int[] flightCounts = new int[states.length];
-    for (int index = 0; index < flightCounts.length; index++) {
-      int stateCounts=0;
-      for (int i = 1; i < theData.length; i++) {
-        String origin = theData[i].OriginStateName;
-        if (states[index].equals(origin))
-          stateCounts++;
+    /*
+    Code changed by L.Mc
+     Function now checks all states for each datapoint with break function
+     Improved performance
+     */
+
+    for (int i = 1; i < theData.length; i++) {
+      String origin = theData[i].OriginStateName;
+      origin = origin.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
+      for (int index = 0; index < states.length; index++) {
+        if (states[index].equals(origin)) {
+          flightCounts[index] ++;
+          break;
+        }
       }
-      flightCounts[index]=stateCounts;
     }
     return flightCounts;//returns the flightCounts array containing the counts of flights for each state
   }
@@ -116,15 +133,21 @@ class Query {//need to modify functions...Hash map/sets
   int [] getNumberFlightsPerCity() {
     String cities[]=getArrayCities();
     int[] flightCounts = new int[cities.length];
-    for (int index = 0; index < flightCounts.length; index++) {
-      int cityCounts=0;
-      for (int i = 1; i < theData.length; i++) {
-        String origin = theData[i].OriginCityName;
-        // origin = origin.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
-        if (cities[index].equals(origin))
-          cityCounts++;
+
+    /*
+    Code changed by L.Mc
+     Function now checks all cities for each datapoint with break function
+     Improved performance
+     */
+    for (int i = 1; i < theData.length; i++) {
+      String origin = theData[i].OriginCityName;
+      origin = origin.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
+      for (int index = 0; index < cities.length; index++) {
+        if (cities[index].equals(origin)) {
+          flightCounts[index] ++;
+          break;
+        }
       }
-      flightCounts[index]=cityCounts;
     }
     return flightCounts;//returns the flightCounts array containing the counts of flights for each city
   }
@@ -132,14 +155,21 @@ class Query {//need to modify functions...Hash map/sets
   int [] getNumberFlightsPerAirline() {
     String airlines[]=getArrayAirlines();
     int[] flightCounts = new int[airlines.length];
-    for (int index = 0; index < flightCounts.length; index++) {
-      int airlineCounts=0;
-      for (int i = 1; i < theData.length; i++) {
-        String origin = theData[i].IACA_Code_Marketing_Airline;
-        if (airlines[index].equals(origin))
-          airlineCounts++;
+
+    /*
+    Code changed by L.Mc
+     Function now checks all states for each datapoint with break function
+     Slightly improved performance
+     */
+    for (int i = 1; i < theData.length; i++) {
+      String origin = theData[i].IACA_Code_Marketing_Airline;
+      origin = origin.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
+      for (int index = 0; index < airlines.length; index++) {
+        if (airlines[index].equals(origin)) {
+          flightCounts[index] ++;
+          break;
+        }
       }
-      flightCounts[index]=airlineCounts;
     }
     return flightCounts;//returns the flightCounts array containing the counts of flights for each airline
   }
@@ -265,11 +295,6 @@ class Query {//need to modify functions...Hash map/sets
     return answer;
   }
 
-
-
-
-
-
   float [] calculateAverageDelay() {
     String [] airlineNames = getArrayAirlines();
     float [] result = new float[airlineNames.length];
@@ -293,7 +318,7 @@ class Query {//need to modify functions...Hash map/sets
     }
     for (int i = 0; i < airlineNames.length; i++)
     {
-      result[i] = (float)totalDelays[i]/(float)numberOfFlightsPerAirline[i];
+      result[i] = ((float)totalDelays[i]/(float)numberOfFlightsPerAirline[i])*60;
     }
     return result;
   }
@@ -334,7 +359,7 @@ class Query {//need to modify functions...Hash map/sets
     }
     for (int i = 0; i < airlineNames.length; i++)
     {
-      result[i] = (totalDistances[i]/(float)numberOfFlightsAirline[i])*100000;
+      result[i] = (totalDistances[i]/(float)numberOfFlightsAirline[i]);
     }
     return result;
   }

@@ -1,4 +1,7 @@
-// a function to create the dropdown array
+/* a function to create the dropdown array that gets displayed to the first screen to select data to display
+Some dropdowns may only have one value selected, and some can have multiple
+Cara Saulnier
+*/
 void createDropdownArray()
 {
   dropdownArray = new Dropdown[9];
@@ -52,7 +55,6 @@ void createDropdownArray()
     }
   }
 }
-
 void createOtherDropdown() {
   //Created and initialised a new array of dropdowns for screen number 6 based on what Cara did for the others
   //K.N.
@@ -82,6 +84,14 @@ void createOtherDropdown() {
   }
 }
 
+
+/* Two functions:
+One is to initialise the first screen only, which contains the dropdown menus
+The second function initialises all other screens when they need to be created. i.e. when the arrows are clicked to called screen 3, the third screen will be created with its data
+and will be drawn
+Cara Saulnier
+*/
+
 void createFirstScreen() {
   //screenArray[0] = new Screen(0, dropdownArray);
   //modified screenIDs to add as screen(0) the initial page and as screen(1) the homepage with all the dropdowns
@@ -89,13 +99,14 @@ void createFirstScreen() {
   screenArray[0] = new Screen(0);
 }
 
-// function to create Screens
-void createScreens(int i)
+// function to create Screens 
+void createScreens(int i) // i is the variable that decides which screen will be drawn
 {
   if (i == 1)
   {
     screenArray[i] = new Screen(i, dropdownArray);
-  } else if (i == 2)
+  } else if (i == 2)// A screen displaying the number of flights per state, city, and airport
+
   {
     screenArray[i] = new Screen(i);
     ArrayList <Integer> pieChartValues1 = new ArrayList <Integer>(0);
@@ -152,13 +163,14 @@ void createScreens(int i)
     screenArray[i].addPieChart(pieChartInts1, 200, SCREENX/4, SCREENY/3+30, pieChartLabels1, title1);
     screenArray[i].addPieChart(pieChartInts2, 200, SCREENX/2+170, SCREENY/3+30, pieChartLabels2, title2);
     screenArray[i].addPieChart(pieChartInts3, 200, SCREENX/4, SCREENY/2+180, pieChartLabels3, title3);
-  } else if (i == 3)
+  } else if (i == 3) // displays the average delay per airline
+
   {
     screenArray[i] = new Screen(i);
     ArrayList <Float> barChartXValues = new ArrayList <Float>(0);
     ArrayList <String> barChartYValues = new ArrayList <String>(0);
     String title = "Average delay per airline";
-    String descriptionOfX = "Average delay (minutes)";
+    String descriptionOfX = "Average delay (hours)";
     String descriptionOfY = "Airlines";
     for (int j = 0; j < dropdownArray[5].dropdownDisplay.length; j++)
     {
@@ -175,7 +187,9 @@ void createScreens(int i)
       barChartValuesX[j] = barChartXValues.get(j);
     }
     screenArray[i].addBarChart(barChartValuesX, barChartValuesY, SCREENX/4, SCREENY/3, title, descriptionOfX, descriptionOfY);
-  } else if (i ==4)
+
+  } else if (i ==4) // displays the number of flights departed, cancelled, or diverted for state, city, and airport
+
   {
     screenArray[i] = new Screen(i);
     ArrayList <Integer> barChartValues1 = new ArrayList <Integer>(0);
@@ -252,13 +266,15 @@ void createScreens(int i)
     if (barChartLabels3.length !=0) {
       screenArray[i].addBarChart(barChartInts3, barChartLabels3, SCREENX/4, 450, title3, "Number of flights cancelled", "");
     }
-  } else if (i == 5)
+
+  } else if (i ==5) // calculates teh average flight distance 
+
   {
     screenArray[i] = new Screen(i);
     ArrayList <Float> barChartXValues = new ArrayList <Float>(0);
     ArrayList <String> barChartYValues = new ArrayList <String>(0);
     String title = "Average distance per airline";
-    String descriptionOfX = "Average distance (km)";
+    String descriptionOfX = "Average distance (miles)";
     String descriptionOfY = "Airlines";
     for (int j = 0; j < dropdownArray[1].dropdownDisplay.length; j++)
     {
@@ -275,7 +291,9 @@ void createScreens(int i)
       barChartValuesX[j] = barChartXValues.get(j);
     }
     screenArray[i].addBarChart(barChartValuesX, barChartValuesY, SCREENX/4, SCREENY/3, title, descriptionOfX, descriptionOfY);
-  } else if (i == 6)
+
+  } else if (i == 6) // calculates the number of metric tons of carbon emissions released per airline, rounded to the nearest million
+
   {
     screenArray[i] = new Screen(i);
     ArrayList <Integer> barChartXValues = new ArrayList <Integer>(0);
