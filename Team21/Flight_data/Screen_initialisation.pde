@@ -363,7 +363,6 @@ void createScreens(int i)
           sumFlightsAirport+=dailyAirportFlights[j][k];
         }
         barChartValues3.add(sumFlightsAirport);
-        barChartValues3.add(numFlightsAirport[k]);
         barChartDescriptions3.add(dropdownArray2[2].dropdownDisplay[k]);
       }
     }
