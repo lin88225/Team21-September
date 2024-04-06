@@ -7,14 +7,14 @@ class Screen {
   // Added image I edited on Canva as background of our start page (screen(0))
   // Added playButton for start page so you can enter the app
   // Added a menu screen (last one) that will appear once you press on the menu button
-  // This screen allows you to navigate through the screens without the arrows 
+  // This screen allows you to navigate through the screens without the arrows
   // K.N.
 
   ArrayList<PieChart> pieCharts = new ArrayList<>();
   ArrayList<BarChart> barCharts = new ArrayList<>();
   Dropdown[] dropdowns;
   TextWidget[] textWidgets;
- // ArrayList<Button> buttons = new ArrayList<>();
+  // ArrayList<Button> buttons = new ArrayList<>();
   color backgroundColor = MIMI_PINK;
 
   int screenID;
@@ -200,7 +200,7 @@ class Screen {
     //    return buttons.get(i).getID();
     //  }
     //}
-    
+
     return NO_BUTTON_PRESSED;
   }
 
@@ -244,16 +244,15 @@ class Screen {
 
   // do we need these methods???
   /*public void addButton(float xpos, float ypos, float height, float width, String text) {
-    Button button = new Button( xpos, ypos, height, width, text);
-    buttons.add(button);
-  }
-  public void removeButton(int index) {
-    buttons.remove(index);
-  }
-  public Button getButton(int index) {
-
-    return buttons.get(index);
-  }
-  */
+   Button button = new Button( xpos, ypos, height, width, text);
+   buttons.add(button);
+   }
+   public void removeButton(int index) {
+   buttons.remove(index);
+   }
+   public Button getButton(int index) {
+   
+   return buttons.get(index);
+   }
+   */
 }
-

@@ -7,7 +7,7 @@
  
  */
 public class AirlinerProfile {
-  color darker = color(0,100,100,100);
+  color darker = color(0, 100, 100, 100);
   public boolean show = false;
   public PImage logo, planePicture;
   //public float emissionPerDistanceUnit;
@@ -52,37 +52,36 @@ public class AirlinerProfile {
   PFont sans = createFont("Gadugi Bold", spaceIncrement);
 
   public void draw () {
-    
-      
-      rectMode(CORNER);
-      this.mouseDragged();
-      stroke (BLACK);
-      fill (MIMI_PINK - darker);
-      rect (posX, posY, PROFILE_SIZE, PROFILE_SIZE, 20);
-      image(logo, posX + 20, posY+3);
-      image(planePicture, posX+resizeTo + 20, posY+3);
-      fill (WHITE);
-      textAlign(LEFT, TOP);
-      textFont(sans);
-      float textYPos = posY + resizeTo;
-      text("Name:" + name, posX, textYPos + spaceIncrement);
-
-      text("Date of last plane crash:" + lastCrashDate, posX, textYPos + spaceIncrement*3);
-      text("Number of planes crashed:" + totalNumberOfCrashes, posX, textYPos + spaceIncrement*4);
-
-      //text("Emmissions per distance unit:" + emissionPerDistanceUnit, posX, textYPos + spaceIncrement*5);
-      //text("In-Flight menu:" + foodMenu, posX, textYPos + spaceIncrement*7);
 
 
-      text(description, posX, textYPos + spaceIncrement*10);
-      textAlign(RIGHT, BOTTOM);
-      text("Last updated:" + lastUpdated, posX + PROFILE_SIZE - 10, posY + PROFILE_SIZE);
+    rectMode(CORNER);
+    this.mouseDragged();
+    stroke (BLACK);
+    fill (MIMI_PINK - darker);
+    rect (posX, posY, PROFILE_SIZE, PROFILE_SIZE, 20);
+    image(logo, posX + 20, posY+3);
+    image(planePicture, posX+resizeTo + 20, posY+3);
+    fill (WHITE);
+    textAlign(LEFT, TOP);
+    textFont(sans);
+    float textYPos = posY + resizeTo;
+    text("Name:" + name, posX, textYPos + spaceIncrement);
 
-      stroke (0);
-      rectMode(CENTER);
-      textFont(arial);
-      fill (255);
-    
+    text("Date of last plane crash:" + lastCrashDate, posX, textYPos + spaceIncrement*3);
+    text("Number of planes crashed:" + totalNumberOfCrashes, posX, textYPos + spaceIncrement*4);
+
+    //text("Emmissions per distance unit:" + emissionPerDistanceUnit, posX, textYPos + spaceIncrement*5);
+    //text("In-Flight menu:" + foodMenu, posX, textYPos + spaceIncrement*7);
+
+
+    text(description, posX, textYPos + spaceIncrement*10);
+    textAlign(RIGHT, BOTTOM);
+    text("Last updated:" + lastUpdated, posX + PROFILE_SIZE - 10, posY + PROFILE_SIZE);
+
+    stroke (0);
+    rectMode(CENTER);
+    textFont(arial);
+    fill (255);
   }
 
   boolean beingDragged = false;
@@ -100,7 +99,6 @@ public class AirlinerProfile {
     //If the mouse is within the bounds of the box
     if (within && mousePressed) {
       beingDragged = true;
-      
     } else if (!mousePressed) {
       beingDragged = false;
     }

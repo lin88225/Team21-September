@@ -2,7 +2,7 @@ class BarChart {
   // call BarChart class when  specific button is pressed
   // put into constructor as parameters array of int and string we want to represent
   // and also the title name and description of 2 axis
-  // EXAMPLE: number of flights per airport  
+  // EXAMPLE: number of flights per airport
   // K.N.
 
   float [] xData;
@@ -33,7 +33,7 @@ class BarChart {
         {
           biggestDataPoint = xData[i];
         }
-        if(abs(biggestDataPoint) < 1)
+        if (abs(biggestDataPoint) < 1)
         {
           biggestDataPoint = 1 / biggestDataPoint;
           biggestDataPoint /= 100;
@@ -43,7 +43,7 @@ class BarChart {
   }
 
   void draw() {
-    //for loop draws the bar chart along with name and value for each column 
+    //for loop draws the bar chart along with name and value for each column
     textAlign(LEFT);
     rectMode(CORNER);
     int yRect;
@@ -67,9 +67,9 @@ class BarChart {
     textFont(font);
     //draws text for x-axis
     text(descriptionOfX, x, y+(position*25)+50);
-    //draws vertical text for y-axis 
+    //draws vertical text for y-axis
     pushMatrix();
-    translate(-(SCREENX/4)+10, y+((position*25)+50)/2+10); 
+    translate(-(SCREENX/4)+10, y+((position*25)+50)/2+10);
     rotate(radians(270));
     text(descriptionOfY, 0, SCREENY/2);
     popMatrix();

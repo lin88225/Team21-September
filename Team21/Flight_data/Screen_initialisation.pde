@@ -1,13 +1,10 @@
 /* a function to create the dropdown array that gets displayed to the first screen to select data to display
-Some dropdowns may only have one value selected, and some can have multiple
-Cara Saulnier
-*/
+ Some dropdowns may only have one value selected, and some can have multiple
+ Cara Saulnier
+ */
 void createDropdownArray()
 {
   dropdownArray = new Dropdown[9];
-  String [] airports = q.getArrayAirports();
-  String [] states = q.getArrayStates();
-  String [] cities = q.getArrayCities();
   String [] airlines = q.getArrayAirlines();
   for (int i = 0; i < dropdownArray.length; i++)
   {
@@ -51,7 +48,6 @@ void createDropdownArray()
         "Carbon emissions\nper airline", airlines, HOOKERS_GREEN, COLUMBIA_BLUE, DENIM, arial, true);
       break;
     default:
-      System.out.println("error ");
     }
   }
 }
@@ -59,9 +55,6 @@ void createOtherDropdown() {
   //Created and initialised a new array of dropdowns for screen number 6 based on what Cara did for the others
   //K.N.
   dropdownArray2=new Dropdown[3];
-  String [] airports = q.getArrayAirports();
-  String [] states = q.getArrayStates();
-  String [] cities = q.getArrayCities();
   for (int index = 0; index < dropdownArray.length; index++)
   {
     switch(index)
@@ -79,33 +72,34 @@ void createOtherDropdown() {
         "Airports", airports, color(171, 177, 207), COLUMBIA_BLUE, DENIM, arial, false);
       break;
     default:
-      System.out.println("error ");
     }
   }
 }
 
 
 /* Two functions:
-One is to initialise the first screen only, which contains the dropdown menus
-The second function initialises all other screens when they need to be created. i.e. when the arrows are clicked to called screen 3, the third screen will be created with its data
-and will be drawn
-Cara Saulnier
-*/
+ One is to initialise the first screen only, which contains the dropdown menus
+ The second function initialises all other screens when they need to be created. i.e. when the arrows are clicked to called screen 3, the third screen will be created with its data
+ and will be drawn
+ Cara Saulnier
+ */
 
-void createFirstScreen() {
+void createFirstScreens() {
   //screenArray[0] = new Screen(0, dropdownArray);
   //modified screenIDs to add as screen(0) the initial page and as screen(1) the homepage with all the dropdowns
   //K.N.
   screenArray[0] = new Screen(0);
+  screenArray[1] = new Screen(1, dropdownArray);
 }
 
-// function to create Screens 
+// function to create Screens
 void createScreens(int i) // i is the variable that decides which screen will be drawn
 {
-  if (i == 1)
-  {
-    screenArray[i] = new Screen(i, dropdownArray);
-  } else if (i == 2)// A screen displaying the number of flights per state, city, and airport
+  //if (i == 1)
+  //{
+  //  screenArray[i] = new Screen(i, dropdownArray);
+  //} else
+  if (i == 2)// A screen displaying the number of flights per state, city, and airport
 
   {
     screenArray[i] = new Screen(i);
@@ -187,7 +181,6 @@ void createScreens(int i) // i is the variable that decides which screen will be
       barChartValuesX[j] = barChartXValues.get(j);
     }
     screenArray[i].addBarChart(barChartValuesX, barChartValuesY, SCREENX/4, SCREENY/3, title, descriptionOfX, descriptionOfY);
-
   } else if (i ==4) // displays the number of flights departed, cancelled, or diverted for state, city, and airport
 
   {
@@ -266,8 +259,7 @@ void createScreens(int i) // i is the variable that decides which screen will be
     if (barChartLabels3.length !=0) {
       screenArray[i].addBarChart(barChartInts3, barChartLabels3, SCREENX/4, 450, title3, "Number of flights cancelled", "");
     }
-
-  } else if (i ==5) // calculates teh average flight distance 
+  } else if (i ==5) // calculates teh average flight distance
 
   {
     screenArray[i] = new Screen(i);
@@ -291,7 +283,6 @@ void createScreens(int i) // i is the variable that decides which screen will be
       barChartValuesX[j] = barChartXValues.get(j);
     }
     screenArray[i].addBarChart(barChartValuesX, barChartValuesY, SCREENX/4, SCREENY/3, title, descriptionOfX, descriptionOfY);
-
   } else if (i == 6) // calculates the number of metric tons of carbon emissions released per airline, rounded to the nearest million
 
   {
@@ -348,7 +339,7 @@ void createScreens(int i) // i is the variable that decides which screen will be
     {
       if (dropdownArray2[0].clickMenu[k] % 2==0)
       {
-        for (int j = indexStartDate; j <=indexEndDate; j++) {   //problems with the 3 for loops 
+        for (int j = indexStartDate; j <=indexEndDate; j++) {   //problems with the 3 for loops
           barChartDescriptions1.add(arrayDates[j]);
           barChartValues1.add(dailyStateFlights[j][k]);
           sumFlightsState+=dailyStateFlights[j][k];

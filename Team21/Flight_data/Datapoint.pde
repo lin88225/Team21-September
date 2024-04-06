@@ -1,8 +1,8 @@
 //A version of the Datapoint Class that takes
 //A String array of loaded data and a specific line
 /* Code initally written by Lloyd McNally
-Small mistakes regarding numbers were fixed, with obsolete code removed. The functions calling the code were changed as well as changing the constructor in order to run more efficiently. - Cara Saulnier
-*/
+ Small mistakes regarding numbers were fixed, with obsolete code removed. The functions calling the code were changed as well as changing the constructor in order to run more efficiently. - Cara Saulnier
+ */
 
 public class Datapoint {
   public String  FlightDate, IACA_Code_Marketing_Airline, Origin, OriginCityName, OriginStateName, Dest, DestinationCityName, DestinationStateName;
@@ -85,7 +85,7 @@ ArrayList <Datapoint> initializeDataList (String []fileData, int amount) {
   return result;
 }
 
-Datapoint [] initializeDataArray (String []fileData, int start,int amount) {
+Datapoint [] initializeDataArray (String []fileData, int start, int amount) {
   Datapoint [] result = new Datapoint [amount];
 
   for (int i = start; i < amount; i ++) {

@@ -1,7 +1,7 @@
 /* Code to draw widgets to a screen
-These widgets are used when implementing the dropdown menu
-Cara Saulnier
-*/
+ These widgets are used when implementing the dropdown menu
+ Cara Saulnier
+ */
 class Widget {
   int x, y, width, height;
   String label;
@@ -25,7 +25,7 @@ class Widget {
     labelColour= WHITE;
     lineColour = color(0);
   }
-  
+
   void draw()
   {
     fill(mainColour);
@@ -35,7 +35,7 @@ class Widget {
     textFont(widgetFont);
     text(label, x, y);
   }
-  
+
   int getEvent(int mX, int mY)
   {
     if (mX >= x-width/2 && mX <= x+width/2 && mY >= y-height/2 && mY <= y+height/2)

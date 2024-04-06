@@ -4,13 +4,10 @@ Screen [] screenArray;
 Dropdown [] dropdownArray;
 Dropdown [] dropdownArray2;
 Dropdown[] wheelDropdown;
-String [] airports;
-int [] numberFlights;
 String [] flightInfo;
 BufferedReader reader;
 
 Query q;
-int[] tempData;
 int[] numFlightsAirport;
 int[] numFlightsState;
 int[] numFlightsCity;
@@ -22,7 +19,7 @@ int [][] dailyCityFlights;
 int [][] dailyStateFlights;
 int [][] dailyAirportFlights;
 PImage image;
-String [] airport;
+String [] airports;
 String [] states;
 String [] cities;
 TextWidget text[];
@@ -40,7 +37,7 @@ void settings() {
 // The code used to use multiple fonts, I went through all  the files and now they are all Gadugi, even if the file names say otherwise - Cara Saulnier
 
 void setup() {
- // Added an image at the top of the screens and changed the colour/shape of widgets to improve the design.
+  // Added an image at the top of the screens and changed the colour/shape of widgets to improve the design.
   // K.N.
   background(MIMI_PINK);
   textAlign(CENTER, CENTER);
@@ -61,8 +58,7 @@ void setup() {
 
   flightInfo = readData();
   q= new Query(1, flightInfo.length);
-  
-  tempData = q.getNumberFlightsPerAirport();
+
   numFlightsAirport=q.getNumberFlightsPerAirport();
   numFlightsState=q.getNumberFlightsPerState();
   numFlightsCity=q.getNumberFlightsPerCity();
@@ -72,11 +68,14 @@ void setup() {
   dailyCityFlights = q.getNumberFlightsPerCityForEveryDay();
   dailyStateFlights = q.getNumberFlightsPerStateForEveryDay();
   dailyAirportFlights = q.getNumberFlightsPerAirportForEveryDay();
-  
+  airports = q.getArrayAirports();
+  states = q.getArrayStates();
+  cities = q.getArrayCities();
+
   screenArray = new Screen [NUMBER_OF_SCREENS];
   image= loadImage("AirTrackr3.png");
   createDropdownArray();
-  createFirstScreen();
+  createFirstScreens();
   createOtherDropdown();//dropdown array for screen(7)
 
   //creates 2 objects of TextWidget class
@@ -90,7 +89,7 @@ void setup() {
   focus=null;
   focus2=null;
 
-profile = new AirlinerProfile("AA");
+  profile = new AirlinerProfile("AA");
 }
 
 
@@ -98,13 +97,13 @@ void draw() {
   background(255);
   createScreens(currentScreenShown);
   screenArray[currentScreenShown].draw();
-  
+
   image(image, 0, 0);
   if (profile.show) {
     profile.draw();
     profile.mouseDragged();
   }
-  
+
   textAlign(CENTER, CENTER);
 }
 
@@ -157,8 +156,7 @@ void mouseWheel(MouseEvent event) {
   if (currentScreenShown==1)
   {
     wheelDropdown=dropdownArray;
-   }
-  else if (currentScreenShown==7)  
+  } else if (currentScreenShown==7)
   {
     wheelDropdown=dropdownArray2;
   }
@@ -256,4 +254,3 @@ void keyReleased() {
     break;
   }
 }
-

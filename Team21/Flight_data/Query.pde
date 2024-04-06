@@ -9,10 +9,10 @@ class Query {//need to modify functions...Hash map/sets
    getNumberFlightsPerState(): int[]
    getNumberFlightsPerCity(): int[]
    getNumberFlightsPerAirline(): int[]
-   getNumberFlightsPerDate(): int[]
-   getNumberFlightsPerStatePerDay(String date): int[]
-   getNumberFlightsPerCityPerDay(String date): int[]
-   getNumberFlightsPerAirportPerDay(String date): int[]
+   getNumberFlightsPerDate(): int[]                          // seems obsolete
+   getNumberFlightsPerStatePerDay(String date): int[]        // seems obsolete
+   getNumberFlightsPerCityPerDay(String date): int[]         // seems obsolete
+   getNumberFlightsPerAirportPerDay(String date): int[]      // seems obsolete
    calculateAverageDelay(): float[]
    getCancellationsAndDiversions(String placeName): int[]
    averageFlightDistance(): float[]
@@ -21,7 +21,6 @@ class Query {//need to modify functions...Hash map/sets
 
   int start;
   int amount;
-  int start;
 
   Query(int start, int amount) {
     this.amount=amount;
@@ -87,7 +86,6 @@ class Query {//need to modify functions...Hash map/sets
   int [] getNumberFlightsPerAirport() {
     String airports[]=getArrayAirports();
     int[] flightCounts = new int[airports.length];
-
     /*
     Code changed by L.Mc
      Function now checks all airports for each datapoint with break function
@@ -101,7 +99,6 @@ class Query {//need to modify functions...Hash map/sets
           flightCounts[index] ++;
           break;
         }
-
       }
     }
 
@@ -116,7 +113,6 @@ class Query {//need to modify functions...Hash map/sets
      Function now checks all states for each datapoint with break function
      Improved performance
      */
-
     for (int i = 1; i < theData.length; i++) {
       String origin = theData[i].OriginStateName;
       origin = origin.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
@@ -133,7 +129,6 @@ class Query {//need to modify functions...Hash map/sets
   int [] getNumberFlightsPerCity() {
     String cities[]=getArrayCities();
     int[] flightCounts = new int[cities.length];
-
     /*
     Code changed by L.Mc
      Function now checks all cities for each datapoint with break function
@@ -155,7 +150,6 @@ class Query {//need to modify functions...Hash map/sets
   int [] getNumberFlightsPerAirline() {
     String airlines[]=getArrayAirlines();
     int[] flightCounts = new int[airlines.length];
-
     /*
     Code changed by L.Mc
      Function now checks all states for each datapoint with break function
@@ -174,69 +168,6 @@ class Query {//need to modify functions...Hash map/sets
     return flightCounts;//returns the flightCounts array containing the counts of flights for each airline
   }
 
-  int [] getNumberFlightsPerDate() {
-    String dates[]=getArrayDates();
-    int[] flightCounts = new int[dates.length];
-    for (int index = 0; index < flightCounts.length; index++) {
-      int dateCounts=0;
-      for (int i = 1; i < theData.length; i++) {
-        String origin = theData[i].FlightDate;
-        if (dates[index].equals(origin))
-          dateCounts++;
-      }
-      flightCounts[index]=dateCounts;
-    }
-    return flightCounts;
-  }
-
-  int [] getNumberFlightsPerStatePerDay(String date) {//given a date it counts the number of flights per State on that specific day
-    String states[]=getArrayStates();
-    int[] flightCounts = new int[states.length];
-    for (int index = 0; index < flightCounts.length; index++) {
-      int stateCounts=0;
-      for (int i = 1; i < theData.length; i++) {
-        String origin = theData[i].OriginStateName;
-        String day=theData[i].FlightDate;
-        if (states[index].equals(origin)&& date.equals(day))
-          stateCounts++;
-      }
-      flightCounts[index]=stateCounts;
-    }
-    return flightCounts;
-  }
-
-  int [] getNumberFlightsPerCityPerDay(String date) {//I have to fix this
-    String cities[]=getArrayCities();
-    int[] flightCounts = new int[cities.length];
-    for (int index = 0; index < flightCounts.length; index++) {
-      int cityCounts=0;
-      for (int i = 1; i < theData.length; i++) {
-        String origin = theData[i].OriginCityName;
-        String day=theData[i].FlightDate;
-        if (cities[index].equals(origin)&& date.equals(day))
-          cityCounts++;
-      }
-      flightCounts[index]=cityCounts;
-    }
-    return flightCounts;
-  }
-
-  int [] getNumberFlightsPerAirportPerDay(String date) {
-    String airports[]=getArrayAirports();
-    int[] flightCounts = new int[airports.length];
-    for (int index = 0; index < flightCounts.length; index++) {
-      int airportCounts=0;
-      for (int i = 1; i < theData.length; i++) {
-        String origin = theData[i].Origin;
-        String day=theData[i].FlightDate;
-        if (airports[index].equals(origin)&& date.equals(day))
-          airportCounts++;
-      }
-      flightCounts[index]=airportCounts;
-    }
-    return flightCounts;
-  }
-
   int[][] getNumberFlightsPerAirportForEveryDay() { // first index is the date, second is the airport
     String airports[]=getArrayAirports();
     String dates [] =  getArrayDates();
@@ -250,6 +181,7 @@ class Query {//need to modify functions...Hash map/sets
           if (theData[i].FlightDate.equals(dates[days]) && theData[i].Origin.equals(airports[airportInts]))
           {
             flightsForDay++;
+            break;
           }
         }
         answer[days][airportInts] = flightsForDay;
@@ -269,6 +201,7 @@ class Query {//need to modify functions...Hash map/sets
           if (theData[i].FlightDate.equals(dates[days]) && theData[i].OriginStateName.equals(states[stateInts]))
           {
             flightsForDay++;
+            break;
           }
         }
         answer[days][stateInts] = flightsForDay;
@@ -288,6 +221,7 @@ class Query {//need to modify functions...Hash map/sets
           if (theData[i].FlightDate.equals(dates[days]) && theData[i].OriginCityName.equals(cities[cityInts]))
           {
             flightsForDay++;
+            break;
           }
         }
         answer[days][cityInts] = flightsForDay;

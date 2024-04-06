@@ -1,12 +1,12 @@
 class TextWidget extends Widget {
- // This class allows to write some input on a Widget 
- // Example: you write a date on the widget and its label will take that date as its value
- // K.N.
- 
+  // This class allows to write some input on a Widget
+  // Example: you write a date on the widget and its label will take that date as its value
+  // K.N.
+
   int maxLenght;
-  
+
   TextWidget(int x, int y, int width, int height,
-    String label, color widgetColour,color clickedColour, PFont font, int event, int maxLenght) {
+    String label, color widgetColour, color clickedColour, PFont font, int event, int maxLenght) {
     super(x, y, width, height, label, widgetColour, clickedColour, font, event);
     this.x=x;
     this.y=y;
