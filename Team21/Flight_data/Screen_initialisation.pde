@@ -1,7 +1,6 @@
 // a function to create the dropdown array
 void createDropdownArray()
 {
-  //Query q= new Query(1, flightInfo.length);
   dropdownArray = new Dropdown[9];
   String [] airports = q.getArrayAirports();
   String [] states = q.getArrayStates();
@@ -309,7 +308,6 @@ void createScreens(int i)
     screenArray[i] = new Screen(i, dropdownArray2, text);
     int indexStartDate=0;
     int indexEndDate=0;
-    String arrayDates[]=q.getArrayDates();
     String title = "Number of flights per day";
     String descriptionOfX = "number of flights";
 
@@ -334,8 +332,8 @@ void createScreens(int i)
       {
         for (int j = indexStartDate; j <=indexEndDate; j++) {   //problems with the 3 for loops 
           barChartDescriptions1.add(arrayDates[j]);
-          barChartValues1.add(q.getNumberFlightsPerStatePerDay(arrayDates[j])[k]);
-          sumFlightsState+=q.getNumberFlightsPerStatePerDay(arrayDates[j])[k];
+          barChartValues1.add(dailyStateFlights[j][k]);
+          sumFlightsState+=dailyStateFlights[j][k];
         }
         barChartValues1.add(sumFlightsState);
         barChartDescriptions1.add(dropdownArray2[0].dropdownDisplay[k]);
@@ -347,11 +345,13 @@ void createScreens(int i)
     {
       if (dropdownArray2[1].clickMenu[k] % 2==0)
       {
-          for (int j = indexStartDate; j <=indexEndDate; j++) {
-            barChartDescriptions2.add(arrayDates[j]);
-            barChartValues2.add(q.getNumberFlightsPerCityPerDay(arrayDates[j])[k]);
-            sumFlightsCity+=q.getNumberFlightsPerCityPerDay(arrayDates[j])[k];
-         }
+
+        for (int j = indexStartDate; j <=indexEndDate; j++) {
+          barChartDescriptions2.add(arrayDates[j]);
+          barChartValues2.add(dailyCityFlights[j][k]);
+          sumFlightsCity+=dailyCityFlights[j][k];
+        }
+
         barChartValues2.add(sumFlightsCity);
         barChartDescriptions2.add(dropdownArray2[1].dropdownDisplay[k]);
       }
@@ -362,11 +362,13 @@ void createScreens(int i)
     {
       if (dropdownArray2[2].clickMenu[k] % 2==0)
       {
-           for (int j = indexStartDate; j <=indexEndDate; j++) {
-             barChartDescriptions3.add(arrayDates[j]);
-             barChartValues3.add(q.getNumberFlightsPerAirportPerDay(arrayDates[j])[k]);
-             sumFlightsAirport+=q.getNumberFlightsPerAirportPerDay(arrayDates[j])[k];
-           }
+
+        for (int j = indexStartDate; j <=indexEndDate; j++) {
+          barChartDescriptions3.add(arrayDates[j]);
+          barChartValues3.add(dailyAirportFlights[j][k]);
+          sumFlightsAirport+=dailyAirportFlights[j][k];
+        }
+
         barChartValues3.add(sumFlightsAirport);
         barChartDescriptions3.add(dropdownArray2[2].dropdownDisplay[k]);
       }

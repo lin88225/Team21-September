@@ -17,6 +17,10 @@ int[] numFlightsCity;
 float [] averageFlightDelay;
 int [] carbonEmissions = {207, 44, 33, 136, 18, 11, 10, 32, 4};
 float [] averageFlightDistance;
+String arrayDates[];
+int [][] dailyCityFlights;
+int [][] dailyStateFlights;
+int [][] dailyAirportFlights;
 PImage image;
 
 String [] airport;
@@ -47,8 +51,8 @@ void setup() {
   fill(0);
   flightInfo = readData();
 
-  //q= new Query(1, flightInfo.length);
-  q= new Query(1, 40000); // the amount parameter is less than expected for test purposes
+  q= new Query(1, flightInfo.length);
+ // q= new Query(1, 40000); // the amount parameter is less than expected for test purposes
 
   // airports = q.getArrayAirports();
   // states = q.getArrayStates();
@@ -59,6 +63,12 @@ void setup() {
   numFlightsCity=q.getNumberFlightsPerCity();
   averageFlightDelay = q.calculateAverageDelay();
   averageFlightDistance = q.averageFlightDistance();
+  arrayDates =q.getArrayDates();
+  dailyCityFlights = q.getNumberFlightsPerCityForEveryDay();
+  dailyStateFlights = q.getNumberFlightsPerStateForEveryDay();
+  ;
+  dailyAirportFlights = q.getNumberFlightsPerAirportForEveryDay();
+  ;
 
   screenArray = new Screen [NUMBER_OF_SCREENS];
   image= loadImage("AirTrackr3.png");
@@ -112,17 +122,15 @@ void mousePressed() {
     event = theWidget.getEvent(mouseX, mouseY);
     switch(event) {
     case 3:
-      println("text widget1");
+
       focus= (TextWidget)theWidget;
       focus2=null;
       return;
     case 2:
-      println("text widget2");
       focus2= (TextWidget)theWidget;
       focus=null;
       return;
     default:
-      println("blah blah");
       focus=null;
       focus2=null;
     }
