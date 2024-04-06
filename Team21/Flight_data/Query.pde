@@ -181,7 +181,6 @@ class Query {//need to modify functions...Hash map/sets
           if (theData[i].FlightDate.equals(dates[days]) && theData[i].Origin.equals(airports[airportInts]))
           {
             flightsForDay++;
-            break;
           }
         }
         answer[days][airportInts] = flightsForDay;
@@ -201,7 +200,6 @@ class Query {//need to modify functions...Hash map/sets
           if (theData[i].FlightDate.equals(dates[days]) && theData[i].OriginStateName.equals(states[stateInts]))
           {
             flightsForDay++;
-            break;
           }
         }
         answer[days][stateInts] = flightsForDay;
@@ -221,7 +219,6 @@ class Query {//need to modify functions...Hash map/sets
           if (theData[i].FlightDate.equals(dates[days]) && theData[i].OriginCityName.equals(cities[cityInts]))
           {
             flightsForDay++;
-            break;
           }
         }
         answer[days][cityInts] = flightsForDay;
