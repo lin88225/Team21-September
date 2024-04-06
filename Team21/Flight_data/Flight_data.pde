@@ -125,17 +125,14 @@ void mousePressed() {
     event = theWidget.getEvent(mouseX, mouseY);
     switch(event) {
     case 3:
-      println("text widget");
       focus= (TextWidget)theWidget;
       focus2=null;
       return;
     case 2:
-      println("text widget");
       focus2= (TextWidget)theWidget;
       focus=null;
       return;
     default:
-      println("blah blah");
       focus=null;
       focus2=null;
     }
