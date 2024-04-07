@@ -40,17 +40,11 @@ void settings() {
 // The code used to use multiple fonts, I went through all  the files and now they are all Gadugi, even if the file names say otherwise - Cara Saulnier
 
 void setup() {
- // Added an image at the top of the screens and changed the colour/shape of widgets to improve the design.
+  // Added an image at the top of the screens and changed the colour/shape of widgets to improve the design.
   // K.N.
   background(MIMI_PINK);
   textAlign(CENTER, CENTER);
   rectMode(CENTER);
-  /*
-  I added an image at the top of the screens just to improve the design.
-   We can change it if you don't like it and the name "AirTrackr" is just provisional.
-   Same thing for the colour and shape of the widgets...
-   K.N.
-   */
 
   arial = loadFont("Arial-BoldMT-14.vlw");
   titleFont = loadFont("Gadugi-Bold-32.vlw");
@@ -61,7 +55,7 @@ void setup() {
 
   flightInfo = readData();
   q= new Query(1, flightInfo.length);
-  
+
   tempData = q.getNumberFlightsPerAirport();
   numFlightsAirport=q.getNumberFlightsPerAirport();
   numFlightsState=q.getNumberFlightsPerState();
@@ -72,7 +66,7 @@ void setup() {
   dailyCityFlights = q.getNumberFlightsPerCityForEveryDay();
   dailyStateFlights = q.getNumberFlightsPerStateForEveryDay();
   dailyAirportFlights = q.getNumberFlightsPerAirportForEveryDay();
-  
+
   screenArray = new Screen [NUMBER_OF_SCREENS];
   image= loadImage("AirTrackr3.png");
   createDropdownArray();
@@ -90,7 +84,7 @@ void setup() {
   focus=null;
   focus2=null;
 
-profile = new AirlinerProfile("AA");
+  profile = new AirlinerProfile("AA");
 }
 
 
@@ -98,13 +92,10 @@ void draw() {
   background(255);
   createScreens(currentScreenShown);
   screenArray[currentScreenShown].draw();
-  
-  image(image, 0, 0);
   if (profile.show) {
     profile.draw();
     profile.mouseDragged();
   }
-  
   textAlign(CENTER, CENTER);
 }
 
@@ -135,7 +126,6 @@ void mousePressed() {
     event = theWidget.getEvent(mouseX, mouseY);
     switch(event) {
     case 3:
-
       focus= (TextWidget)theWidget;
       focus2=null;
       return;
@@ -157,8 +147,7 @@ void mouseWheel(MouseEvent event) {
   if (currentScreenShown==1)
   {
     wheelDropdown=dropdownArray;
-   }
-  else if (currentScreenShown==7)  
+  } else if (currentScreenShown==7)
   {
     wheelDropdown=dropdownArray2;
   }
@@ -204,56 +193,57 @@ void keyPressed() {
  }*/
 
 void keyReleased() {
-  switch (key) {
-  case '1':
-    profile = new AirlinerProfile("AA");
-    profile.show = true;
+  if (currentScreenShown!=7) {
+    switch (key) {
+    case '1':
+      profile = new AirlinerProfile("AA");
+      profile.show = true;
 
-    break;
-  case '2':
-    profile = new AirlinerProfile("AS");
-    profile.show = true;
+      break;
+    case '2':
+      profile = new AirlinerProfile("AS");
+      profile.show = true;
 
-    break;
-  case '3':
-    profile = new AirlinerProfile("B6");
-    profile.show = true;
+      break;
+    case '3':
+      profile = new AirlinerProfile("B6");
+      profile.show = true;
 
-    break;
-  case '4':
-    profile = new AirlinerProfile("DL");
-    profile.show = true;
+      break;
+    case '4':
+      profile = new AirlinerProfile("DL");
+      profile.show = true;
 
-    break;
-  case '5':
-    profile = new AirlinerProfile("F9");
-    profile.show = true;
+      break;
+    case '5':
+      profile = new AirlinerProfile("F9");
+      profile.show = true;
 
-    break;
-  case '6':
-    profile = new AirlinerProfile("G4");
-    profile.show = true;
+      break;
+    case '6':
+      profile = new AirlinerProfile("G4");
+      profile.show = true;
 
-    break;
-  case '7':
-    profile = new AirlinerProfile("HA");
-    profile.show = true;
-    break;
-  case '8':
-    profile = new AirlinerProfile("NK");
-    profile.show = true;
-    break;
-  case '9':
-    profile = new AirlinerProfile("UA");
-    profile.show = true;
-    break;
-  case '0':
-    profile = new AirlinerProfile("WN");
-    profile.show = true;
-    break;
-  default:
-    profile.show = false;
-    break;
+      break;
+    case '7':
+      profile = new AirlinerProfile("HA");
+      profile.show = true;
+      break;
+    case '8':
+      profile = new AirlinerProfile("NK");
+      profile.show = true;
+      break;
+    case '9':
+      profile = new AirlinerProfile("UA");
+      profile.show = true;
+      break;
+    case '0':
+      profile = new AirlinerProfile("WN");
+      profile.show = true;
+      break;
+    default:
+      profile.show = false;
+      break;
+    }
   }
 }
-

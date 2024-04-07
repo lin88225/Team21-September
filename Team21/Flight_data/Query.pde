@@ -21,7 +21,6 @@ class Query {//need to modify functions...Hash map/sets
 
   int start;
   int amount;
-  int start;
 
   Query(int start, int amount) {
     this.amount=amount;
@@ -55,7 +54,7 @@ class Query {//need to modify functions...Hash map/sets
     // Creates an ArrayList with unique city values
     ArrayList<String> city = new ArrayList<>();
     for (int i = 1; i < theData.length; i++) {
-      String value = theData[i].OriginCityName.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
+      String value = theData[i].OriginCityName;
       if (!city.contains(value)) //checks if it does not contain the city yet
         city.add(value);
     }
@@ -95,7 +94,6 @@ class Query {//need to modify functions...Hash map/sets
      */
     for (int i = 1; i < theData.length; i++) {
       String origin = theData[i].Origin;
-      origin = origin.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
       for (int index = 0; index < airports.length; index++) {
         if (airports[index].equals(origin)) {
           flightCounts[index] ++;
@@ -119,7 +117,6 @@ class Query {//need to modify functions...Hash map/sets
 
     for (int i = 1; i < theData.length; i++) {
       String origin = theData[i].OriginStateName;
-      origin = origin.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
       for (int index = 0; index < states.length; index++) {
         if (states[index].equals(origin)) {
           flightCounts[index] ++;
@@ -141,7 +138,6 @@ class Query {//need to modify functions...Hash map/sets
      */
     for (int i = 1; i < theData.length; i++) {
       String origin = theData[i].OriginCityName;
-      origin = origin.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
       for (int index = 0; index < cities.length; index++) {
         if (cities[index].equals(origin)) {
           flightCounts[index] ++;
@@ -163,7 +159,6 @@ class Query {//need to modify functions...Hash map/sets
      */
     for (int i = 1; i < theData.length; i++) {
       String origin = theData[i].IACA_Code_Marketing_Airline;
-      origin = origin.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
       for (int index = 0; index < airlines.length; index++) {
         if (airlines[index].equals(origin)) {
           flightCounts[index] ++;

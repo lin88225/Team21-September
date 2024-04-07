@@ -157,6 +157,7 @@ class Screen {
       image(image, 0, 0);
       menuButton.draw();
     }
+    
     if (screenID != 0 && screenID !=1 && screenID != NUMBER_OF_SCREENS - 1) { //modified condition
       previousScreen.draw();
     }
@@ -256,4 +257,3 @@ class Screen {
   }
   */
 }
-
