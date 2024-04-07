@@ -1,10 +1,8 @@
 /**
 -L.Mc
  This class stores the Airliner Profile for each of the Airlines
- These are read from a their respective files (To be added)
+ These are read from a their respective files
  This also can create a pop-up page for the profile
- 
- 
  */
 public class AirlinerProfile {
   color darker = color(0, 100, 100, 100);
@@ -45,7 +43,6 @@ public class AirlinerProfile {
 
   /*
   L.Mc
-   
    This creates a draggable profile-page for the profile
    */
   float spaceIncrement = PROFILE_SIZE/25;
@@ -85,13 +82,6 @@ public class AirlinerProfile {
   }
 
   boolean beingDragged = false;
-
-  /*
-  Checks first that
-   
-   
-   
-   */
   void mouseDragged() {
     boolean withinX = (mouseX >= posX && mouseX <= posX + PROFILE_SIZE);
     boolean withinY = (mouseY >= posY && mouseY <= posY + PROFILE_SIZE);
