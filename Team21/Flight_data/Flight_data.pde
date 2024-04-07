@@ -1,3 +1,4 @@
+
 PFont arial;
 PFont titleFont;
 Screen [] screenArray;
@@ -203,49 +204,49 @@ void keyPressed() {
 
 void keyReleased() {
   switch (key) {
-  case '1':
+  case 'a':
     profile = new AirlinerProfile("AA");
     profile.show = true;
 
     break;
-  case '2':
+  case 'b':
     profile = new AirlinerProfile("AS");
     profile.show = true;
 
     break;
-  case '3':
+  case 'c':
     profile = new AirlinerProfile("B6");
     profile.show = true;
 
     break;
-  case '4':
+  case 'd':
     profile = new AirlinerProfile("DL");
     profile.show = true;
 
     break;
-  case '5':
+  case 'e':
     profile = new AirlinerProfile("F9");
     profile.show = true;
 
     break;
-  case '6':
+  case 'f':
     profile = new AirlinerProfile("G4");
     profile.show = true;
 
     break;
-  case '7':
+  case 'g':
     profile = new AirlinerProfile("HA");
     profile.show = true;
     break;
-  case '8':
+  case 'h':
     profile = new AirlinerProfile("NK");
     profile.show = true;
     break;
-  case '9':
+  case 'i':
     profile = new AirlinerProfile("UA");
     profile.show = true;
     break;
-  case '0':
+  case 'j':
     profile = new AirlinerProfile("WN");
     profile.show = true;
     break;
