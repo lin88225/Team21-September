@@ -43,12 +43,6 @@ void setup() {
   background(MIMI_PINK);
   textAlign(CENTER, CENTER);
   rectMode(CENTER);
-  /*
-  I added an image at the top of the screens just to improve the design.
-   We can change it if you don't like it and the name "AirTrackr" is just provisional.
-   Same thing for the colour and shape of the widgets...
-   K.N.
-   */
 
   arial = loadFont("Arial-BoldMT-14.vlw");
   titleFont = loadFont("Gadugi-Bold-32.vlw");
@@ -98,8 +92,6 @@ void draw() {
   background(255);
   createScreens(currentScreenShown);
   screenArray[currentScreenShown].draw();
-
-  image(image, 0, 0);
   if (profile.show) {
     profile.draw();
     profile.mouseDragged();
@@ -135,7 +127,6 @@ void mousePressed() {
     event = theWidget.getEvent(mouseX, mouseY);
     switch(event) {
     case 3:
-
       focus= (TextWidget)theWidget;
       focus2=null;
       return;
@@ -151,7 +142,7 @@ void mousePressed() {
 }
 
 void mouseWheel(MouseEvent event) {
-  // Modified body of this method because in this way it can take different dropdown arrays
+  // Modified body of this method created by Cara Saulnier because in this way it can take different dropdown arrays
   // like the one in screen(1) and also on screen(7) even if they have different names
   // K.N.
   if (currentScreenShown==1)
