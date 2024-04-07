@@ -1,13 +1,10 @@
-/* a function to create the dropdown array that gets displayed to the first screen to select data to display
-Some dropdowns may only have one value selected, and some can have multiple
-Cara Saulnier
-*/
+/** a function to create the dropdown array that gets displayed to the first screen to select data to display
+ Some dropdowns may only have one value selected, and some can have multiple
+ Cara Saulnier
+ */
 void createDropdownArray()
 {
   dropdownArray = new Dropdown[9];
-  String [] airports = q.getArrayAirports();
-  String [] states = q.getArrayStates();
-  String [] cities = q.getArrayCities();
   String [] airlines = q.getArrayAirlines();
   for (int i = 0; i < dropdownArray.length; i++)
   {
@@ -51,26 +48,61 @@ void createDropdownArray()
         "Carbon emissions\nper airline", airlines, HOOKERS_GREEN, COLUMBIA_BLUE, DENIM, arial, true);
       break;
     default:
-      System.out.println("error ");
     }
   }
 }
-/* Two functions:
-One is to initialise the first screen only, which contains the dropdown menus
-The second function initialises all other screens when they need to be created. i.e. when the arrows are clicked to called screen 3, the third screen will be created with its data
-and will be drawn
-Cara Saulnier
-*/
-void createFirstScreen() {
-  screenArray[0] = new Screen(0, dropdownArray);
+void createOtherDropdown() {
+  //Created and initialised a new array of dropdowns for screen number 6 based on what Cara did for the others
+  //K.N.
+  dropdownArray2=new Dropdown[3];
+  for (int index = 0; index < dropdownArray.length; index++)
+  {
+    switch(index)
+    {
+    case 0:
+      dropdownArray2[index] = new Dropdown(SCREENX/2+DROPDOWN_WIDTH+130, SCREENY/2-(4*DROPDOWN_HEIGHT+17), DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
+        "States", states, color(171, 177, 207), COLUMBIA_BLUE, DENIM, arial, false);
+      break;
+    case 1:
+      dropdownArray2[index] = new Dropdown(SCREENX/2+DROPDOWN_WIDTH+130, SCREENY/2-2*DROPDOWN_HEIGHT+48, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
+        "Cities", cities, color(171, 177, 207), COLUMBIA_BLUE, DENIM, arial, false);
+      break;
+    case 2:
+      dropdownArray2[index] = new Dropdown(SCREENX/2+DROPDOWN_WIDTH+130, SCREENY/2+113, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
+        "Airports", airports, color(171, 177, 207), COLUMBIA_BLUE, DENIM, arial, false);
+      break;
+    default:
+    }
+  }
 }
 
-// function to create Screens 
+
+/* Two functions:
+ One is to initialise the first screen only, which contains the dropdown menus
+ The second function initialises all other screens when they need to be created. i.e. when the arrows are clicked to called screen 3, the third screen will be created with its data
+ and will be drawn
+ Cara Saulnier
+ */
+
+void createFirstScreens() {
+  //screenArray[0] = new Screen(0, dropdownArray);
+  //modified screenIDs to add as screen(0) the initial page and as screen(1) the homepage with all the dropdowns
+  //K.N.
+  screenArray[0] = new Screen(0);
+  screenArray[1] = new Screen(1, dropdownArray);
+}
+
+// function to create Screens
 void createScreens(int i) // i is the variable that decides which screen will be drawn
 {
-  if (i == 1) // A screen displaying the number of flights per state, city, and airport
+  //if (i == 1)
+  //{
+  //  screenArray[i] = new Screen(i, dropdownArray);
+  //} else
+  if (i == 2)// A screen displaying the number of flights per state, city, and airport
+
   {
-    screenArray[i] = new Screen(1);
+    screenArray[i] = new Screen(i);
     ArrayList <Integer> pieChartValues1 = new ArrayList <Integer>(0);
     ArrayList <String> pieChartDescriptions1 = new ArrayList <String>(0);
     String title1 = "Number of flights per state";
@@ -125,9 +157,10 @@ void createScreens(int i) // i is the variable that decides which screen will be
     screenArray[i].addPieChart(pieChartInts1, 200, SCREENX/4, SCREENY/3+30, pieChartLabels1, title1);
     screenArray[i].addPieChart(pieChartInts2, 200, SCREENX/2+170, SCREENY/3+30, pieChartLabels2, title2);
     screenArray[i].addPieChart(pieChartInts3, 200, SCREENX/4, SCREENY/2+180, pieChartLabels3, title3);
-  } else if (i == 2) // displays the average delay per airline
+  } else if (i == 3) // displays the average delay per airline
+
   {
-    screenArray[i] = new Screen(2);
+    screenArray[i] = new Screen(i);
     ArrayList <Float> barChartXValues = new ArrayList <Float>(0);
     ArrayList <String> barChartYValues = new ArrayList <String>(0);
     String title = "Average delay per airline";
@@ -148,9 +181,10 @@ void createScreens(int i) // i is the variable that decides which screen will be
       barChartValuesX[j] = barChartXValues.get(j);
     }
     screenArray[i].addBarChart(barChartValuesX, barChartValuesY, SCREENX/4, SCREENY/3, title, descriptionOfX, descriptionOfY);
-  } else if (i ==3) // displays the number of flights departed, cancelled, or diverted for state, city, and airport
+  } else if (i ==4) // displays the number of flights departed, cancelled, or diverted for state, city, and airport
+
   {
-    screenArray[i] = new Screen(3);
+    screenArray[i] = new Screen(i);
     ArrayList <Integer> barChartValues1 = new ArrayList <Integer>(0);
     ArrayList <String> barChartDescriptions1 = new ArrayList <String>(0);
     String title1 = "Number of departed, cancelled, and diverted per state";
@@ -225,9 +259,10 @@ void createScreens(int i) // i is the variable that decides which screen will be
     if (barChartLabels3.length !=0) {
       screenArray[i].addBarChart(barChartInts3, barChartLabels3, SCREENX/4, 450, title3, "Number of flights cancelled", "");
     }
-  } else if (i ==4) // calculates teh average flight distance 
+  } else if (i ==5) // calculates teh average flight distance
+
   {
-    screenArray[i] = new Screen(4);
+    screenArray[i] = new Screen(i);
     ArrayList <Float> barChartXValues = new ArrayList <Float>(0);
     ArrayList <String> barChartYValues = new ArrayList <String>(0);
     String title = "Average distance per airline";
@@ -248,9 +283,10 @@ void createScreens(int i) // i is the variable that decides which screen will be
       barChartValuesX[j] = barChartXValues.get(j);
     }
     screenArray[i].addBarChart(barChartValuesX, barChartValuesY, SCREENX/4, SCREENY/3, title, descriptionOfX, descriptionOfY);
-  } else if (i == 5) // calculates the number of metric tons of carbon emissions released per airline, rounded to the nearest million
+  } else if (i == 6) // calculates the number of metric tons of carbon emissions released per airline, rounded to the nearest million
+
   {
-    screenArray[i] = new Screen(5);
+    screenArray[i] = new Screen(i);
     ArrayList <Integer> barChartXValues = new ArrayList <Integer>(0);
     ArrayList <String> barChartYValues = new ArrayList <String>(0);
     String title = "Total carbon emissions per airline";
@@ -271,6 +307,116 @@ void createScreens(int i) // i is the variable that decides which screen will be
       barChartValuesX[j] = barChartXValues.get(j);
     }
     screenArray[i].addBarChart(barChartValuesX, barChartValuesY, SCREENX/4, SCREENY/3, title, descriptionOfX, descriptionOfY);
+  } else if (i == 7)
+  {
+    //Added screen that displays the number of flights per day of a selected state, city or airport
+    //The days are being selected choosing a start date and an end date. This can be done by writing on the two TextWidgets
+    //I used methods that Cara already made in the code above
+    //K.N.
+
+    screenArray[i] = new Screen(i, dropdownArray2, text);
+    int indexStartDate=0;
+    int indexEndDate=0;
+    String title = "Number of flights per day";
+    String descriptionOfX = "number of flights";
+
+    ArrayList <Integer> barChartValues1 = new ArrayList <Integer>(0);
+    ArrayList <String> barChartDescriptions1 = new ArrayList <String>(0);
+    ArrayList <Integer> barChartValues2 = new ArrayList <Integer>(0);
+    ArrayList <String> barChartDescriptions2 = new ArrayList <String>(0);
+    ArrayList <Integer> barChartValues3 = new ArrayList <Integer>(0);
+    ArrayList <String> barChartDescriptions3 = new ArrayList <String>(0);
+
+    for (int j = 0; j < arrayDates.length; j++) {//gives the indexes for the start and end date
+      if (arrayDates[j].equals(startDate))
+        indexStartDate=j;
+      if (arrayDates[j].equals(endDate))
+        indexEndDate=j;
+    }
+
+    int sumFlightsState=0;
+    for (int k = 0; k < dropdownArray2[0].dropdownDisplay.length; k++)
+    {
+      if (dropdownArray2[0].clickMenu[k] % 2==0)
+      {
+        for (int j = indexStartDate; j <=indexEndDate; j++) {   //problems with the 3 for loops
+          barChartDescriptions1.add(arrayDates[j]);
+          barChartValues1.add(dailyStateFlights[j][k]);
+          sumFlightsState+=dailyStateFlights[j][k];
+        }
+        barChartValues1.add(sumFlightsState);
+        barChartDescriptions1.add(dropdownArray2[0].dropdownDisplay[k]);
+      }
+    }
+
+    int sumFlightsCity=0;
+    for (int k = 0; k < dropdownArray2[1].dropdownDisplay.length; k++)
+    {
+      if (dropdownArray2[1].clickMenu[k] % 2==0)
+      {
+
+        for (int j = indexStartDate; j <=indexEndDate; j++) {
+          barChartDescriptions2.add(arrayDates[j]);
+          barChartValues2.add(dailyCityFlights[j][k]);
+          sumFlightsCity+=dailyCityFlights[j][k];
+        }
+
+        barChartValues2.add(sumFlightsCity);
+        barChartDescriptions2.add(dropdownArray2[1].dropdownDisplay[k]);
+      }
+    }
+
+    int sumFlightsAirport=0;
+    for (int k = 0; k < dropdownArray2[2].dropdownDisplay.length; k++)
+    {
+      if (dropdownArray2[2].clickMenu[k] % 2==0)
+      {
+
+        for (int j = indexStartDate; j <=indexEndDate; j++) {
+          barChartDescriptions3.add(arrayDates[j]);
+          barChartValues3.add(dailyAirportFlights[j][k]);
+          sumFlightsAirport+=dailyAirportFlights[j][k];
+        }
+
+        barChartValues3.add(sumFlightsAirport);
+        barChartDescriptions3.add(dropdownArray2[2].dropdownDisplay[k]);
+      }
+    }
+
+    float [] barChartInts1 = new float[barChartValues1.size()];
+    float [] barChartInts2 = new float[barChartValues2.size()];
+    float [] barChartInts3 = new float[barChartValues3.size()];
+    for (int j = 0; j < barChartInts1.length; j++)
+    {
+      barChartInts1[j] = barChartValues1.get(j);
+    }
+    for (int j = 0; j < barChartInts2.length; j++)
+    {
+      barChartInts2[j] = barChartValues2.get(j);
+    }
+    for (int j = 0; j < barChartInts3.length; j++)
+    {
+      barChartInts3[j] = barChartValues3.get(j);
+    }
+    String [] barChartLabels1 = barChartDescriptions1.toArray(new String[0]);
+    String [] barChartLabels2 = barChartDescriptions2.toArray(new String[0]);
+    String [] barChartLabels3 = barChartDescriptions3.toArray(new String[0]);
+
+    if (barChartLabels1.length !=0)
+    {
+      screenArray[i].addBarChart(barChartInts1, barChartLabels1, SCREENX/3, 150, title, "", "");
+    }
+    if (barChartLabels2.length !=0) {
+      screenArray[i].addBarChart(barChartInts2, barChartLabels2, SCREENX/3, 300, "", "", "");
+    }
+    if (barChartLabels3.length !=0) {
+      screenArray[i].addBarChart(barChartInts3, barChartLabels3, SCREENX/3, 450, "", descriptionOfX, "");
+    }
+  } else if (i == 8) {
+    screenArray[i] = new Screen(i);
+    //for the map
+  } else if (i == NUMBER_OF_SCREENS -1) {
+    screenArray[i] = new Screen(i);
+    //for the menu
   }
-  //}
 }
