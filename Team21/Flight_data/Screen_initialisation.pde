@@ -1,4 +1,4 @@
-/* a function to create the dropdown array that gets displayed to the first screen to select data to display
+/** a function to create the dropdown array that gets displayed to the first screen to select data to display
  Some dropdowns may only have one value selected, and some can have multiple
  Cara Saulnier
  */

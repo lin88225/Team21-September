@@ -1,4 +1,4 @@
-/* Code to draw widgets to a screen
+/** Code to draw widgets to a screen
  These widgets are used when implementing the dropdown menu
  Cara Saulnier
  */

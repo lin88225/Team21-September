@@ -1,3 +1,7 @@
+/** A class used to calculate and sort data and then stores them into different arrays
+ written by Katia Neli and Cara Saulnier, with efficiency edits written by Lloyd McNally
+ */
+
 class Query {//need to modify functions...Hash map/sets
   /*
    getArrayAirports(): String[]
@@ -9,10 +13,9 @@ class Query {//need to modify functions...Hash map/sets
    getNumberFlightsPerState(): int[]
    getNumberFlightsPerCity(): int[]
    getNumberFlightsPerAirline(): int[]
-   getNumberFlightsPerDate(): int[]                          // seems obsolete
-   getNumberFlightsPerStatePerDay(String date): int[]        // seems obsolete
-   getNumberFlightsPerCityPerDay(String date): int[]         // seems obsolete
-   getNumberFlightsPerAirportPerDay(String date): int[]      // seems obsolete
+   getNumberFlightsPerAirportForEveryDay(): int[][]  // first index is the date, second is the airport
+   getNumberFlightsPerCityForEveryDay(): int[][]  // first index is the date, second is the city
+   getNumberFlightsPerStateForEveryDay(): int[][]  // first index is the date, second is the state
    calculateAverageDelay(): float[]
    getCancellationsAndDiversions(String placeName): int[]
    averageFlightDistance(): float[]
