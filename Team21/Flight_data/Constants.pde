@@ -14,5 +14,5 @@ final int FRAMES_PER_CLICK =15;
 final int DROPDOWN_WIDTH = 200;
 final int DROPDOWN_HEIGHT = 40;
 final int NO_BUTTON_PRESSED = -1;
-final static int NUMBER_OF_SCREENS = 10;
+final static int NUMBER_OF_SCREENS = 9;
 int PROFILE_SIZE = 300;
