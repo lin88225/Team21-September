@@ -72,7 +72,8 @@ public class Datapoint {
     this.diverted =             diverted;
   }
 }
-
+//Written by Lloyd McNally
+//Improved by Cara Saulnier
 //A public function for intializing an arraylist of datapoints
 //(EG: if you have a screen to represent 30 datapoints, use an arraylist of size 30)
 ArrayList <Datapoint> initializeDataList (String []fileData, int amount) {

@@ -278,7 +278,7 @@ void createScreens(int i) // i is the variable that decides which screen will be
   {
     //Added screen that displays the number of flights per day of a selected state, city or airport
     //The days are being selected choosing a start date and an end date. This can be done by writing on the two TextWidgets
-    //I used methods that Cara already made in the code above
+    //I used methods that Cara Saulnier already made in the code above
     //K.N.
 
     screenArray[i] = new Screen(i, dropdownArray2, text);
@@ -306,7 +306,7 @@ void createScreens(int i) // i is the variable that decides which screen will be
     {
       if (dropdownArray2[0].clickMenu[k] % 2==0)
       {
-        for (int j = indexStartDate; j <=indexEndDate; j++) {   //problems with the 3 for loops
+        for (int j = indexStartDate; j <=indexEndDate; j++) { 
           barChartDescriptions1.add(arrayDates[j]);
           barChartValues1.add(dailyStateFlights[j][k]);
           sumFlightsState+=dailyStateFlights[j][k];
