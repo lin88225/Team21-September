@@ -47,8 +47,8 @@ void setup() {
   fill(0);
   //query creation
   flightInfo = readData();
-  //q= new Query(1, flightInfo.length);
-  q= new Query(1, 100000);
+  q= new Query(1, flightInfo.length);
+
   numFlightsAirport=q.getNumberFlightsPerAirport();
   numFlightsState=q.getNumberFlightsPerState();
   numFlightsCity=q.getNumberFlightsPerCity();

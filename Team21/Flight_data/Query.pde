@@ -1,8 +1,10 @@
 /** A class used to calculate and sort data and then stores them into different arrays
  written by Katia Neli and Cara Saulnier, with efficiency edits written by Lloyd McNally
  */
+import java.util.HashSet;
+import java.util.Set;
 
-class Query {//need to modify functions...Hash map/sets
+class Query {
   /*
    getArrayAirports(): String[]
    getArrayStates(): String[]
@@ -31,66 +33,53 @@ class Query {//need to modify functions...Hash map/sets
     theData = initializeDataArray(flightInfo, start, amount);
   }
 
+  //Used HashSet instead of ArrayList to improve efficiency of some methods
+  //Katia Neli
   String[] getArrayAirports() {
-    // Creates an ArrayList with unique airport values
-    ArrayList<String> airport = new ArrayList<>();
+    Set<String> airportSet = new HashSet<>(); // Use a Set to store unique airport values
     for (int i = 1; i < theData.length; i++) {
-      String value = theData[i].Origin;
-      if (!airport.contains(value)) //checks if it does not contain the airport yet
-        airport.add(value);
+      airportSet.add(theData[i].Origin); // Add each airport to the Set
     }
-    return sort(airport.toArray(new String[airport.size()]));//converts to Array and returns it in alphabetical order
+    return sort(airportSet.toArray(new String[0]));
   }
 
   String[] getArrayStates() {
-    // Creates an ArrayList with unique states values
-    ArrayList<String> state = new ArrayList<>();
+    Set<String> stateSet = new HashSet<>();
     for (int i = 1; i < theData.length; i++) {
-      String value = theData[i].OriginStateName;
-      if (!state.contains(value)) //checks if it does not contain the state yet
-        state.add(value);
+      stateSet.add(theData[i].OriginStateName);
     }
-    return sort(state.toArray(new String[state.size()]));//converts to Array and returns it in alphabetical order
+    return sort(stateSet.toArray(new String[0]));//converts to Array and returns it in alphabetical order
   }
 
   String[] getArrayCities() {
-    // Creates an ArrayList with unique city values
-    ArrayList<String> city = new ArrayList<>();
+    Set<String> citySet = new HashSet<>();
     for (int i = 1; i < theData.length; i++) {
-      String value = theData[i].OriginCityName.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
-      if (!city.contains(value)) //checks if it does not contain the city yet
-        city.add(value);
+      citySet.add(theData[i].OriginCityName);
     }
-    return sort(city.toArray(new String[city.size()]));//converts to Array and returns it in alphabetical order
+    return sort(citySet.toArray(new String[0]));
   }
 
   String[] getArrayAirlines() {
-    // Creates an ArrayList with unique airlines values
-    ArrayList<String> airline = new ArrayList<>();
+    Set<String> airlineSet = new HashSet<>();
     for (int i = 1; i < theData.length; i++) {
-      String value = theData[i].IACA_Code_Marketing_Airline;
-      if (!airline.contains(value)) //checks if it does not contain the airline yet
-        airline.add(value);
+      airlineSet.add(theData[i].IACA_Code_Marketing_Airline);
     }
-    return sort(airline.toArray(new String[airline.size()]));//converts to Array and returns it in alphabetical order
+    return sort(airlineSet.toArray(new String[0]));
   }
 
   String[] getArrayDates() {
-    // Creates an ArrayList with unique airlines values
-    ArrayList<String> date = new ArrayList<>();
+    Set<String> dateSet = new HashSet<>();
     for (int i = 1; i < theData.length; i++) {
-      String value = theData[i].FlightDate;
-      if (!date.contains(value)) //checks if it does not contain the airline yet
-        date.add(value);
+      dateSet.add(theData[i].FlightDate);
     }
-    return date.toArray(new String[date.size()]);//converts to Array and returns it in alphabetical order
+    return dateSet.toArray(new String[0]);
   }
 
   int [] getNumberFlightsPerAirport() {
     String airports[]=getArrayAirports();
     int[] flightCounts = new int[airports.length];
     /*
-    Code changed by L.Mc
+     Code changed by L.Mc
      Function now checks all airports for each datapoint with break function
      Improved performance
      */
@@ -104,7 +93,6 @@ class Query {//need to modify functions...Hash map/sets
         }
       }
     }
-
     return flightCounts;//returns the flightCounts array containing the counts of flights for each airport
   }
 
@@ -112,7 +100,7 @@ class Query {//need to modify functions...Hash map/sets
     String states[]=getArrayStates();
     int[] flightCounts = new int[states.length];
     /*
-    Code changed by L.Mc
+     Code changed by L.Mc
      Function now checks all states for each datapoint with break function
      Improved performance
      */
@@ -133,7 +121,7 @@ class Query {//need to modify functions...Hash map/sets
     String cities[]=getArrayCities();
     int[] flightCounts = new int[cities.length];
     /*
-    Code changed by L.Mc
+     Code changed by L.Mc
      Function now checks all cities for each datapoint with break function
      Improved performance
      */
@@ -154,7 +142,7 @@ class Query {//need to modify functions...Hash map/sets
     String airlines[]=getArrayAirlines();
     int[] flightCounts = new int[airlines.length];
     /*
-    Code changed by L.Mc
+     Code changed by L.Mc
      Function now checks all states for each datapoint with break function
      Slightly improved performance
      */
@@ -189,6 +177,7 @@ class Query {//need to modify functions...Hash map/sets
     }
     return answer;
   }
+
   int[][] getNumberFlightsPerStateForEveryDay() { // first index is the date, second is the state
     String states[]=getArrayStates();
     String dates [] =  getArrayDates();
@@ -207,6 +196,7 @@ class Query {//need to modify functions...Hash map/sets
     }
     return answer;
   }
+
   int[][] getNumberFlightsPerCityForEveryDay() { // first index is the date, second is the city
     String cities[]=getArrayCities();
     String dates [] =  getArrayDates();
@@ -258,7 +248,7 @@ class Query {//need to modify functions...Hash map/sets
     int [] result = new int [3];
     for (int i = 1; i < theData.length; i++)
     {
-      if (placeName.equals(theData[i].OriginStateName) || placeName.equals(theData[i].OriginCityName.replaceAll("\"", "")) || placeName.equals(theData[i].IACA_Code_Marketing_Airline))
+      if (placeName.equals(theData[i].OriginStateName) || placeName.equals(theData[i].OriginCityName) || placeName.equals(theData[i].IACA_Code_Marketing_Airline))
       {
         if (theData[i].cancelled) {
           result[1]++;
