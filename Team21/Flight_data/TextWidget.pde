@@ -1,7 +1,9 @@
+/**
+ This class allows to write some input on a Widget.
+ Example: you write a date on the widget and its label will take that date as its value.
+ Katia Neli
+ */
 class TextWidget extends Widget {
-  // This class allows to write some input on a Widget
-  // Example: you write a date on the widget and its label will take that date as its value
-  // K.N.
 
   int maxLenght;
 
@@ -19,6 +21,7 @@ class TextWidget extends Widget {
     labelColour=DENIM;
     this.maxLenght=maxLenght;
   }
+  
   void append(char s) {
     if (s==BACKSPACE) {
       if (!label.equals(""))

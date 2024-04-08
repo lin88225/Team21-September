@@ -12,59 +12,59 @@ void createDropdownArray()
     {
     case 7:
       dropdownArray[i] = new Dropdown(SCREENX/2-DROPDOWN_WIDTH, SCREENY/2-4*DROPDOWN_HEIGHT, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
-        "Number of flights per state", states, HOOKERS_GREEN, COLUMBIA_BLUE, DENIM, arial, true);
+        "Number of flights per state", states, POLO_BLUE, COLUMBIA_BLUE, DENIM, arial, true);
       break;
     case 6:
       dropdownArray[i] = new Dropdown(SCREENX/2+DROPDOWN_WIDTH, SCREENY/2-4*DROPDOWN_HEIGHT, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
-        "Number of flights per city", cities, HOOKERS_GREEN, COLUMBIA_BLUE, DENIM, arial, true);
+        "Number of flights per city", cities, POLO_BLUE, COLUMBIA_BLUE, DENIM, arial, true);
       break;
     case 5:
       dropdownArray[i] = new Dropdown(SCREENX/2-DROPDOWN_WIDTH, SCREENY/2-2*DROPDOWN_HEIGHT, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
-        "Number of flights\nper airport", airports, HOOKERS_GREEN, COLUMBIA_BLUE, DENIM, arial, true);
+        "Number of flights\nper airport", airports, POLO_BLUE, COLUMBIA_BLUE, DENIM, arial, true);
       break;
     case 4:
       dropdownArray[i] = new Dropdown(SCREENX/2+DROPDOWN_WIDTH, SCREENY/2-2*DROPDOWN_HEIGHT, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
-        "Average delay per airline", airlines, HOOKERS_GREEN, COLUMBIA_BLUE, DENIM, arial, true);
+        "Average delay per airline", airlines, POLO_BLUE, COLUMBIA_BLUE, DENIM, arial, true);
 
       break;
     case 3:
       dropdownArray[i] = new Dropdown(SCREENX/2-DROPDOWN_WIDTH, SCREENY/2, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
-        "Number of cancellations and\ndiversions per state", states, HOOKERS_GREEN, COLUMBIA_BLUE, DENIM, arial, false);
+        "Number of cancellations and\ndiversions per state", states, POLO_BLUE, COLUMBIA_BLUE, DENIM, arial, false);
       break;
     case 2:
       dropdownArray[i] = new Dropdown(SCREENX/2+DROPDOWN_WIDTH, SCREENY/2, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
-        "Number of cancellations and\ndiversions per city", cities, HOOKERS_GREEN, COLUMBIA_BLUE, DENIM, arial, false);
+        "Number of cancellations and\ndiversions per city", cities, POLO_BLUE, COLUMBIA_BLUE, DENIM, arial, false);
       break;
     case 1:
       dropdownArray[i] = new Dropdown(SCREENX/2-DROPDOWN_WIDTH, SCREENY/2+2*DROPDOWN_HEIGHT, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
-        "Number of cancellations and\ndiversions per airline", airlines, HOOKERS_GREEN, COLUMBIA_BLUE, DENIM, arial, false);
+        "Number of cancellations and\ndiversions per airline", airlines, POLO_BLUE, COLUMBIA_BLUE, DENIM, arial, false);
       break;
     case 0:
       dropdownArray[i] = new Dropdown(SCREENX/2+DROPDOWN_WIDTH, SCREENY/2+2*DROPDOWN_HEIGHT, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
-        "Average flight\ndistance per airline", airlines, HOOKERS_GREEN, COLUMBIA_BLUE, DENIM, arial, true);
+        "Average flight\ndistance per airline", airlines, POLO_BLUE, COLUMBIA_BLUE, DENIM, arial, true);
       break;
     default:
     }
   }
 }
-void createOtherDropdown() {
-  //Created and initialised a new array of dropdowns for screen number 6 based on what Cara did for the others
-  //K.N.
-  dropdownArray2=new Dropdown[3];
+void createDropdownArrayForDateRange() {
+  //Created and initialised a new array of dropdowns for screen number 6 based on what Cara Saulnier did for the others in the code above
+  //Katia Neli
+  dropdownArrayForDateRange=new Dropdown[3];
   for (int index = 0; index < dropdownArray.length; index++)
   {
     switch(index)
     {
     case 0:
-      dropdownArray2[index] = new Dropdown(SCREENX/2+DROPDOWN_WIDTH+130, SCREENY/2-(4*DROPDOWN_HEIGHT+17), DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
+      dropdownArrayForDateRange[index] = new Dropdown(SCREENX/2+DROPDOWN_WIDTH+130, SCREENY/2-(4*DROPDOWN_HEIGHT+17), DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
         "States", states, color(171, 177, 207), COLUMBIA_BLUE, DENIM, arial, false);
       break;
     case 1:
-      dropdownArray2[index] = new Dropdown(SCREENX/2+DROPDOWN_WIDTH+130, SCREENY/2-2*DROPDOWN_HEIGHT+48, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
+      dropdownArrayForDateRange[index] = new Dropdown(SCREENX/2+DROPDOWN_WIDTH+130, SCREENY/2-2*DROPDOWN_HEIGHT+48, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
         "Cities", cities, color(171, 177, 207), COLUMBIA_BLUE, DENIM, arial, false);
       break;
     case 2:
-      dropdownArray2[index] = new Dropdown(SCREENX/2+DROPDOWN_WIDTH+130, SCREENY/2+113, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
+      dropdownArrayForDateRange[index] = new Dropdown(SCREENX/2+DROPDOWN_WIDTH+130, SCREENY/2+113, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
         "Airports", airports, color(171, 177, 207), COLUMBIA_BLUE, DENIM, arial, false);
       break;
     default:
@@ -81,9 +81,8 @@ void createOtherDropdown() {
  */
 
 void createFirstScreens() {
-  //screenArray[0] = new Screen(0, dropdownArray);
   //modified screenIDs to add as screen(0) the initial page and as screen(1) the homepage with all the dropdowns
-  //K.N.
+  //Katia Neli
   screenArray[0] = new Screen(0);
   screenArray[1] = new Screen(1, dropdownArray);
 }
@@ -276,12 +275,12 @@ void createScreens(int i) // i is the variable that decides which screen will be
     screenArray[i].addBarChart(barChartValuesX, barChartValuesY, SCREENX/4, SCREENY/3, title, descriptionOfX, descriptionOfY);
   } else if (i == 6)
   {
-    //Added screen that displays the number of flights per day of a selected state, city or airport
-    //The days are being selected choosing a start date and an end date. This can be done by writing on the two TextWidgets
-    //I used methods that Cara Saulnier already made in the code above
-    //K.N.
+    //Added screen that displays the number of flights per day of a selected state, city or airport.
+    //The days are being selected choosing a start date and an end date. This can be done by writing on the two TextWidgets.
+    //I used methods that Cara Saulnier already made in the code above.
+    //Katia Neli
 
-    screenArray[i] = new Screen(i, dropdownArray2, text);
+    screenArray[i] = new Screen(i, dropdownArrayForDateRange, text);
     int indexStartDate=0;
     int indexEndDate=0;
     String title = "Number of flights per day";
@@ -302,24 +301,24 @@ void createScreens(int i) // i is the variable that decides which screen will be
     }
 
     int sumFlightsState=0;
-    for (int k = 0; k < dropdownArray2[0].dropdownDisplay.length; k++)
+    for (int k = 0; k < dropdownArrayForDateRange[0].dropdownDisplay.length; k++)
     {
-      if (dropdownArray2[0].clickMenu[k] % 2==0)
+      if (dropdownArrayForDateRange[0].clickMenu[k] % 2==0)
       {
-        for (int j = indexStartDate; j <=indexEndDate; j++) { 
+        for (int j = indexStartDate; j <=indexEndDate; j++) {
           barChartDescriptions1.add(arrayDates[j]);
           barChartValues1.add(dailyStateFlights[j][k]);
           sumFlightsState+=dailyStateFlights[j][k];
         }
         barChartValues1.add(sumFlightsState);
-        barChartDescriptions1.add(dropdownArray2[0].dropdownDisplay[k]);
+        barChartDescriptions1.add(dropdownArrayForDateRange[0].dropdownDisplay[k]);
       }
     }
 
     int sumFlightsCity=0;
-    for (int k = 0; k < dropdownArray2[1].dropdownDisplay.length; k++)
+    for (int k = 0; k < dropdownArrayForDateRange[1].dropdownDisplay.length; k++)
     {
-      if (dropdownArray2[1].clickMenu[k] % 2==0)
+      if (dropdownArrayForDateRange[1].clickMenu[k] % 2==0)
       {
 
         for (int j = indexStartDate; j <=indexEndDate; j++) {
@@ -329,14 +328,14 @@ void createScreens(int i) // i is the variable that decides which screen will be
         }
 
         barChartValues2.add(sumFlightsCity);
-        barChartDescriptions2.add(dropdownArray2[1].dropdownDisplay[k]);
+        barChartDescriptions2.add(dropdownArrayForDateRange[1].dropdownDisplay[k]);
       }
     }
 
     int sumFlightsAirport=0;
-    for (int k = 0; k < dropdownArray2[2].dropdownDisplay.length; k++)
+    for (int k = 0; k < dropdownArrayForDateRange[2].dropdownDisplay.length; k++)
     {
-      if (dropdownArray2[2].clickMenu[k] % 2==0)
+      if (dropdownArrayForDateRange[2].clickMenu[k] % 2==0)
       {
 
         for (int j = indexStartDate; j <=indexEndDate; j++) {
@@ -346,7 +345,7 @@ void createScreens(int i) // i is the variable that decides which screen will be
         }
 
         barChartValues3.add(sumFlightsAirport);
-        barChartDescriptions3.add(dropdownArray2[2].dropdownDisplay[k]);
+        barChartDescriptions3.add(dropdownArrayForDateRange[2].dropdownDisplay[k]);
       }
     }
 

@@ -1,14 +1,16 @@
 private static int numberOfScreens = NUMBER_OF_SCREENS;
 private static int currentNumberOfScreens = 0;
 private static int currentScreenShown = 0;
-
+/**
+ Class written by Michael Moore that creates and draws screens and deals with what is in it.
+ Updated Screen class: converted the 2 buttons Next and Back into Arrows,
+ added image edited on Canva as background of our start page (screen(0)),
+ added playButton for start page so you can enter the app,
+ added a menu screen that will appear once you press the menu button
+ (this screen allows you to navigate through the screens without the arrows).
+ Katia Neli
+ */
 class Screen {
-  // I converted the 2 buttons Next and Back into Arrows
-  // Added image I edited on Canva as background of our start page (screen(0))
-  // Added playButton for start page so you can enter the app
-  // Added a menu screen (last one) that will appear once you press on the menu button
-  // This screen allows you to navigate through the screens without the arrows
-  // K.N.
 
   ArrayList<PieChart> pieCharts = new ArrayList<>();
   ArrayList<BarChart> barCharts = new ArrayList<>();
@@ -16,69 +18,63 @@ class Screen {
   TextWidget[] textWidgets;
   // ArrayList<Button> buttons = new ArrayList<>();
   color backgroundColor = MIMI_PINK;
-
   int screenID;
-
-  //Button nextScreen;
-  //Button previousScreen;
-  //changed buttons to arrows
-  Arrow nextScreen;
-  Arrow previousScreen;
-  Arrow playButton;
-  Arrow menuButton;
-  Arrow [] arrayMenuButtons;
-  PImage image1, image2, image3, image4,
+  Button nextScreen;
+  Button previousScreen;
+  Button playButton;
+  Button menuButton;
+  Button [] arrayMenuButtons;
+  //images of all the buttons and backgrounds
+  PImage arrowNextImage, arrowNextImageWhiteBorder,
+    arrowBackImage, arrowBackImageWhiteBorder,
     imgFirstPage,
-    imgPlayButton1, imgPlayButton2,
-    imgMenu1, imgMenu2, imgMenu3,
-    buttonScreen1, buttonScreen1Yellow,
-    buttonScreen2, buttonScreen2Yellow,
-    buttonScreen3, buttonScreen3Yellow,
-    buttonScreen4, buttonScreen4Yellow,
-    buttonScreen5, buttonScreen5Yellow,
-    buttonScreen6, buttonScreen6Yellow,
-    buttonScreen7, buttonScreen7Yellow,
-    buttonScreen8, buttonScreen8Yellow;
+    imgPlayButton, imgPlayButtonWhiteBorder,
+    imgMenuButton, imgMenuButtonWhiteBorder, imgMenuBackground,
+    buttonHome, buttonHomeYellow,
+    buttonFlightsSCA, buttonFlightsSCAYellow,
+    buttonDelay, buttonDelayYellow,
+    buttonCancDivSCA, buttonCancDivSCAYellow,
+    buttonDistance, buttonDistanceYellow,
+    buttonFlightsPerDate, buttonFlightsPerDateYellow,
+    buttonMapUSA, buttonMapUSAYellow;
 
   Screen(int screenID) {
     this.screenID = screenID;
     screenID = currentNumberOfScreens;
     numberOfScreens += 1;
-    image1=loadImage("blueArrowNextDarker.png");
-    image2=loadImage("blueArrowNextDarker2.png");
-    image3=loadImage("blueArrowBackDarker.png");
-    image4=loadImage("blueArrowBackDarker2.png");
+    arrowNextImage=loadImage("blueArrowNextDarker.png");
+    arrowNextImageWhiteBorder=loadImage("blueArrowNextDarker2.png");
+    arrowBackImage=loadImage("blueArrowBackDarker.png");
+    arrowBackImageWhiteBorder=loadImage("blueArrowBackDarker2.png");
     imgFirstPage=loadImage("AirtrackrFirstPage.png");//added image first screen
-    imgPlayButton1=loadImage("startButton1.png");
-    imgPlayButton2=loadImage("startButton2.png");
-    imgMenu1=loadImage("menuButton.png");
-    imgMenu2=loadImage("menuButton2.png");
-    imgMenu3=loadImage("AirtrackrMenu2.png");
-    //load images for menuButtons
-    buttonScreen1=loadImage("home.png");
-    buttonScreen1Yellow=loadImage("home2.png");
-    buttonScreen2=loadImage("flightsSCA.png");
-    buttonScreen2Yellow=loadImage("flightsSCA2.png");
-    buttonScreen3=loadImage("delayAirline.png");
-    buttonScreen3Yellow=loadImage("delayAirline2.png");
-    buttonScreen4=loadImage("cancDivSCA.png");
-    buttonScreen4Yellow=loadImage("cancDivSCA2.png");
-    buttonScreen5=loadImage("distanceAirline.png");
-    buttonScreen5Yellow=loadImage("distanceAirline2.png");
-    buttonScreen6=loadImage("emissionsAirline.png");
-    buttonScreen6Yellow=loadImage("emissionsAirline2.png");
-    buttonScreen7=loadImage("flightsDate.png");
-    buttonScreen7Yellow=loadImage("flightsDate2.png");
-    buttonScreen8=loadImage("map.png");
-    buttonScreen8Yellow=loadImage("map2.png");
+    imgPlayButton=loadImage("startButton1.png");
+    imgPlayButtonWhiteBorder=loadImage("startButton2.png");
+    imgMenuButton=loadImage("menuButton.png");
+    imgMenuButtonWhiteBorder=loadImage("menuButton2.png");
+    imgMenuBackground=loadImage("AirtrackrMenu2.png");
+    //loads images for menuButtons
+    buttonHome=loadImage("home.png");
+    buttonHomeYellow=loadImage("home2.png");
+    buttonFlightsSCA=loadImage("flightsSCA.png");
+    buttonFlightsSCAYellow=loadImage("flightsSCA2.png");
+    buttonDelay=loadImage("delayAirline.png");
+    buttonDelayYellow=loadImage("delayAirline2.png");
+    buttonCancDivSCA=loadImage("cancDivSCA.png");
+    buttonCancDivSCAYellow=loadImage("cancDivSCA2.png");
+    buttonDistance=loadImage("distanceAirline.png");
+    buttonDistanceYellow=loadImage("distanceAirline2.png");
+    buttonFlightsPerDate=loadImage("flightsDate.png");
+    buttonFlightsPerDateYellow=loadImage("flightsDate2.png");
+    buttonMapUSA=loadImage("map.png");
+    buttonMapUSAYellow=loadImage("map2.png");
 
-    nextScreen = new Arrow(SCREENX - 100, SCREENY-80, image1, image2);
-    previousScreen = new Arrow(100-image3.width, SCREENY-80, image3, image4);
-    playButton = new Arrow(SCREENX/2-imgPlayButton1.width/2, SCREENY/2-imgPlayButton1.height/2, imgPlayButton1, imgPlayButton2);
-    menuButton= new Arrow(10, 42, imgMenu1, imgMenu2);
+    nextScreen = new Button(SCREENX - 100, SCREENY-80, arrowNextImage, arrowNextImageWhiteBorder);
+    previousScreen = new Button(100-arrowBackImage.width, SCREENY-80, arrowBackImage, arrowBackImageWhiteBorder);
+    playButton = new Button(SCREENX/2-imgPlayButton.width/2, SCREENY/2-imgPlayButton.height/2, imgPlayButton, imgPlayButtonWhiteBorder);
+    menuButton= new Button(10, 42, imgMenuButton, imgMenuButtonWhiteBorder);
     dropdowns = new Dropdown[] {};
     textWidgets = new TextWidget[]{};
-    arrayMenuButtons= new Arrow[8];
+    arrayMenuButtons= new Button[7];
     initialiseArrayMenuButtons(arrayMenuButtons);
   }
 
@@ -87,21 +83,21 @@ class Screen {
     this.dropdowns = dropdowns;
   }
 
-  Screen(int screenID, Dropdown[] dropdowns, TextWidget textWidgets[]) {//added a constructor that allows a Screen to have TextWidgets - K.N.
+  //added a constructor that allows a Screen to have TextWidgets - Katia Neli
+  Screen(int screenID, Dropdown[] dropdowns, TextWidget textWidgets[]) {
     this(screenID);
     this.dropdowns = dropdowns;
     this.textWidgets = textWidgets;
   }
 
-  void initialiseArrayMenuButtons(Arrow [] array) {
-    array[0]= new Arrow (SCREENX/3+17, SCREENY/3, buttonScreen1, buttonScreen1Yellow);
-    array[1]= new Arrow (SCREENX/2+33, SCREENY/3, buttonScreen2, buttonScreen2Yellow);
-    array[2]= new Arrow (SCREENX/3-10, SCREENY/3+80, buttonScreen3, buttonScreen3Yellow);
-    array[3]= new Arrow (SCREENX/2+30, SCREENY/3+65, buttonScreen4, buttonScreen4Yellow);
-    array[4]= new Arrow (SCREENX/3, SCREENY/3+150, buttonScreen5, buttonScreen5Yellow);
-    array[5]= new Arrow (SCREENX/2+52, SCREENY/3+150, buttonScreen6, buttonScreen6Yellow);
-    array[6]= new Arrow (SCREENX/3+10, SCREENY/3+220, buttonScreen7, buttonScreen7Yellow);
-    array[7]= new Arrow (SCREENX/2+67, SCREENY/3+220, buttonScreen8, buttonScreen8Yellow);
+  void initialiseArrayMenuButtons(Button [] array) {
+    array[0]= new Button (SCREENX/3+17, SCREENY/3, buttonHome, buttonHomeYellow);
+    array[1]= new Button (SCREENX/2+33, SCREENY/3, buttonFlightsSCA, buttonFlightsSCAYellow);
+    array[2]= new Button (SCREENX/3-10, SCREENY/3+80, buttonDelay, buttonDelayYellow);
+    array[3]= new Button (SCREENX/2+30, SCREENY/3+65, buttonCancDivSCA, buttonCancDivSCAYellow);
+    array[4]= new Button (SCREENX/3, SCREENY/3+150, buttonDistance, buttonDistanceYellow);
+    array[5]= new Button (SCREENX/2+62, SCREENY/3+1+150, buttonFlightsPerDate, buttonFlightsPerDateYellow);
+    array[6]= new Button (SCREENX/3+10, SCREENY/3+220, buttonMapUSA, buttonMapUSAYellow);
   }
 
 
@@ -139,12 +135,12 @@ class Screen {
       playButton.draw();
     }
 
-    if (screenID == 7) {
+    if (screenID == 6) {
       text("Insert date range\n(MM/DD/YYYY):", 100, SCREENY/2-2*DROPDOWN_HEIGHT-10);
     }
 
     if (screenID == NUMBER_OF_SCREENS - 1) {
-      image(imgMenu3, -15, 85);
+      image(imgMenuBackground, -15, 85);
       for (int i=0; i < arrayMenuButtons.length; i++) {
         arrayMenuButtons[i].draw();
       }
