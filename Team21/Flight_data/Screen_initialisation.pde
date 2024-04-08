@@ -187,7 +187,7 @@ void createScreens(int i) // i is the variable that decides which screen will be
     String title3 = "Number of departed, cancelled, and diverted per airport";
     for (int j = 0; j < dropdownArray[3].dropdownDisplay.length; j++)
     {
-      if (dropdownArray[4].clickMenu[j] % 2==0)
+      if (dropdownArray[3].clickMenu[j] % 2==0)
       {
         barChartValues1.add(q.getCancellationsAndDiversions(dropdownArray[3].dropdownDisplay[j])[0]);
         barChartValues1.add(q.getCancellationsAndDiversions(dropdownArray[3].dropdownDisplay[j])[1]);
