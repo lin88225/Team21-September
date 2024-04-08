@@ -13,7 +13,6 @@ int[] numFlightsAirport;
 int[] numFlightsState;
 int[] numFlightsCity;
 float [] averageFlightDelay;
-int [] carbonEmissions = {207, 44, 33, 136, 18, 11, 10, 32, 4};
 float [] averageFlightDistance;
 String [] arrayDates;
 int [][] dailyCityFlights;
@@ -99,7 +98,7 @@ void draw() {
   createScreens(currentScreenShown);
   screenArray[currentScreenShown].draw();
 
-  image(image, 0, 0);
+  //image(image, 0, 0);
   if (profile.show) {
     profile.draw();
     profile.mouseDragged();
@@ -157,7 +156,7 @@ void mouseWheel(MouseEvent event) {
   if (currentScreenShown==1)
   {
     wheelDropdown=dropdownArray;
-  } else if (currentScreenShown==7)
+  } else if (currentScreenShown==6)
   {
     wheelDropdown=dropdownArray2;
   }

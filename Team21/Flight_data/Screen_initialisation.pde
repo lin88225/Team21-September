@@ -4,48 +4,44 @@
  */
 void createDropdownArray()
 {
-  dropdownArray = new Dropdown[9];
+  dropdownArray = new Dropdown[8];
   String [] airlines = q.getArrayAirlines();
   for (int i = 0; i < dropdownArray.length; i++)
   {
     switch(i)
     {
-    case 8:
+    case 7:
       dropdownArray[i] = new Dropdown(SCREENX/2-DROPDOWN_WIDTH, SCREENY/2-4*DROPDOWN_HEIGHT, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
         "Number of flights per state", states, HOOKERS_GREEN, COLUMBIA_BLUE, DENIM, arial, true);
       break;
-    case 7:
+    case 6:
       dropdownArray[i] = new Dropdown(SCREENX/2+DROPDOWN_WIDTH, SCREENY/2-4*DROPDOWN_HEIGHT, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
         "Number of flights per city", cities, HOOKERS_GREEN, COLUMBIA_BLUE, DENIM, arial, true);
       break;
-    case 6:
+    case 5:
       dropdownArray[i] = new Dropdown(SCREENX/2-DROPDOWN_WIDTH, SCREENY/2-2*DROPDOWN_HEIGHT, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
         "Number of flights\nper airport", airports, HOOKERS_GREEN, COLUMBIA_BLUE, DENIM, arial, true);
       break;
-    case 5:
+    case 4:
       dropdownArray[i] = new Dropdown(SCREENX/2+DROPDOWN_WIDTH, SCREENY/2-2*DROPDOWN_HEIGHT, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
         "Average delay per airline", airlines, HOOKERS_GREEN, COLUMBIA_BLUE, DENIM, arial, true);
 
       break;
-    case 4:
+    case 3:
       dropdownArray[i] = new Dropdown(SCREENX/2-DROPDOWN_WIDTH, SCREENY/2, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
         "Number of cancellations and\ndiversions per state", states, HOOKERS_GREEN, COLUMBIA_BLUE, DENIM, arial, false);
       break;
-    case 3:
+    case 2:
       dropdownArray[i] = new Dropdown(SCREENX/2+DROPDOWN_WIDTH, SCREENY/2, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
         "Number of cancellations and\ndiversions per city", cities, HOOKERS_GREEN, COLUMBIA_BLUE, DENIM, arial, false);
       break;
-    case 2:
+    case 1:
       dropdownArray[i] = new Dropdown(SCREENX/2-DROPDOWN_WIDTH, SCREENY/2+2*DROPDOWN_HEIGHT, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
         "Number of cancellations and\ndiversions per airline", airlines, HOOKERS_GREEN, COLUMBIA_BLUE, DENIM, arial, false);
       break;
-    case 1:
+    case 0:
       dropdownArray[i] = new Dropdown(SCREENX/2+DROPDOWN_WIDTH, SCREENY/2+2*DROPDOWN_HEIGHT, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
         "Average flight\ndistance per airline", airlines, HOOKERS_GREEN, COLUMBIA_BLUE, DENIM, arial, true);
-      break;
-    case 0:
-      dropdownArray[i] = new Dropdown(SCREENX/2-DROPDOWN_WIDTH, SCREENY/2+4*DROPDOWN_HEIGHT, DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
-        "Carbon emissions\nper airline", airlines, HOOKERS_GREEN, COLUMBIA_BLUE, DENIM, arial, true);
       break;
     default:
     }
@@ -95,12 +91,7 @@ void createFirstScreens() {
 // function to create Screens
 void createScreens(int i) // i is the variable that decides which screen will be drawn
 {
-  //if (i == 1)
-  //{
-  //  screenArray[i] = new Screen(i, dropdownArray);
-  //} else
   if (i == 2)// A screen displaying the number of flights per state, city, and airport
-
   {
     screenArray[i] = new Screen(i);
     ArrayList <Integer> pieChartValues1 = new ArrayList <Integer>(0);
@@ -112,28 +103,28 @@ void createScreens(int i) // i is the variable that decides which screen will be
     ArrayList <Integer> pieChartValues3 = new ArrayList <Integer>(0);
     ArrayList <String> pieChartDescriptions3 = new ArrayList <String>(0);
     String title3 = "Number of flights per airport";
-    for (int j = 0; j < dropdownArray[8].dropdownDisplay.length; j++)
-    {
-      if (dropdownArray[8].clickMenu[j] % 2==0)
-      {
-        pieChartValues1.add(numFlightsState[j]);
-        pieChartDescriptions1.add(dropdownArray[8].dropdownDisplay[j]);
-      }
-    }
     for (int j = 0; j < dropdownArray[7].dropdownDisplay.length; j++)
     {
       if (dropdownArray[7].clickMenu[j] % 2==0)
       {
-        pieChartValues2.add(numFlightsCity[j]);
-        pieChartDescriptions2.add(dropdownArray[7].dropdownDisplay[j]);
+        pieChartValues1.add(numFlightsState[j]);
+        pieChartDescriptions1.add(dropdownArray[7].dropdownDisplay[j]);
       }
     }
     for (int j = 0; j < dropdownArray[6].dropdownDisplay.length; j++)
     {
       if (dropdownArray[6].clickMenu[j] % 2==0)
       {
+        pieChartValues2.add(numFlightsCity[j]);
+        pieChartDescriptions2.add(dropdownArray[6].dropdownDisplay[j]);
+      }
+    }
+    for (int j = 0; j < dropdownArray[5].dropdownDisplay.length; j++)
+    {
+      if (dropdownArray[5].clickMenu[j] % 2==0)
+      {
         pieChartValues3.add(numFlightsAirport[j]);
-        pieChartDescriptions3.add(dropdownArray[6].dropdownDisplay[j]);
+        pieChartDescriptions3.add(dropdownArray[5].dropdownDisplay[j]);
       }
     }
     int [] pieChartInts1 = new int[pieChartValues1.size()];
@@ -166,12 +157,12 @@ void createScreens(int i) // i is the variable that decides which screen will be
     String title = "Average delay per airline";
     String descriptionOfX = "Average delay (hours)";
     String descriptionOfY = "Airlines";
-    for (int j = 0; j < dropdownArray[5].dropdownDisplay.length; j++)
+    for (int j = 0; j < dropdownArray[4].dropdownDisplay.length; j++)
     {
-      if (dropdownArray[5].clickMenu[j] % 2 ==0)
+      if (dropdownArray[4].clickMenu[j] % 2 ==0)
       {
         barChartXValues.add(averageFlightDelay[j]);
-        barChartYValues.add(dropdownArray[5].dropdownDisplay[j]);
+        barChartYValues.add(dropdownArray[4].dropdownDisplay[j]);
       }
     }
     String [] barChartValuesY = barChartYValues.toArray(new String[0]);
@@ -194,39 +185,39 @@ void createScreens(int i) // i is the variable that decides which screen will be
     ArrayList <Integer> barChartValues3 = new ArrayList <Integer>(0);
     ArrayList <String> barChartDescriptions3 = new ArrayList <String>(0);
     String title3 = "Number of departed, cancelled, and diverted per airport";
-    for (int j = 0; j < dropdownArray[4].dropdownDisplay.length; j++)
+    for (int j = 0; j < dropdownArray[3].dropdownDisplay.length; j++)
     {
       if (dropdownArray[4].clickMenu[j] % 2==0)
       {
-        barChartValues1.add(q.getCancellationsAndDiversions(dropdownArray[4].dropdownDisplay[j])[0]);
-        barChartValues1.add(q.getCancellationsAndDiversions(dropdownArray[4].dropdownDisplay[j])[1]);
-        barChartValues1.add(q.getCancellationsAndDiversions(dropdownArray[4].dropdownDisplay[j])[2]);
+        barChartValues1.add(q.getCancellationsAndDiversions(dropdownArray[3].dropdownDisplay[j])[0]);
+        barChartValues1.add(q.getCancellationsAndDiversions(dropdownArray[3].dropdownDisplay[j])[1]);
+        barChartValues1.add(q.getCancellationsAndDiversions(dropdownArray[3].dropdownDisplay[j])[2]);
         barChartDescriptions1.add("");
-        barChartDescriptions1.add(dropdownArray[4].dropdownDisplay[j]);
+        barChartDescriptions1.add(dropdownArray[3].dropdownDisplay[j]);
         barChartDescriptions1.add("");
-      }
-    }
-    for (int j = 0; j < dropdownArray[3].dropdownDisplay.length; j++)
-    {
-      if (dropdownArray[3].clickMenu[j] % 2==0)
-      {
-        barChartValues2.add(q.getCancellationsAndDiversions(dropdownArray[3].dropdownDisplay[j])[0]);
-        barChartValues2.add(q.getCancellationsAndDiversions(dropdownArray[3].dropdownDisplay[j])[1]);
-        barChartValues2.add(q.getCancellationsAndDiversions(dropdownArray[3].dropdownDisplay[j])[2]);
-        barChartDescriptions2.add("");
-        barChartDescriptions2.add(dropdownArray[3].dropdownDisplay[j]);
-        barChartDescriptions2.add("");
       }
     }
     for (int j = 0; j < dropdownArray[2].dropdownDisplay.length; j++)
     {
       if (dropdownArray[2].clickMenu[j] % 2==0)
       {
-        barChartValues3.add(q.getCancellationsAndDiversions(dropdownArray[2].dropdownDisplay[j])[0]);
-        barChartValues3.add(q.getCancellationsAndDiversions(dropdownArray[2].dropdownDisplay[j])[1]);
-        barChartValues3.add(q.getCancellationsAndDiversions(dropdownArray[2].dropdownDisplay[j])[2]);
+        barChartValues2.add(q.getCancellationsAndDiversions(dropdownArray[2].dropdownDisplay[j])[0]);
+        barChartValues2.add(q.getCancellationsAndDiversions(dropdownArray[2].dropdownDisplay[j])[1]);
+        barChartValues2.add(q.getCancellationsAndDiversions(dropdownArray[2].dropdownDisplay[j])[2]);
+        barChartDescriptions2.add("");
+        barChartDescriptions2.add(dropdownArray[2].dropdownDisplay[j]);
+        barChartDescriptions2.add("");
+      }
+    }
+    for (int j = 0; j < dropdownArray[1].dropdownDisplay.length; j++)
+    {
+      if (dropdownArray[1].clickMenu[j] % 2==0)
+      {
+        barChartValues3.add(q.getCancellationsAndDiversions(dropdownArray[1].dropdownDisplay[j])[0]);
+        barChartValues3.add(q.getCancellationsAndDiversions(dropdownArray[1].dropdownDisplay[j])[1]);
+        barChartValues3.add(q.getCancellationsAndDiversions(dropdownArray[1].dropdownDisplay[j])[2]);
         barChartDescriptions3.add("");
-        barChartDescriptions3.add(dropdownArray[2].dropdownDisplay[j]);
+        barChartDescriptions3.add(dropdownArray[1].dropdownDisplay[j]);
         barChartDescriptions3.add("");
       }
     }
@@ -268,35 +259,11 @@ void createScreens(int i) // i is the variable that decides which screen will be
     String title = "Average distance per airline";
     String descriptionOfX = "Average distance (miles)";
     String descriptionOfY = "Airlines";
-    for (int j = 0; j < dropdownArray[1].dropdownDisplay.length; j++)
-    {
-      if (dropdownArray[1].clickMenu[j] % 2 ==0)
-      {
-        barChartXValues.add(averageFlightDistance[j]);
-        barChartYValues.add(dropdownArray[1].dropdownDisplay[j]);
-      }
-    }
-    String [] barChartValuesY = barChartYValues.toArray(new String[0]);
-    float [] barChartValuesX = new float [barChartXValues.size()];
-    for (int j = 0; j < barChartValuesX.length; j++)
-    {
-      barChartValuesX[j] = barChartXValues.get(j);
-    }
-    screenArray[i].addBarChart(barChartValuesX, barChartValuesY, SCREENX/4, SCREENY/3, title, descriptionOfX, descriptionOfY);
-  } else if (i == 6) // calculates the number of metric tons of carbon emissions released per airline, rounded to the nearest million
-
-  {
-    screenArray[i] = new Screen(i);
-    ArrayList <Integer> barChartXValues = new ArrayList <Integer>(0);
-    ArrayList <String> barChartYValues = new ArrayList <String>(0);
-    String title = "Total carbon emissions per airline";
-    String descriptionOfX = "Total emissions ('000000 metric tons)";
-    String descriptionOfY = "Airlines";
     for (int j = 0; j < dropdownArray[0].dropdownDisplay.length; j++)
     {
       if (dropdownArray[0].clickMenu[j] % 2 ==0)
       {
-        barChartXValues.add(carbonEmissions[j]);
+        barChartXValues.add(averageFlightDistance[j]);
         barChartYValues.add(dropdownArray[0].dropdownDisplay[j]);
       }
     }
@@ -307,7 +274,7 @@ void createScreens(int i) // i is the variable that decides which screen will be
       barChartValuesX[j] = barChartXValues.get(j);
     }
     screenArray[i].addBarChart(barChartValuesX, barChartValuesY, SCREENX/4, SCREENY/3, title, descriptionOfX, descriptionOfY);
-  } else if (i == 7)
+  } else if (i == 6)
   {
     //Added screen that displays the number of flights per day of a selected state, city or airport
     //The days are being selected choosing a start date and an end date. This can be done by writing on the two TextWidgets
@@ -412,7 +379,7 @@ void createScreens(int i) // i is the variable that decides which screen will be
     if (barChartLabels3.length !=0) {
       screenArray[i].addBarChart(barChartInts3, barChartLabels3, SCREENX/3, 450, "", descriptionOfX, "");
     }
-  } else if (i == 8) {
+  } else if (i == 7) {
     screenArray[i] = new Screen(i);
     //for the map
   } else if (i == NUMBER_OF_SCREENS -1) {
