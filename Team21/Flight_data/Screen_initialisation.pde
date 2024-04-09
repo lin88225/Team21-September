@@ -1,4 +1,5 @@
-/** a function to create the dropdown array that gets displayed to the first screen to select data to display
+/**
+ A function to create the dropdown array that gets displayed to the first screen to select data to display
  Some dropdowns may only have one value selected, and some can have multiple
  Cara Saulnier
  */
@@ -46,8 +47,6 @@ void createDropdownArray()
     default:
     }
   }
-}
-void createDropdownArrayForDateRange() {
   //Created and initialised a new array of dropdowns for screen number 6 based on what Cara Saulnier did for the others in the code above
   //Katia Neli
   dropdownArrayForDateRange=new Dropdown[3];
@@ -87,7 +86,6 @@ void createFirstScreens() {
   screenArray[1] = new Screen(1, dropdownArray);
 }
 
-// function to create Screens
 void createScreens(int i) // i is the variable that decides which screen will be drawn
 {
   if (i == 2)// A screen displaying the number of flights per state, city, and airport
@@ -183,7 +181,7 @@ void createScreens(int i) // i is the variable that decides which screen will be
     String title2 = "Number of flights departed, cancelled, and diverted per city";
     ArrayList <Integer> barChartValues3 = new ArrayList <Integer>(0);
     ArrayList <String> barChartDescriptions3 = new ArrayList <String>(0);
-    String title3 = "Number of departed, cancelled, and diverted per airport";
+    String title3 = "Number of departed, cancelled, and diverted per airline";
     for (int j = 0; j < dropdownArray[3].dropdownDisplay.length; j++)
     {
       if (dropdownArray[3].clickMenu[j] % 2==0)
@@ -249,7 +247,7 @@ void createScreens(int i) // i is the variable that decides which screen will be
     if (barChartLabels3.length !=0) {
       screenArray[i].addBarChart(barChartInts3, barChartLabels3, SCREENX/4, 450, title3, "Number of flights cancelled", "");
     }
-  } else if (i ==5) // calculates teh average flight distance
+  } else if (i ==5) // calculates the average flight distance
 
   {
     screenArray[i] = new Screen(i);
@@ -275,10 +273,12 @@ void createScreens(int i) // i is the variable that decides which screen will be
     screenArray[i].addBarChart(barChartValuesX, barChartValuesY, SCREENX/4, SCREENY/3, title, descriptionOfX, descriptionOfY);
   } else if (i == 6)
   {
-    //Added screen that displays the number of flights per day of a selected state, city or airport.
-    //The days are being selected choosing a start date and an end date. This can be done by writing on the two TextWidgets.
-    //I used methods that Cara Saulnier already made in the code above.
-    //Katia Neli
+    /*
+     Added screen that displays the number of flights per day of a selected state, city or airport.
+     The days are being selected choosing a start date and an end date. This can be done by writing on the two TextWidgets.
+     I used methods that Cara Saulnier already made in the code above.
+     Katia Neli
+     */
 
     screenArray[i] = new Screen(i, dropdownArrayForDateRange, text);
     int indexStartDate=0;

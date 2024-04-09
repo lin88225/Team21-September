@@ -1,4 +1,5 @@
-/** A class used to calculate and sort data and then stores them into different arrays
+/**
+ A class used to calculate and sort data and then stores them into different arrays
  written by Katia Neli and Cara Saulnier, with efficiency edits written by Lloyd McNally
  */
 import java.util.HashSet;
@@ -68,11 +69,14 @@ class Query {
   }
 
   String[] getArrayDates() {
-    Set<String> dateSet = new HashSet<>();
+    // Creates an ArrayList with unique airlines values
+    ArrayList<String> date = new ArrayList<>();
     for (int i = 1; i < theData.length; i++) {
-      dateSet.add(theData[i].FlightDate);
+      String value = theData[i].FlightDate;
+      if (!date.contains(value)) //checks if it does not contain the airline yet
+        date.add(value);
     }
-    return dateSet.toArray(new String[0]);
+    return date.toArray(new String[date.size()]);//converts to Array and returns it in alphabetical order
   }
 
   int [] getNumberFlightsPerAirport() {

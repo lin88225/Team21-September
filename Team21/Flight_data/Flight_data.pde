@@ -68,7 +68,6 @@ void setup() {
 
   createDropdownArray();
   createFirstScreens();
-  createDropdownArrayForDateRange();//dropdown array for screen(6)
 
   //creates 2 objects of TextWidget class
   text=new TextWidget[2];
