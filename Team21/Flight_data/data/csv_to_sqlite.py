@@ -1,3 +1,7 @@
+# Aisling McNamara 20/3/2024
+# Python script to convert CSV to SQLite Database
+
+
 import sqlite3
 import csv
 
