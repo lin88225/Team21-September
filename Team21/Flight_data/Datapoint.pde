@@ -1,7 +1,8 @@
-//A version of the Datapoint Class that takes
-//A String array of loaded data and a specific line
-/** Code initally written by Lloyd McNally
- Small mistakes regarding numbers were fixed, with obsolete code removed. The functions calling the code were changed as well as changing the constructor in order to run more efficiently. - Cara Saulnier
+/**
+ A version of the Datapoint Class that takes
+ A String array of loaded data and a specific line
+ Code initally written by Lloyd McNally
+ Small mistakes regarding numbers were fixed, with obsolete code removed. The functions calling the code were changed as well as changing the constructor to only read the file once - Cara Saulnier
  */
 
 public class Datapoint {
@@ -29,11 +30,11 @@ public class Datapoint {
 
     this.Origin =                   dataInString[3];
     this.OriginCityName =           dataInString[4].replaceAll("\"", "");//replaceAll() is used to remove "" from the String
-    this.OriginStateName =          dataInString[6].replaceAll("\"", "");
+    this.OriginStateName =          dataInString[6];
     this.OriginWac =                Integer.parseInt(dataInString[7]);
 
     this.Dest =                     dataInString[8];
-    this.DestinationCityName =      dataInString[9];
+    this.DestinationCityName =      dataInString[9].replaceAll("\"", "");//replaceAll() is used to remove "" from the String
     this.DestinationStateName =     dataInString[11];
     this.DestWac =                  Integer.parseInt(dataInString[12]);
 
@@ -72,10 +73,12 @@ public class Datapoint {
     this.diverted =             diverted;
   }
 }
-//Written by Lloyd McNally
-//Improved by Cara Saulnier
-//A public function for intializing an arraylist of datapoints
-//(EG: if you have a screen to represent 30 datapoints, use an arraylist of size 30)
+/*
+ Written by Lloyd McNally
+ Made more efficient by Cara Saulnier
+ A public function for intializing an arraylist of datapoints
+ (EG: if you have a screen to represent 30 datapoints, use an arraylist of size 30)
+ */
 ArrayList <Datapoint> initializeDataList (String []fileData, int amount) {
   ArrayList <Datapoint> result = new ArrayList <Datapoint> (0);
 

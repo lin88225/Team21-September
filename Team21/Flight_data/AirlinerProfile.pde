@@ -8,11 +8,9 @@ public class AirlinerProfile {
   color darker = color(0, 100, 100, 100);
   public boolean show = false;
   public PImage logo, planePicture;
-  //public float emissionPerDistanceUnit;
   public float ratio = 0.2;
   public int totalNumberOfCrashes, disX, disY;
   public int posX = SCREENX/2, posY = SCREENY/2;
-  //public String foodMenu;
   public String name, description, lastUpdated, lastCrashDate;
   public String logoFName, planeFName, mainFName;
   int resizeTo = (int)(ratio*PROFILE_SIZE);
@@ -32,10 +30,8 @@ public class AirlinerProfile {
     String[] desc = loadStrings(this.mainFName);
     name = desc[0];
 
-    //foodMenu = desc[1];
     lastCrashDate = desc[2];
     totalNumberOfCrashes = Integer.parseInt(desc[3]);
-    //emissionPerDistanceUnit = Float.parseFloat(desc[4]);
     lastUpdated = desc[5];
     description = desc[6] + "\n" + desc[7] ;
   }
@@ -67,8 +63,6 @@ public class AirlinerProfile {
     text("Date of last plane crash:" + lastCrashDate, posX, textYPos + spaceIncrement*3);
     text("Number of planes crashed:" + totalNumberOfCrashes, posX, textYPos + spaceIncrement*4);
 
-    //text("Emmissions per distance unit:" + emissionPerDistanceUnit, posX, textYPos + spaceIncrement*5);
-    //text("In-Flight menu:" + foodMenu, posX, textYPos + spaceIncrement*7);
 
 
     text(description, posX, textYPos + spaceIncrement*10);

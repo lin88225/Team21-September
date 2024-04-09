@@ -106,27 +106,25 @@ class Screen {
 
   public void draw() {
     background(backgroundColor);
-    //Button button;
     PieChart pieChart;
     BarChart barChart;
-    //for (int i = 0; i < buttons.size(); i++)
-    //{
-    // button = buttons.get(i);
-    // button.draw();
-    //}
+
     for (int i = 0; i < dropdowns.length; i++)
     {
       dropdowns[i].draw();
     }
+    
     for (int i = 0; i < textWidgets.length; i++)
     {
       textWidgets[i].draw();
     }
+    
     for (int i = 0; i < pieCharts.size(); i++)
     {
       pieChart = pieCharts.get(i);
       pieChart.draw();
     }
+    
     for (int i = 0; i < barCharts.size(); i++)
     {
       barChart = barCharts.get(i);
@@ -192,18 +190,9 @@ class Screen {
       }
     }
 
-    //for (int i = 0; i < buttons.size(); i++)
-    //{
-    //  if (buttons.get(i).isMouseOver())
-    //  {
-    //    return buttons.get(i).getID();
-    //  }
-    //}
-
     return NO_BUTTON_PRESSED;
   }
 
-  //do we need the remove methods?
   public void addPieChart(int [] values, int diameter, int x, int y, String [] description, String title) {
     PieChart pieChart = new PieChart(values, diameter, x, y, description, title);
     pieCharts.add(pieChart);
@@ -227,21 +216,7 @@ class Screen {
 
     return barCharts.get(index);
   }
-  /*
-  public void addDropdown(int x, int y, int width, int height, String dropdownTitle, String [] dropdownDisplay, color titleColour, color menuColour, color clickColour, PFont dropdownFont, boolean multipleSelection){
-   
-   Dropdown dropdown = new Dropdown(x, y, width, height, dropdownTitle, dropdownDisplay, titleColour, menuColour, clickColour, dropdownFont, multipleSelection);
-   dropdowns.add(dropdown);
-   }
-   public void removeDropdown(int index){
-   dropdowns.remove(index);
-   }
-   public Dropdown getDropdown(int index){
-   return dropdowns.get(index);
-   }
-   */
 
-  // do we need these methods???
   /*public void addButton(float xpos, float ypos, float height, float width, String text) {
    Button button = new Button( xpos, ypos, height, width, text);
    buttons.add(button);

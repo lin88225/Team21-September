@@ -1,4 +1,5 @@
-/** a function to create the dropdown array that gets displayed to the first screen to select data to display
+/**
+ A function to create the dropdown array that gets displayed to the first screen to select data to display
  Some dropdowns may only have one value selected, and some can have multiple
  Cara Saulnier
  */
@@ -46,8 +47,6 @@ void createDropdownArray()
     default:
     }
   }
-}
-void createDropdownArrayForDateRange() {
   //Created and initialised a new array of dropdowns for screen number 6 based on what Cara Saulnier did for the others in the code above
   //Katia Neli
   dropdownArrayForDateRange=new Dropdown[3];
@@ -87,7 +86,6 @@ void createFirstScreens() {
   screenArray[1] = new Screen(1, dropdownArray);
 }
 
-// function to create Screens
 void createScreens(int i) // i is the variable that decides which screen will be drawn
 {
   if (i == 2)// A screen displaying the number of flights per state, city, and airport
@@ -275,10 +273,12 @@ void createScreens(int i) // i is the variable that decides which screen will be
     screenArray[i].addBarChart(barChartValuesX, barChartValuesY, SCREENX/4, SCREENY/3, title, descriptionOfX, descriptionOfY);
   } else if (i == 6)
   {
-    //Added screen that displays the number of flights per day of a selected state, city or airport.
-    //The days are being selected choosing a start date and an end date. This can be done by writing on the two TextWidgets.
-    //I used methods that Cara Saulnier already made in the code above.
-    //Katia Neli
+    /*
+     Added screen that displays the number of flights per day of a selected state, city or airport.
+     The days are being selected choosing a start date and an end date. This can be done by writing on the two TextWidgets.
+     I used methods that Cara Saulnier already made in the code above.
+     Katia Neli
+     */
 
     screenArray[i] = new Screen(i, dropdownArrayForDateRange, text);
     int indexStartDate=0;
@@ -296,10 +296,8 @@ void createScreens(int i) // i is the variable that decides which screen will be
     for (int j = 0; j < arrayDates.length; j++) {//gives the indexes for the start and end date
       if (arrayDates[j].equals(startDate))
         indexStartDate=j;
-        println(indexStartDate);
       if (arrayDates[j].equals(endDate))
         indexEndDate=j;
-        println(indexEndDate);
     }
 
     int sumFlightsState=0;
