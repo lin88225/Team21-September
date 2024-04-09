@@ -165,7 +165,7 @@ class Query {
     int answer [][] = new int [dates.length][airports.length];
     for (int i = 1; i < theData.length; i++)
     {
-      for (int days = 0; days < answer.length; days++)
+      for (int days = 0; days < answer.length; days++) {
         for (int airportInts = 0; airportInts < answer[days].length; airportInts++)
         {
           if (theData[i].FlightDate.equals(dates[days]) && theData[i].Origin.equals(airports[airportInts]))
@@ -174,17 +174,21 @@ class Query {
             break;
           }
         }
+        if (theData[i].FlightDate.equals(dates[days])) {
+          break;
+        }
+      }
     }
     return answer;
   }
 
   int[][] getNumberFlightsPerStateForEveryDay() { // first index is the date, second is the state
-    String states[]=getArrayStates();
+    String states[]=   getArrayStates();
     String dates [] =  getArrayDates();
     int answer [][] = new int [dates.length][states.length];
     for (int i = 1; i < theData.length; i++)
     {
-      for (int days = 0; days < answer.length; days++)
+      for (int days = 0; days < answer.length; days++) {
         for (int stateInts = 0; stateInts < answer[days].length; stateInts++)
         {
           if (theData[i].FlightDate.equals(dates[days]) && theData[i].OriginStateName.equals(states[stateInts]))
@@ -193,6 +197,10 @@ class Query {
             break;
           }
         }
+        if (theData[i].FlightDate.equals(dates[days])) {
+          break;
+        }
+      }
     }
     return answer;
   }
@@ -203,7 +211,7 @@ class Query {
     int answer [][] = new int [dates.length][cities.length];
     for (int i = 1; i < theData.length; i++)
     {
-      for (int days = 0; days < answer.length; days++)
+      for (int days = 0; days < answer.length; days++) {
         for (int cityInts = 0; cityInts < answer[days].length; cityInts++)
         {
           if (theData[i].FlightDate.equals(dates[days]) && theData[i].OriginCityName.equals(cities[cityInts]))
@@ -212,6 +220,10 @@ class Query {
             break;
           }
         }
+        if (theData[i].FlightDate.equals(dates[days])) {
+          break;
+        }
+      }
     }
     return answer;
   }

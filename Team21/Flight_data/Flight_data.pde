@@ -48,7 +48,6 @@ void setup() {
   //query creation
   flightInfo = readData();
   q= new Query(1, flightInfo.length);
-
   numFlightsAirport=q.getNumberFlightsPerAirport();
   numFlightsState=q.getNumberFlightsPerState();
   numFlightsCity=q.getNumberFlightsPerCity();
@@ -56,8 +55,10 @@ void setup() {
   averageFlightDistance = q.averageFlightDistance();
   arrayDates =q.getArrayDates();
   dailyCityFlights = q.getNumberFlightsPerCityForEveryDay();
+
   dailyStateFlights = q.getNumberFlightsPerStateForEveryDay();
   dailyAirportFlights = q.getNumberFlightsPerAirportForEveryDay();
+
   airports = q.getArrayAirports();
   states = q.getArrayStates();
   cities = q.getArrayCities();
@@ -83,11 +84,17 @@ void setup() {
   profile = new AirlinerProfile("AA");
 }
 
-
+int screenCheck = 0;
 void draw() {
   background(255);
   //draws screens
+  if (screenCheck != currentScreenShown) {
+    createScreens(currentScreenShown);
+    screenCheck = currentScreenShown;
+  }
+  if (currentScreenShown == 6 && !mousePressed){
   createScreens(currentScreenShown);
+  }
   screenArray[currentScreenShown].draw();
   if (profile.show) {
     profile.draw();
