@@ -1,7 +1,7 @@
-/** 
-Quicksort Class with Datapoint sorting functions
-Aisling McNamara 26/3/2024
-*/
+/**
+ Quicksort Class with Datapoint sorting functions
+ Aisling McNamara 26/3/2024
+ */
 
 void quickSortByIntArrivalTime(ArrayList<Datapoint> flights, int low, int high) {
   if (low < high) {

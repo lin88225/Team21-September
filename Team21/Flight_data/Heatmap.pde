@@ -1,5 +1,7 @@
-// Aisling McNamara 2/4/2024
-// Global Airports SQLite database: https://www.partow.net/miscellaneous/airportdatabase/
+/**
+ Aisling McNamara 2/4/2024
+ Global Airports SQLite database: https://www.partow.net/miscellaneous/airportdatabase/
+ */
 
 import java.sql.Connection;
 import java.sql.DriverManager;

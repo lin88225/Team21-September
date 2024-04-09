@@ -1,4 +1,5 @@
-/** A class used to calculate and sort data and then stores them into different arrays
+/**
+ A class used to calculate and sort data and then stores them into different arrays
  written by Katia Neli and Cara Saulnier, with efficiency edits written by Lloyd McNally
  */
 import java.util.HashSet;

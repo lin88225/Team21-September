@@ -1,5 +1,7 @@
-/** Code to draw widgets to a screen
- These widgets are used when implementing the dropdown menu
+/**
+ Code to draw widgets to a screen
+ These widgets are used when implementing the dropdown menu. 
+ If hovering over a widget, the colour of the outline is changed.
  Cara Saulnier
  */
 class Widget {
