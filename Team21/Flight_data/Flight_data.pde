@@ -33,8 +33,11 @@ void settings() {
 // The code used to use multiple fonts, I went through all  the files and now they are all Gadugi, even if the file names say otherwise - Cara Saulnier
 
 void setup() {
-  // Added an image at the top of the screens and changed the colour/shape of widgets to improve the design.
-  // Katia Neli
+  /** Added an image at the top of the screens and changed the colour/shape of widgets to improve the design.
+   Customized background for the first screen, top image for each page, menu screen background, and buttons appearance.
+   Katia Neli
+   */
+
   background(MIMI_PINK);
   textAlign(CENTER, CENTER);
   rectMode(CENTER);
@@ -137,9 +140,11 @@ void mousePressed() {
 }
 
 void mouseWheel(MouseEvent event) {
-  // Modified body of this method created by Cara Saulnier because in this way it can take different dropdown arrays
-  // like the one in screen(1) and also on screen(7) even if they have different names
-  // Katia Neli
+  /**
+   Modified body of this method created by Cara Saulnier because in this way it can take different dropdown arrays
+   like the one in screen(1) and also on screen(7) even if they have different names
+   Katia Neli
+   */
   if (currentScreenShown==1)
   {
     wheelDropdown=dropdownArray;

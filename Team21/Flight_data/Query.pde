@@ -1,29 +1,30 @@
-/** A class used to calculate and sort data and then stores them into different arrays
+/**
+ A class used to calculate and sort data and then stores them into different arrays
  written by Katia Neli and Cara Saulnier, with efficiency edits written by Lloyd McNally
+ 
+ UML of the class:
+ getArrayAirports(): String[]
+ getArrayStates(): String[]
+ getArrayCities(): String[]
+ getArrayAirlines(): String[]
+ getArrayDates(): String []
+ getNumberFlightsPerAirport(): int[]
+ getNumberFlightsPerState(): int[]
+ getNumberFlightsPerCity(): int[]
+ getNumberFlightsPerAirline(): int[]
+ getNumberFlightsPerAirportForEveryDay(): int[][]  // first index is the date, second is the airport
+ getNumberFlightsPerCityForEveryDay(): int[][]  // first index is the date, second is the city
+ getNumberFlightsPerStateForEveryDay(): int[][]  // first index is the date, second is the state
+ calculateAverageDelay(): float[]
+ getCancellationsAndDiversions(String placeName): int[]
+ averageFlightDistance(): float[]
  */
 import java.util.HashSet;
 import java.util.Set;
 
 class Query {
-  /*
-   getArrayAirports(): String[]
-   getArrayStates(): String[]
-   getArrayCities(): String[]
-   getArrayAirlines(): String[]
-   getArrayDates(): String []
-   getNumberFlightsPerAirport(): int[]
-   getNumberFlightsPerState(): int[]
-   getNumberFlightsPerCity(): int[]
-   getNumberFlightsPerAirline(): int[]
-   getNumberFlightsPerAirportForEveryDay(): int[][]  // first index is the date, second is the airport
-   getNumberFlightsPerCityForEveryDay(): int[][]  // first index is the date, second is the city
-   getNumberFlightsPerStateForEveryDay(): int[][]  // first index is the date, second is the state
-   calculateAverageDelay(): float[]
-   getCancellationsAndDiversions(String placeName): int[]
-   averageFlightDistance(): float[]
-   */
-  Datapoint [] theData;
 
+  Datapoint [] theData;
   int start;
   int amount;
 

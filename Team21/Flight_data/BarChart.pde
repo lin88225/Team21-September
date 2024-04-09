@@ -1,7 +1,7 @@
 /**
  This class creates a bar chart based on the data provided.
- Put into constructor as parameters array of int and string we want to represent
- and also the title name and description of 2 axis.
+ Put into constructor as parameters an array of int and string od the data we want to represent,
+ the title name, the description of 2 axis and the position in which we want to place it.
  EXAMPLE: number of flights per airport
  Katia Neli
  */

@@ -1,24 +1,25 @@
-private static int numberOfScreens = NUMBER_OF_SCREENS;
-private static int currentNumberOfScreens = 0;
-private static int currentScreenShown = 0;
 /**
  Class written by Michael Moore that creates and draws screens and deals with what is in it.
+ 
  Updated Screen class: converted the 2 buttons Next and Back into Arrows,
  added image edited on Canva as background of our start page (screen(0)),
  added playButton for start page so you can enter the app,
  added a menu screen that will appear once you press the menu button
- (this screen allows you to navigate through the screens without the arrows).
+ (this screen allows you to navigate through the screens without the arrows)
+ and added buttons of menuScreen.
  Katia Neli
  */
+
+int numberOfScreens = NUMBER_OF_SCREENS;
+int currentNumberOfScreens = 0;
+int currentScreenShown = 0;
+
 class Screen {
 
   ArrayList<PieChart> pieCharts = new ArrayList<>();
   ArrayList<BarChart> barCharts = new ArrayList<>();
   Dropdown[] dropdowns;
   TextWidget[] textWidgets;
-  // ArrayList<Button> buttons = new ArrayList<>();
-  color backgroundColor = MIMI_PINK;
-  int screenID;
   Button nextScreen;
   Button previousScreen;
   Button playButton;
@@ -37,6 +38,8 @@ class Screen {
     buttonDistance, buttonDistanceYellow,
     buttonFlightsPerDate, buttonFlightsPerDateYellow,
     buttonMapUSA, buttonMapUSAYellow;
+  color backgroundColor = MIMI_PINK;
+  int screenID;
 
   Screen(int screenID) {
     this.screenID = screenID;
