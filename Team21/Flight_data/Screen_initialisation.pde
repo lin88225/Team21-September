@@ -183,7 +183,7 @@ void createScreens(int i) // i is the variable that decides which screen will be
     String title2 = "Number of flights departed, cancelled, and diverted per city";
     ArrayList <Integer> barChartValues3 = new ArrayList <Integer>(0);
     ArrayList <String> barChartDescriptions3 = new ArrayList <String>(0);
-    String title3 = "Number of departed, cancelled, and diverted per airport";
+    String title3 = "Number of departed, cancelled, and diverted per airline";
     for (int j = 0; j < dropdownArray[3].dropdownDisplay.length; j++)
     {
       if (dropdownArray[3].clickMenu[j] % 2==0)
@@ -249,7 +249,7 @@ void createScreens(int i) // i is the variable that decides which screen will be
     if (barChartLabels3.length !=0) {
       screenArray[i].addBarChart(barChartInts3, barChartLabels3, SCREENX/4, 450, title3, "Number of flights cancelled", "");
     }
-  } else if (i ==5) // calculates teh average flight distance
+  } else if (i ==5) // calculates the average flight distance
 
   {
     screenArray[i] = new Screen(i);
@@ -296,8 +296,10 @@ void createScreens(int i) // i is the variable that decides which screen will be
     for (int j = 0; j < arrayDates.length; j++) {//gives the indexes for the start and end date
       if (arrayDates[j].equals(startDate))
         indexStartDate=j;
+        println(indexStartDate);
       if (arrayDates[j].equals(endDate))
         indexEndDate=j;
+        println(indexEndDate);
     }
 
     int sumFlightsState=0;

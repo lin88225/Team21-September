@@ -68,11 +68,14 @@ class Query {
   }
 
   String[] getArrayDates() {
-    Set<String> dateSet = new HashSet<>();
+    // Creates an ArrayList with unique airlines values
+    ArrayList<String> date = new ArrayList<>();
     for (int i = 1; i < theData.length; i++) {
-      dateSet.add(theData[i].FlightDate);
+      String value = theData[i].FlightDate;
+      if (!date.contains(value)) //checks if it does not contain the airline yet
+        date.add(value);
     }
-    return dateSet.toArray(new String[0]);
+    return date.toArray(new String[date.size()]);//converts to Array and returns it in alphabetical order
   }
 
   int [] getNumberFlightsPerAirport() {
