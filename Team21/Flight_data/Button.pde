@@ -27,7 +27,7 @@ class Button {
     this.width = width;
     arial = loadFont("Arial-BoldMT-14.vlw");
     this.text = text;
-    colorOfButton = DENIM;
+    colorOfButton = COLUMBIA_BLUE;
   }
 
   Button(float xpos, float ypos, float height, float width, String text, color colorOfButton) {
@@ -65,6 +65,7 @@ class Button {
       else
         image(normalButtonImage, xpos, ypos);
     }
+    stroke(BLACK);
   }
 
   boolean isMouseOver() {
