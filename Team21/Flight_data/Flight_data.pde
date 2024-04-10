@@ -8,6 +8,7 @@ Screen [] screenArray;
 Dropdown [] dropdownArray;
 Dropdown [] dropdownArrayForDateRange;
 Dropdown[] wheelDropdown;
+Dropdown[] mapDropdown;
 String [] flightInfo;
 int[] numFlightsAirport;
 int[] numFlightsState;
@@ -26,6 +27,7 @@ TextWidget startDateTextWidget;
 TextWidget endDateTextWidget;
 String startDate="";
 String endDate="";
+int counter = 0;
 
 void settings() {
   size(SCREENX, SCREENY);
@@ -33,11 +35,8 @@ void settings() {
 // The code used to use multiple fonts, I went through all  the files and now they are all Gadugi, even if the file names say otherwise - Cara Saulnier
 
 void setup() {
-  /** Added an image at the top of the screens and changed the colour/shape of widgets to improve the design.
-   Customized background for the first screen, top image for each page, menu screen background, and buttons appearance.
-   Katia Neli
-   */
-
+  // Added an image at the top of the screens and changed the colour/shape of widgets to improve the design.
+  // Katia Neli
   background(MIMI_PINK);
   textAlign(CENTER, CENTER);
   rectMode(CENTER);
@@ -51,6 +50,7 @@ void setup() {
   //query creation
   flightInfo = readData();
   q= new Query(1, flightInfo.length);
+
   numFlightsAirport=q.getNumberFlightsPerAirport();
   numFlightsState=q.getNumberFlightsPerState();
   numFlightsCity=q.getNumberFlightsPerCity();
@@ -58,10 +58,8 @@ void setup() {
   averageFlightDistance = q.averageFlightDistance();
   arrayDates =q.getArrayDates();
   dailyCityFlights = q.getNumberFlightsPerCityForEveryDay();
-
   dailyStateFlights = q.getNumberFlightsPerStateForEveryDay();
   dailyAirportFlights = q.getNumberFlightsPerAirportForEveryDay();
-
   airports = q.getArrayAirports();
   states = q.getArrayStates();
   cities = q.getArrayCities();
@@ -71,6 +69,7 @@ void setup() {
 
   createDropdownArray();
   createFirstScreens();
+  createDropdownArrayForDateRange();//dropdown array for screen(6)
 
   //creates 2 objects of TextWidget class
   text=new TextWidget[2];
@@ -86,17 +85,11 @@ void setup() {
   profile = new AirlinerProfile("AA");
 }
 
-int screenCheck = 0;
+
 void draw() {
   background(255);
   //draws screens
-  if (screenCheck != currentScreenShown) {
-    createScreens(currentScreenShown);
-    screenCheck = currentScreenShown;
-  }
-  if (currentScreenShown == 6 && !mousePressed){
   createScreens(currentScreenShown);
-  }
   screenArray[currentScreenShown].draw();
   if (profile.show) {
     profile.draw();
@@ -143,20 +136,33 @@ void mousePressed() {
       endDateTextWidget=null;
     }
   }
+  try{
+    if(currentScreenShown == 7){
+      if(screenArray[7].getButton(0).isMouseOver()){
+        String[] stateDestAndDept = getMapString();
+        print(stateDestAndDept[0]);
+        println(stateDestAndDept[1]);
+        screenArray[7].getMap(0).setLine(stateDestAndDept[0], stateDestAndDept[1]);
+       }
+    }
+  }catch(Exception e){
+    print(e);
+  }
 }
 
 void mouseWheel(MouseEvent event) {
-  /**
-   Modified body of this method created by Cara Saulnier because in this way it can take different dropdown arrays
-   like the one in screen(1) and also on screen(7) even if they have different names
-   Katia Neli
-   */
+  // Modified body of this method created by Cara Saulnier because in this way it can take different dropdown arrays
+  // like the one in screen(1) and also on screen(7) even if they have different names
+  // Katia Neli
   if (currentScreenShown==1)
   {
     wheelDropdown=dropdownArray;
   } else if (currentScreenShown==6)
   {
     wheelDropdown=dropdownArrayForDateRange;
+  }else if (currentScreenShown==7)
+  {
+    wheelDropdown=mapDropdown;
   }
 
   for (int i =0; i < wheelDropdown.length; i++)
