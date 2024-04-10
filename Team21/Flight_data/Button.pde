@@ -55,7 +55,7 @@ class Button {
       {
         stroke(BLACK);
       }
-      rect(xpos, ypos, width, height);
+      rect(xpos, ypos, width, height, 10);
       fill(0);
       drawText();
     } else {
@@ -93,6 +93,7 @@ class Button {
     textSize(textSize);
     textAlign(CENTER, CENTER);
     fill(0);
+    fill(WHITE);
     text(text, xpos, ypos);
   }
 

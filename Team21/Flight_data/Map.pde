@@ -1,24 +1,26 @@
-String originState = "AK"; String destState = "AK";
+String originState = "AK";
+String destState = "AK";
 
-class Map{
-  float xPosition; float yPosition;
+class Map {
+  float xPosition;
+  float yPosition;
   HashMap<String, float[]> locations;
   PImage mapImage;
   float [][] currentLineBeingShown;
   boolean lineDisplayed;
-  
-  Map(float xPosition, float yPosition){
+
+  Map(float xPosition, float yPosition) {
     lineDisplayed = false;
     this.xPosition = xPosition;
     this.yPosition = yPosition;
     mapImage = loadImage("usa-map.jpg");
     setupHashTable();
   }
-  
-  private void setupHashTable(){
+
+  void setupHashTable() {
     locations = new HashMap<String, float[]>();
     //locations.put("", new float[] {});
-     locations.put("AK", new float[] {89f, 311f});
+    locations.put("AK", new float[] {89f, 311f});
     locations.put("HI", new float[] {214f, 349f});
     locations.put("WA", new float[] {72f, 37f});
     locations.put("OR", new float[] {62f, 83f});
@@ -68,35 +70,30 @@ class Map{
     locations.put("NH", new float[] {503f, 91f});
     locations.put("VT", new float[] {490f, 81f});
     locations.put("ME", new float[] {515f, 63f});
- 
-}
-  
-  void draw(){
+  }
+
+  void draw() {
     image(mapImage, xPosition, yPosition);
     drawLine(originState, destState);
   }
-  
-  float[] getLocationCoordinates(String locationName){
+
+  float[] getLocationCoordinates(String locationName) {
     float [] cords = new float[] {locations.get(locationName)[0] + xPosition, locations.get(locationName)[1] + yPosition};
     return cords;
   }
-  
-  void drawLine(String originState, String destState){
+
+  void drawLine(String originState, String destState) {
     float[] cords1 = this.getLocationCoordinates(originState);
     float[] cords2 = this.getLocationCoordinates(destState);
     strokeWeight(3);
-    println("cords1 0: " + cords1[0]);
-    println("cords1 1: " + cords1[1]);
-    println("cords2 0: " + cords2[0]);
-    println("cords2 1: " + cords2[1]);
     line(cords1[0], cords1[1], cords2[0], cords2[1]);
     strokeWeight(1);
-}
-  void setLine(String originState1, String destState1){//ignore bad variable naming :D
-    println("1");
-    originState = originState1;
-    destState = destState1;
-    this.lineDisplayed = true;
   }
-
+  void setLine(String originState1, String destState1) {//ignore bad variable naming :D
+    if (originState!=null && destState != null) {
+      originState = originState1;
+      destState = destState1;
+      this.lineDisplayed = true;
+    }
+  }
 }
