@@ -46,21 +46,6 @@ void createDropdownArray()
     default:
     }
   }
-  createDropdownForMap();
-}
-
-void createDropdownForMap()
-{
-  //creating dropdown array for the map screen
-  //Michael Moore
-  mapDropdown = new Dropdown[2];
-  mapDropdown[0] = new Dropdown(SCREENX/2 - DROPDOWN_WIDTH + 130, SCREENY/2-(3*DROPDOWN_HEIGHT+17), DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
-        "Select Origin", states, color(171, 177, 207), COLUMBIA_BLUE, DENIM, arial, false);
-  mapDropdown[1] = new Dropdown(SCREENX/2 + DROPDOWN_WIDTH, SCREENY/2 -(3*DROPDOWN_HEIGHT+17), DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
-        "Select Destination", states, color(171, 177, 207), COLUMBIA_BLUE, DENIM, arial, false);
-}
-
-void createDropdownArrayForDateRange() {
   //Created and initialised a new array of dropdowns for screen number 6 based on what Cara Saulnier did for the others in the code above
   //Katia Neli
   dropdownArrayForDateRange=new Dropdown[3];
@@ -83,7 +68,15 @@ void createDropdownArrayForDateRange() {
     default:
     }
   }
+  //creating dropdown array for the map screen
+  //Michael Moore
+  mapDropdown = new Dropdown[2];
+  mapDropdown[0] = new Dropdown(SCREENX/2 - DROPDOWN_WIDTH + 130, SCREENY/2-(3*DROPDOWN_HEIGHT+17), DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
+        "Select Origin", states, color(171, 177, 207), COLUMBIA_BLUE, DENIM, arial, false);
+  mapDropdown[1] = new Dropdown(SCREENX/2 + DROPDOWN_WIDTH, SCREENY/2 -(3*DROPDOWN_HEIGHT+17), DROPDOWN_WIDTH, DROPDOWN_HEIGHT,
+        "Select Destination", states, color(171, 177, 207), COLUMBIA_BLUE, DENIM, arial, false);
 }
+
 
 
 /* Two functions:
@@ -309,10 +302,8 @@ void createScreens(int i) // i is the variable that decides which screen will be
     for (int j = 0; j < arrayDates.length; j++) {//gives the indexes for the start and end date
       if (arrayDates[j].equals(startDate))
         indexStartDate=j;
-        //println(indexStartDate);
       if (arrayDates[j].equals(endDate))
         indexEndDate=j;
-        //println(indexEndDate);
     }
 
     int sumFlightsState=0;
@@ -421,7 +412,6 @@ String[] getMapString(){
       {
           destState = states[k];
       }
-    }
-    
+    }   
   return new String[] {originState, destState};
 }  

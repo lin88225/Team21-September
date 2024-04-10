@@ -69,7 +69,6 @@ void setup() {
 
   createDropdownArray();
   createFirstScreens();
-  createDropdownArrayForDateRange();//dropdown array for screen(6)
 
   //creates 2 objects of TextWidget class
   text=new TextWidget[2];
@@ -140,8 +139,8 @@ void mousePressed() {
     if(currentScreenShown == 7){
       if(screenArray[7].getButton(0).isMouseOver()){
         String[] stateDestAndDept = getMapString();
-        print(stateDestAndDept[0]);
-        println(stateDestAndDept[1]);
+        //print(stateDestAndDept[0]);
+        //println(stateDestAndDept[1]);
         screenArray[7].getMap(0).setLine(stateDestAndDept[0], stateDestAndDept[1]);
        }
     }
