@@ -1,13 +1,13 @@
-/**
+/*
  Aisling McNamara 2/4/2024
  Global Airports SQLite database: https://www.partow.net/miscellaneous/airportdatabase/
-
-The Heatmap class queries the SQLite database containing the flight data and global airport SQLite database to generate 
-circles that increase in size based on magnitude of flights from each airport that can be superimposed over a map.  
-The functions latLonTOXY() and convertToDecimal() change the longitude and latitude values from hours/minutes/seconds to XY values
-
-Note that this has not been included in the final version due to driver issues when running on the lab PCs and other devices. 
-
+ 
+ The Heatmap class queries the SQLite database containing the flight data and global airport SQLite database to generate
+ circles that increase in size based on magnitude of flights from each airport that can be superimposed over a map.
+ The functions latLonTOXY() and convertToDecimal() change the longitude and latitude values from hours/minutes/seconds to XY values
+ 
+ Note that this has not been included in the final version due to driver issues when running on the lab PCs and other devices.
+ 
  */
 
 import java.sql.Connection;
@@ -90,3 +90,4 @@ public class Heatmap {
     return decimal;
   }
 }
+
