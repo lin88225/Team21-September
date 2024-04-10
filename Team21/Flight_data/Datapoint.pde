@@ -1,5 +1,9 @@
-//A version of the Datapoint Class that takes
-//A String array of loaded data and a specific line
+/**
+ A version of the Datapoint Class that takes
+ A String array of loaded data and a specific line
+ Code initally written by Lloyd McNally
+ Small mistakes regarding numbers were fixed, with obsolete code removed. The functions calling the code were changed as well as changing the constructor to only read the file once - Cara Saulnier
+ */
 
 public class Datapoint {
   public String  FlightDate, IACA_Code_Marketing_Airline, Origin, OriginCityName, OriginStateName, Dest, DestinationCityName, DestinationStateName;
@@ -7,70 +11,61 @@ public class Datapoint {
   public float distance;
   public boolean cancelled, diverted;
 
-  Datapoint (String loadedData[], int line) {
+  Datapoint (String loadedData) {
+    //The raw data
+    String dataInString[] = loadedData.split(",");
 
-    String eP[] = loadedData[line].split(",");
-    int eI[] = new int [8];
+    float distance = Float.parseFloat(dataInString[19]);
+    boolean cancelled = (Float.parseFloat(dataInString[17]) == 1);
+    boolean diverted = (Float.parseFloat(dataInString[18]) == 1);
+    dataInString[4] = dataInString [4] + dataInString[5];
+    dataInString[9] = dataInString [9] + dataInString[10];
 
-    eI[0] = Integer.parseInt(eP[2]);
 
-    eI[1] = Integer.parseInt(eP[7]);
-    eI[2] = Integer.parseInt(eP[12]);
-    try {
-      eI[3] = Integer.parseInt(eP[13]);
+    this.FlightDate =                  dataInString[0].replaceAll(" 12:00:00 AM", "");//added a space in front of 12 because otherwise it wouldn't read the date in the TextWidget
+    this.IACA_Code_Marketing_Airline = dataInString[1];
+    this.FlightNumber =                Integer.parseInt(dataInString[2]);
+
+
+
+    this.Origin =                   dataInString[3];
+    this.OriginCityName =           dataInString[4].replaceAll("\"", "");//replaceAll() is used to remove "" from the String
+    this.OriginStateName =          dataInString[6];
+    this.OriginWac =                Integer.parseInt(dataInString[7]);
+
+    this.Dest =                     dataInString[8];
+    this.DestinationCityName =      dataInString[9].replaceAll("\"", "");//replaceAll() is used to remove "" from the String
+    this.DestinationStateName =     dataInString[11];
+    this.DestWac =                  Integer.parseInt(dataInString[12]);
+
+    if (dataInString[13].equals(""))
+    {
+      this.CRSDepTime =              -1;
+    } else {
+      this.CRSDepTime =              Integer.parseInt(dataInString[13]);
     }
-    catch (NumberFormatException e) {
-      eI[3] = -1;
-    }
-
-    try {
-      eI[4] = Integer.parseInt(eP[14]);
-    }
-    catch (NumberFormatException e) {
-      eI[4] = -1;
-    }
-
-    try {
-      eI[5] = Integer.parseInt(eP[15]);
-    }
-    catch (NumberFormatException e) {
-      eI[5] = -1;
-    }
-    try {
-      eI[6] = Integer.parseInt(eP[16]);
-    }
-    catch (NumberFormatException e) {
-      eI[6] = -1;
+    if (dataInString[14].equals(""))
+    {
+      this.departure =               -1;
+    } else {
+      this.departure =               Integer.parseInt(dataInString[14]);
     }
 
 
+    if (dataInString[15].equals(""))
+    {
+      this.CRSExcpetedArrivalTime =  -1;
+    } else {
+      this.CRSExcpetedArrivalTime =  Integer.parseInt(dataInString[15]);
+    }
 
-    float distance = Float.parseFloat(eP[19]);
-    boolean cancelled = (Float.parseFloat(eP[17]) == 1);
-    boolean diverted = (Float.parseFloat(eP[18]) == 1);
-    eP[4] = eP [4] + eP[5];
-    eP[8] = eP [8] + eP[9];
+    if (dataInString[16].equals(""))
+    {
+      this.ArrivalTime =              -1;
+    } else {
+      this.ArrivalTime =              Integer.parseInt(dataInString[16]);
+    }
 
-    this.FlightDate =           eP[0];
-    this.IACA_Code_Marketing_Airline =           eP[1];
-    this.FlightNumber =         eI[0];
-
-
-    this.Origin =               eP[3];
-    this.OriginCityName =                eP[4];
-    this.OriginStateName =               eP[5];
-    this.OriginWac =       eI[1];
-
-    this.Dest =                 eP[7];
-    this.DestinationCityName =                eP[8];
-    this.DestinationStateName =               eP[9];
-    this.DestWac =       eI[2];
-
-    this.CRSDepTime =   eI[3];
-    this.departure =            eI[4];
-
-    this.CRSExcpetedArrivalTime =     eI[5];
-    this.ArrivalTime =              eI[6];
 
     this.distance =             distance;
 
@@ -78,47 +73,28 @@ public class Datapoint {
     this.diverted =             diverted;
   }
 }
-
-//A public function for intializing an arraylist of datapoints
-//(EG: if you have a screen to represent 30 datapoints, use an arraylist of size 30)
-ArrayList <Datapoint> initializeDataList (String fileName, int start, int amount) {
+/*
+ Written by Lloyd McNally
+ Made more efficient by Cara Saulnier
+ A public function for intializing an arraylist of datapoints
+ (EG: if you have a screen to represent 30 datapoints, use an arraylist of size 30)
+ */
+ArrayList <Datapoint> initializeDataList (String []fileData, int amount) {
   ArrayList <Datapoint> result = new ArrayList <Datapoint> (0);
 
-  for (int i = start; i < amount; i ++) {
-    Datapoint placeHolder = new Datapoint (loadStrings(fileName), i);
+  for (int i = 1; i < amount; i ++) {
+    Datapoint placeHolder = new Datapoint (fileData[i]);
     result.add(placeHolder);
   }
   return result;
 }
-Datapoint [] initializeDataArray (String fileName, int start, int amount) {
+
+Datapoint [] initializeDataArray (String []fileData, int start, int amount) {
   Datapoint [] result = new Datapoint [amount];
 
   for (int i = start; i < amount; i ++) {
-    Datapoint placeHolder = new Datapoint (loadStrings(fileName), i);
+    Datapoint placeHolder = new Datapoint (fileData[i]);
     result[i] = placeHolder;
   }
   return result;
 }
-
-/*
-Comments:
- The try catch is used such that any fields that MIGHT be empty are replaced
- With an error code (-1)
- 
- 
- Scrap Code:
- //properData.add(placeHolder);
- //println (properData.get(i-1).FlightDate);
- //theData = loadStrings("flights100k.csv");
- 
- for (int j = 0; j < 20; j ++) {
- println("Value [" + j + "]:" + eP[j]);
- }
- 
- Datapoint(
- 2, eP[1], eP[2], eP[3], eP[4], eP[6], eP[7], eP[8],
- eI[0], eI[1], eI[2], eI[3], eI[4], eI[5], eI[6],
- distance,
- cancelled, diverted);
- 
- */
