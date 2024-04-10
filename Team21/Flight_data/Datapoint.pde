@@ -6,8 +6,8 @@
  */
 
 public class Datapoint {
-  public String  FlightDate, IACA_Code_Marketing_Airline, Origin, OriginCityName, OriginStateName, Dest, DestinationCityName, DestinationStateName;
-  public int  FlightNumber, OriginWac, DestWac, CRSDepTime, departure, CRSExcpetedArrivalTime, ArrivalTime;
+  public String  flightDate, iACA_Code_Marketing_Airline, origin, originCityName, originStateName, dest, destinationCityName, destinationStateName;
+  public int  flightNumber, originWac, destWac, cRSDepTime, departure, cRSExcpetedArrivalTime, arrivalTime;
   public float distance;
   public boolean cancelled, diverted;
 
@@ -22,27 +22,27 @@ public class Datapoint {
     dataInString[9] = dataInString [9] + dataInString[10];
 
 
-    this.FlightDate =                  dataInString[0].replaceAll(" 12:00:00 AM", "");//added a space in front of 12 because otherwise it wouldn't read the date in the TextWidget
-    this.IACA_Code_Marketing_Airline = dataInString[1];
-    this.FlightNumber =                Integer.parseInt(dataInString[2]);
+    this.flightDate =                  dataInString[0].replaceAll(" 12:00:00 AM", "");//added a space in front of 12 because otherwise it wouldn't read the date in the TextWidget
+    this.iACA_Code_Marketing_Airline = dataInString[1];
+    this.flightNumber =                Integer.parseInt(dataInString[2]);
 
 
 
-    this.Origin =                   dataInString[3];
-    this.OriginCityName =           dataInString[4].replaceAll("\"", "");//replaceAll() is used to remove "" from the String
-    this.OriginStateName =          dataInString[6];
-    this.OriginWac =                Integer.parseInt(dataInString[7]);
+    this.origin =                   dataInString[3];
+    this.originCityName =           dataInString[4].replaceAll("\"", "");//replaceAll() is used to remove "" from the String
+    this.originStateName =          dataInString[6];
+    this.originWac =                Integer.parseInt(dataInString[7]);
 
-    this.Dest =                     dataInString[8];
-    this.DestinationCityName =      dataInString[9].replaceAll("\"", "");//replaceAll() is used to remove "" from the String
-    this.DestinationStateName =     dataInString[11];
-    this.DestWac =                  Integer.parseInt(dataInString[12]);
+    this.dest =                     dataInString[8];
+    this.destinationCityName =      dataInString[9].replaceAll("\"", "");//replaceAll() is used to remove "" from the String
+    this.destinationStateName =     dataInString[11];
+    this.destWac =                  Integer.parseInt(dataInString[12]);
 
     if (dataInString[13].equals(""))
     {
-      this.CRSDepTime =              -1;
+      this.cRSDepTime =              -1;
     } else {
-      this.CRSDepTime =              Integer.parseInt(dataInString[13]);
+      this.cRSDepTime =              Integer.parseInt(dataInString[13]);
     }
     if (dataInString[14].equals(""))
     {
@@ -54,16 +54,16 @@ public class Datapoint {
 
     if (dataInString[15].equals(""))
     {
-      this.CRSExcpetedArrivalTime =  -1;
+      this.cRSExcpetedArrivalTime =  -1;
     } else {
-      this.CRSExcpetedArrivalTime =  Integer.parseInt(dataInString[15]);
+      this.cRSExcpetedArrivalTime =  Integer.parseInt(dataInString[15]);
     }
 
     if (dataInString[16].equals(""))
     {
-      this.ArrivalTime =              -1;
+      this.arrivalTime =              -1;
     } else {
-      this.ArrivalTime =              Integer.parseInt(dataInString[16]);
+      this.arrivalTime =              Integer.parseInt(dataInString[16]);
     }
 
 

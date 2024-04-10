@@ -39,7 +39,7 @@ class Query {
   String[] getArrayAirports() {
     Set<String> airportSet = new HashSet<>(); // Use a Set to store unique airport values
     for (int i = 1; i < theData.length; i++) {
-      airportSet.add(theData[i].Origin); // Add each airport to the Set
+      airportSet.add(theData[i].origin); // Add each airport to the Set
     }
     return sort(airportSet.toArray(new String[0]));
   }
@@ -47,7 +47,7 @@ class Query {
   String[] getArrayStates() {
     Set<String> stateSet = new HashSet<>();
     for (int i = 1; i < theData.length; i++) {
-      stateSet.add(theData[i].OriginStateName);
+      stateSet.add(theData[i].originStateName);
     }
     return sort(stateSet.toArray(new String[0]));//converts to Array and returns it in alphabetical order
   }
@@ -55,7 +55,7 @@ class Query {
   String[] getArrayCities() {
     Set<String> citySet = new HashSet<>();
     for (int i = 1; i < theData.length; i++) {
-      citySet.add(theData[i].OriginCityName);
+      citySet.add(theData[i].originCityName);
     }
     return sort(citySet.toArray(new String[0]));
   }
@@ -63,7 +63,7 @@ class Query {
   String[] getArrayAirlines() {
     Set<String> airlineSet = new HashSet<>();
     for (int i = 1; i < theData.length; i++) {
-      airlineSet.add(theData[i].IACA_Code_Marketing_Airline);
+      airlineSet.add(theData[i].iACA_Code_Marketing_Airline);
     }
     return sort(airlineSet.toArray(new String[0]));
   }
@@ -72,7 +72,7 @@ class Query {
     // Creates an ArrayList with unique airlines values
     ArrayList<String> date = new ArrayList<>();
     for (int i = 1; i < theData.length; i++) {
-      String value = theData[i].FlightDate;
+      String value = theData[i].flightDate;
       if (!date.contains(value)) //checks if it does not contain the airline yet
         date.add(value);
     }
@@ -88,7 +88,7 @@ class Query {
      Improved performance
      */
     for (int i = 1; i < theData.length; i++) {
-      String origin = theData[i].Origin;
+      String origin = theData[i].origin;
       origin = origin.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
       for (int index = 0; index < airports.length; index++) {
         if (airports[index].equals(origin)) {
@@ -109,7 +109,7 @@ class Query {
      Improved performance
      */
     for (int i = 1; i < theData.length; i++) {
-      String origin = theData[i].OriginStateName;
+      String origin = theData[i].originStateName;
       origin = origin.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
       for (int index = 0; index < states.length; index++) {
         if (states[index].equals(origin)) {
@@ -130,7 +130,7 @@ class Query {
      Improved performance
      */
     for (int i = 1; i < theData.length; i++) {
-      String origin = theData[i].OriginCityName;
+      String origin = theData[i].originCityName;
       origin = origin.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
       for (int index = 0; index < cities.length; index++) {
         if (cities[index].equals(origin)) {
@@ -151,7 +151,7 @@ class Query {
      Slightly improved performance
      */
     for (int i = 1; i < theData.length; i++) {
-      String origin = theData[i].IACA_Code_Marketing_Airline;
+      String origin = theData[i].iACA_Code_Marketing_Airline;
       origin = origin.replaceAll("\"", "");//replaceAll() is used to remove "" from the String
       for (int index = 0; index < airlines.length; index++) {
         if (airlines[index].equals(origin)) {
@@ -172,13 +172,13 @@ class Query {
       for (int days = 0; days < answer.length; days++) {
         for (int airportInts = 0; airportInts < answer[days].length; airportInts++)
         {
-          if (theData[i].FlightDate.equals(dates[days]) && theData[i].Origin.equals(airports[airportInts]))
+          if (theData[i].flightDate.equals(dates[days]) && theData[i].origin.equals(airports[airportInts]))
           {
             answer[days][airportInts]++;
             break;
           }
         }
-        if (theData[i].FlightDate.equals(dates[days])) {
+        if (theData[i].flightDate.equals(dates[days])) {
           break;
         }
       }
@@ -195,13 +195,13 @@ class Query {
       for (int days = 0; days < answer.length; days++) {
         for (int stateInts = 0; stateInts < answer[days].length; stateInts++)
         {
-          if (theData[i].FlightDate.equals(dates[days]) && theData[i].OriginStateName.equals(states[stateInts]))
+          if (theData[i].flightDate.equals(dates[days]) && theData[i].originStateName.equals(states[stateInts]))
           {
             answer[days][stateInts]++;
             break;
           }
         }
-        if (theData[i].FlightDate.equals(dates[days])) {
+        if (theData[i].flightDate.equals(dates[days])) {
           break;
         }
       }
@@ -218,13 +218,13 @@ class Query {
       for (int days = 0; days < answer.length; days++) {
         for (int cityInts = 0; cityInts < answer[days].length; cityInts++)
         {
-          if (theData[i].FlightDate.equals(dates[days]) && theData[i].OriginCityName.equals(cities[cityInts]))
+          if (theData[i].flightDate.equals(dates[days]) && theData[i].originCityName.equals(cities[cityInts]))
           {
             answer[days][cityInts]++;
             break;
           }
         }
-        if (theData[i].FlightDate.equals(dates[days])) {
+        if (theData[i].flightDate.equals(dates[days])) {
           break;
         }
       }
@@ -239,12 +239,12 @@ class Query {
     int [] totalDelays = new int[airlineNames.length];
     for (int i = 1; i < theData.length; i++)
     {
-      int delay = theData[i].ArrivalTime - theData[i].CRSExcpetedArrivalTime;
+      int delay = theData[i].arrivalTime - theData[i].cRSExcpetedArrivalTime;
       delay = (delay<-1200? -delay:delay);
-      delay = (theData[i].ArrivalTime == -1? 2500: delay);
+      delay = (theData[i].arrivalTime == -1? 2500: delay);
       for (int j = 0; j < airlineNames.length; j++)
       {
-        if (theData[i].IACA_Code_Marketing_Airline.equals(airlineNames[j]) && delay != 2500)
+        if (theData[i].iACA_Code_Marketing_Airline.equals(airlineNames[j]) && delay != 2500)
         {
           totalDelays[j] = delay;
         } else if (delay == 2500)
@@ -264,7 +264,7 @@ class Query {
     int [] result = new int [3];
     for (int i = 1; i < theData.length; i++)
     {
-      if (placeName.equals(theData[i].OriginStateName) || placeName.equals(theData[i].OriginCityName) || placeName.equals(theData[i].IACA_Code_Marketing_Airline))
+      if (placeName.equals(theData[i].originStateName) || placeName.equals(theData[i].originCityName) || placeName.equals(theData[i].iACA_Code_Marketing_Airline))
       {
         if (theData[i].cancelled) {
           result[1]++;
@@ -288,7 +288,7 @@ class Query {
       float flightDistance = theData[i].distance;
       for (int j = 0; j < airlineNames.length; j++)
       {
-        if (airlineNames[j].equals(theData[i].IACA_Code_Marketing_Airline))
+        if (airlineNames[j].equals(theData[i].iACA_Code_Marketing_Airline))
         {
           totalDistances[j] += flightDistance;
         }

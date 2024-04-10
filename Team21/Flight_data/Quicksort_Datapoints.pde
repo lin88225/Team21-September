@@ -17,10 +17,10 @@ void quickSortByIntArrivalTime(ArrayList<Datapoint> flights, int low, int high) 
 }
 
 int partitionByIntArrivalTime(ArrayList<Datapoint> flights, int low, int high) {
-  int pivot = flights.get(high).ArrivalTime;
+  int pivot = flights.get(high).arrivalTime;
   int i = low - 1;
   for (int j = low; j < high; j++) {
-    if (flights.get(j).ArrivalTime < pivot) {
+    if (flights.get(j).arrivalTime < pivot) {
       i++;
       Datapoint temp = flights.get(i);
       flights.set(i, flights.get(j));
@@ -42,10 +42,10 @@ void quickSortByCRSDepTime(ArrayList<Datapoint> flights, int low, int high) {
 }
 
 int partitionByCRSDepTime(ArrayList<Datapoint> flights, int low, int high) {
-  int pivot = flights.get(high).CRSDepTime;
+  int pivot = flights.get(high).cRSDepTime;
   int i = low - 1;
   for (int j = low; j < high; j++) {
-    if (flights.get(j).CRSDepTime < pivot) {
+    if (flights.get(j).cRSDepTime < pivot) {
       i++;
       Datapoint temp = flights.get(i);
       flights.set(i, flights.get(j));
