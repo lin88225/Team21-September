@@ -1,6 +1,11 @@
-/**
- Quicksort Class with Datapoint sorting functions
+/*
  Aisling McNamara 26/3/2024
+ Quicksort Class with Datapoint sorting functions
+
+ Implements Quicksort routines on Arrival Time variable and Departure Time variables in the Datapoint class. 
+ Quicksort function swaps higher numbers on the left with lower numbers on the right of the array and continually partitions the array 
+ to reapply the quicksort function until complete. This method is used for both Arrival and Departure time. 
+
  */
 
 void quickSortByIntArrivalTime(ArrayList<Datapoint> flights, int low, int high) {
