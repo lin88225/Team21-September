@@ -1,10 +1,7 @@
-/**
- This class creates a pie chart based on the data provided.
- Put into constructor as parameters an array of int and string of the data we want to represent,
- the title, a suitable description and the coordinates in which we want to place it.
- Katia Neli
- */
 class PieChart {
+  //call PieChart class when  specific button is pressed
+  // put into constructor as parameters array of int and string we want to represent
+  // and also the title
 
   int[] values;
   String [] description;
