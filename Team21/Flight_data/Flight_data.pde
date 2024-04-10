@@ -135,31 +135,34 @@ void mousePressed() {
       endDateTextWidget=null;
     }
   }
-  try{
-    if(currentScreenShown == 7){
-      if(screenArray[7].getButton(0).isMouseOver()){
+  try {
+    if (currentScreenShown == 7) {
+      if (screenArray[7].getButton(0).isMouseOver()) {
         String[] stateDestAndDept = getMapString();
         //print(stateDestAndDept[0]);
         //println(stateDestAndDept[1]);
         screenArray[7].getMap(0).setLine(stateDestAndDept[0], stateDestAndDept[1]);
-       }
+      }
     }
-  }catch(Exception e){
+  }
+  catch(Exception e) {
     print(e);
   }
 }
 
 void mouseWheel(MouseEvent event) {
-  // Modified body of this method created by Cara Saulnier because in this way it can take different dropdown arrays
-  // like the one in screen(1) and also on screen(7) even if they have different names
-  // Katia Neli
+  /*
+   Modified body of this method created by Cara Saulnier because in this way it can take different dropdown arrays
+   like the one in screen(1) and also on screen(7) even if they have different names
+   Katia Neli
+   */
   if (currentScreenShown==1)
   {
     wheelDropdown=dropdownArray;
   } else if (currentScreenShown==6)
   {
     wheelDropdown=dropdownArrayForDateRange;
-  }else if (currentScreenShown==7)
+  } else if (currentScreenShown==7)
   {
     wheelDropdown=mapDropdown;
   }

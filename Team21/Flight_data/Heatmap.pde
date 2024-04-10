@@ -1,4 +1,4 @@
-/*
+/**
  Aisling McNamara 2/4/2024
  Global Airports SQLite database: https://www.partow.net/miscellaneous/airportdatabase/
  
@@ -90,4 +90,3 @@ public class Heatmap {
     return decimal;
   }
 }
-
