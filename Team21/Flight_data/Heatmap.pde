@@ -1,6 +1,13 @@
 /**
  Aisling McNamara 2/4/2024
  Global Airports SQLite database: https://www.partow.net/miscellaneous/airportdatabase/
+
+The Heatmap class queries the SQLite database containing the flight data and global airport SQLite database to generate 
+circles that increase in size based on magnitude of flights from each airport that can be superimposed over a map.  
+The functions latLonTOXY() and convertToDecimal() change the longitude and latitude values from hours/minutes/seconds to XY values
+
+Note that this has not been included in the final version due to driver issues when running on the lab PCs and other devices. 
+
  */
 
 import java.sql.Connection;
@@ -22,7 +29,7 @@ public class Heatmap {
 
   void drawAirports() {
     try {
-      Connection flightsConn = DriverManager.getConnection("jdbc:sqlite:" + flightsDBPath);
+      Connection flightsConn = DriverManager.getConnection("jdbc:sqlite:" + flightsDBPath); // Attempts to connect SQLite database to Processing via JDBC driver
       Statement flightsStmt = flightsConn.createStatement();
 
       // Query unique ORIGIN column from the global database and counts number of flights for each ORIGIN to determine circle size
@@ -68,7 +75,7 @@ public class Heatmap {
   }
 
   float[] latLonToXY(float lat, float lon) {
-    // Change x y co-ords to appear on the map image
+    // Change x y co-ords to appear on the map image by placing then X and Y values in a list of floats
     float x = map(lon, -125, -66, 0, mapImage.width); // Adjusted for US map longitude bounds so it fits the US image
     float y = map(lat, 50, 24, 0, mapImage.height); // Adjusted for US map latitude bounds so it fits the US image
     return new float[]{x, y};
