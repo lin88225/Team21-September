@@ -1,4 +1,4 @@
-/*
+/**
  Aisling McNamara 26/3/2024
  Quicksort Class with Datapoint sorting functions
 

@@ -1,11 +1,14 @@
-private static int numberOfButtons = 0;
 /**
- Class made by Michael Moore that is supposed to create and draw buttons
- and to determine whether the mouse is over a button or not.
+ Class made by Michael Moore that creates, draws buttons
+ and determines whether the mouse is over a button or not.
+ 
  Updated the class with a new constructor that allows the creation of buttons
  with images. The draw and isMouseOver functions have been modified according to that.
  Katia Neli
  */
+
+int numberOfButtons = 0;
+
 class Button {
   float xpos;
   float ypos;

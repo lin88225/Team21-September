@@ -2,6 +2,7 @@ String originState = "AK";
 String destState = "AK";
 
 class Map {
+
   float xPosition;
   float yPosition;
   HashMap<String, float[]> locations;
@@ -89,7 +90,7 @@ class Map {
     line(cords1[0], cords1[1], cords2[0], cords2[1]);
     strokeWeight(1);
   }
-  void setLine(String originState1, String destState1) {//ignore bad variable naming :D
+  void setLine(String originState1, String destState1) {
     if (originState!=null && destState != null) {
       originState = originState1;
       destState = destState1;

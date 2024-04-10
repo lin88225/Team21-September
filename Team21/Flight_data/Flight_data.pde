@@ -35,8 +35,11 @@ void settings() {
 // The code used to use multiple fonts, I went through all  the files and now they are all Gadugi, even if the file names say otherwise - Cara Saulnier
 
 void setup() {
-  // Added an image at the top of the screens and changed the colour/shape of widgets to improve the design.
-  // Katia Neli
+  /*
+   Added an image at the top of the screens and changed the colour/shape of widgets.
+   Edited images for the first screen, the menu screen and various buttons to improve the design.
+   Katia Neli
+   */
   background(MIMI_PINK);
   textAlign(CENTER, CENTER);
   rectMode(CENTER);
@@ -135,31 +138,33 @@ void mousePressed() {
       endDateTextWidget=null;
     }
   }
-  try{
-    if(currentScreenShown == 7){
-      if(screenArray[7].getButton(0).isMouseOver()){
+
+  try {
+    if (currentScreenShown == 7) {
+      if (screenArray[7].getButton(0).isMouseOver()) {
         String[] stateDestAndDept = getMapString();
-        //print(stateDestAndDept[0]);
-        //println(stateDestAndDept[1]);
         screenArray[7].getMap(0).setLine(stateDestAndDept[0], stateDestAndDept[1]);
-       }
+      }
     }
-  }catch(Exception e){
+  }
+  catch(Exception e) {
     print(e);
   }
 }
 
 void mouseWheel(MouseEvent event) {
-  // Modified body of this method created by Cara Saulnier because in this way it can take different dropdown arrays
-  // like the one in screen(1) and also on screen(7) even if they have different names
-  // Katia Neli
+  /*
+   Modified body of this method created by Cara Saulnier because in this way it can take different dropdown arrays
+   like the one in screen(1), screen (6) and also on screen(7) even if they have different names
+   Katia Neli
+   */
   if (currentScreenShown==1)
   {
     wheelDropdown=dropdownArray;
   } else if (currentScreenShown==6)
   {
     wheelDropdown=dropdownArrayForDateRange;
-  }else if (currentScreenShown==7)
+  } else if (currentScreenShown==7)
   {
     wheelDropdown=mapDropdown;
   }

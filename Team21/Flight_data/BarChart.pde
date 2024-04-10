@@ -53,7 +53,7 @@ class BarChart {
     for (int i = 0; i < xData.length; i++) {
       yRect=y+(i*25);
       float gray = map(i, 0, xData.length, 0, 255);
-      fill(gray, 150, 250);
+      fill(gray, 150, 250);//colour result is a gradient
       noStroke();
       rect(x, yRect, xData[i]/biggestDataPoint*150, hRect, cornerRadius);
       fill(0);
